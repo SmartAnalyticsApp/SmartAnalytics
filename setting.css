@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    min-height: 100vh;
+    background-size: 100% 100%;
+    background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
+    background-size: cover;
+}
+.navbar-bottom {
+    display: grid;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    padding-bottom: 10px;
+    border-top: 1px solid #5A8A9F;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #1c5169;
+    padding-top: 10px;
+    text-align: center;
+}
+.navbar-bottom button {
+    background-color: rgb(0,0,0,0);
+    border: 0px;
+    cursor: pointer;
+}
+.navbar-bottom img {
+    width: 40px;
+}
+header {
+    width: 100%;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 10% 80%;
+    border-bottom: 2px solid #5a8a9f;
+}
+.header-title {
+    padding-left: 16px;
+    padding-right: 16px;
+    color: white;
+}
+header img {
+    position: relative;
+    top: 15px;
+    left: 16px;
+}
+.active-btn {
+    background-color: #0da2c6;
+    padding: 5px;
+    border-radius: 12px;
+}
+.disable-btn {
+    padding: 5px;
+    border-radius: 12px;
+}
+main{
+    padding: 16px;
+}
+.settings-container {
+    border-radius: 10px;
+    width: 300px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.setting {
+    display: grid;
+    grid-template-columns: 95% 10%;
+    gap: 1em;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.setting span{
+    font-weight: lighter;
+    font-size: 15px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+.settings-container hr{
+    margin-bottom: 30px;
+    width: 110%;
+    border: 0.5px solid #5A8A9F;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #3a7bd5;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
