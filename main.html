@@ -23,22 +23,22 @@
                 <p>Топ Тикеры</p>
             </div>
         </div>
-        <div class="main-btns-div"> 
-            <button style="color:white;" onclick="show1()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Суточные объемы тикера</button>
-            <div id="div1">
-                <p>Суточные объемы тикера</p>
-            </div>
-        </div>
         <div class="main-btns-div">
-            <button onclick="show2()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Информация о тикере<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <button style="color:white;"  onclick="show2()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Информация о тикере</button>
             <div id="div2">
                 <p>Информация о тикере</p>
             </div>
         </div>
-        <div class="main-btns-div">
-            <button onclick="show3()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Информация о ставках финансирования<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
-            <div id="div3">
-                <p>Информация о ставках финансирования</p>
+        <div class="main-btns-div"> 
+            <button onclick="show1()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Суточные объемы тикера<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div1">
+                <p>Суточные объемы тикера</p>
+            </div>
+        </div>
+        <div class="main-btns-div"> 
+            <button onclick="show9()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Ставки финансирования<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div9">
+                <p>Ставки финансирования</p>
             </div>
         </div>
         <div class="main-btns-div">
@@ -53,6 +53,14 @@
                 <p>Градация роста объемов</p>
             </div>
         </div>
+        <div class="main-btns-div">
+            <button onclick="show3()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Градация роста активов за последние 5 минут<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div3">
+                <p>Градация роста активов за последние 5 минут</p>
+            </div>
+        </div>
+        
+        
        <div class="main-btns-div">
            <button onclick="show6()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Отслеживание импульсов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
             <div id="div6">
@@ -98,8 +106,10 @@
                 document.getElementById('div6').style.display="none";
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div8').style.display="none";
+                document.getElementById('div9').style.display="none";
 
-                window.location.href = 'tikerinfo.html';
+
+                window.location.href = 'dailyinfo.html';
             } else {
                 div.style.display = "none";
             }
@@ -118,8 +128,10 @@
                 document.getElementById('div6').style.display="none";
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div8').style.display="none";
+                document.getElementById('div9').style.display="none";
 
-                window.location.href = 'dailyinfo.html';
+
+                window.location.href = 'tikerinfo.html';
             
             } else {
                 div.style.display = "none";
@@ -138,6 +150,8 @@
                 document.getElementById('div6').style.display="none";
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div8').style.display="none";
+                document.getElementById('div9').style.display="none";
+
 
                 window.location.href = 'rateinfo.html';
             } else {
@@ -157,6 +171,8 @@
                 document.getElementById('div6').style.display="none";
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div8').style.display="none";
+                document.getElementById('div9').style.display="none";
+
 
                 window.location.href = 'correlationinfo.html';
             } else {
@@ -176,6 +192,8 @@
                 document.getElementById('div6').style.display="none";
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div8').style.display="none";
+                document.getElementById('div9').style.display="none";
+
 
                 window.location.href = 'gradationinfo.html';
             } else {
@@ -195,6 +213,8 @@
                 document.getElementById('div1').style.display="none";
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div8').style.display="none";
+                document.getElementById('div9').style.display="none";
+
 
             
             } else {
@@ -214,6 +234,8 @@
                 document.getElementById('div6').style.display="none";
                 document.getElementById('div8').style.display="none";
                 document.getElementById('div1').style.display="none";
+                document.getElementById('div9').style.display="none";
+
                 window.location.href = 'toptikers.html';
 
             } else {
@@ -232,6 +254,28 @@
                 document.getElementById('div6').style.display="none";
                 document.getElementById('div1').style.display="none";
                 document.getElementById('div7').style.display="none";
+                document.getElementById('div9').style.display="none";
+
+
+
+            } else {
+                div.style.display = "none";
+            }
+        }
+
+        function show9() {
+            var div = document.getElementById('div9');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div1').style.display="none";
+                document.getElementById('div7').style.display="none";
+                document.getElementById('div8').style.display="none";
+                window.location.href = 'rateinfo.html';
 
 
             } else {
