@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+    <link rel="stylesheet" href="css/tikerinfo.css" type="text/css" media="all" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('tickerForm');
+    var inputField = document.getElementById('tickerInput');
+    var errorMessage = document.getElementById('errorMessage');
+    var tickerInfoContainer = document.getElementById('tickerInfo');
+    var lastUpdateSpan = document.getElementById('lastUpdate');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent actual form submission
+
+        var ticker = inputField.value.trim().toUpperCase();
+        if (ticker === "") {
+            errorMessage.style.display = 'block';
+            inputField.classList.add('error');
+            return;
+        } else {
+            errorMessage.style.display = 'none';
+            inputField.classList.remove('error');
+        }
+
+        // Simulated data fetch (replace with actual API call)
+        var tickerData = {
+            symbol: ticker+"USDT",
+            corelation: "100%",
+            volume: '11,877,027,059.31',
+            standartvolume: 1.31,
+            fanding: '0.01%(0.00%)'
+            // Example volume, replace with fetched data
+        };
+
+        // Display fetched data
+        
+        var infoHTML = `<h3>Результат запроса</h3>`;
+        infoHTML += `<p>Тикер: <span>${tickerData.symbol}</span></p>`;
+        infoHTML += `<p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>`;
+        infoHTML += `<p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>`;
+        infoHTML += `<p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>`;
+        
+        infoHTML += `<div>
+                        <hr>
+                        <h4>Фандинг</h4>
+                        <p>4 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>3 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>2 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>1 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>45 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>30 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>20 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>15 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>10 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>5 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>Текущий фандинг: <span>${tickerData.fanding}</span> раз(а)</p>
+                     </div>`;
+        tickerInfoContainer.innerHTML = infoHTML;
+
+        // Update last update time (example)
+        var now = new Date();
+        lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
+
+        // Clear input field
+        inputField.value = '';
+    });
+});
+
+    </script>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
+        </a>
+        <h3 class="header-title">Информация о тикере</h3>
+    </header>
+    <main>
+        <p class="main-p">Введите торговую пару к USDT</p>
+        <form id="tickerForm">
+            <input id="tickerInput" class="main-input" placeholder="BTC">
+            <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
+            <div id="tickerInfo">
+                
+            </div>
+            <div class="main-form">
+                <button id="submitButton" class="main-btn">Получить информацию о тикере</button>
+                <p>Последнее обновление - <span id="lastUpdate"></span></p>
+                
+            </div>
+        </form>
+    </main>
+    <div class="navbar-bottom">
+       <div class="navbar-div">
+           <a href="setting.html">
+               <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+           </a>
+       </div>
+       <div class="navbar-div">
+           <a href="main.html">
+               <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+           </a>
+       </div> 
+       <div class="navbar-div">
+           <a href="profile.html">
+               <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+           </a>
+       </div>
+    </div>
+    
+</body>
+</html>

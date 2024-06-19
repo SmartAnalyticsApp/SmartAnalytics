@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+    <link rel="stylesheet" href="css/main.css" type="text/css" media="all" />
+</head>
+<body>
+
+    <div class="main-btns">
+        <div class="main-btns-div" >
+            <button onclick="show7()" style="color:white;"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Топ Тикеры</button>
+            <div id="div7" style="margin-top: 100px;">
+                <div style="display: grid; grid-template-columns: repeat(6,1fr);">
+                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
+                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
+                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
+                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
+                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
+                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
+                </div>
+                <p>Топ Тикеры</p>
+            </div>
+        </div>
+        <div class="main-btns-div"> 
+            <button style="color:white;" onclick="show1()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Суточные объемы тикера</button>
+            <div id="div1">
+                <p>Суточные объемы тикера</p>
+            </div>
+        </div>
+        <div class="main-btns-div">
+            <button onclick="show2()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Информация о тикере<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div2">
+                <p>Информация о тикере</p>
+            </div>
+        </div>
+        <div class="main-btns-div">
+            <button onclick="show3()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Информация о ставках финансирования<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div3">
+                <p>Информация о ставках финансирования</p>
+            </div>
+        </div>
+        <div class="main-btns-div">
+            <button onclick="show4()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Корреляция двух активов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div4">
+                <p>Корреляция двух активов</p>
+            </div>
+        </div>
+        <div class="main-btns-div">
+            <button onclick="show5()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Градация роста объемов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div5">
+                <p>Градация роста объемов</p>
+            </div>
+        </div>
+       <div class="main-btns-div">
+           <button onclick="show6()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Отслеживание импульсов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div6">
+                <p>Отслеживание импульсов</p>
+            </div>
+       </div>
+       <div class="main-btns-div">
+            <button onclick="show8()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Отслеживание выбранного актива<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+            <div id="div8">
+                <p>Отслеживание выбранного актива</p>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="navbar-bottom">
+       
+       <div class="navbar-div">
+           <a href="setting.html">
+               <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+           </a>
+       </div>
+       <div class="navbar-div">
+           <a href="main.html">
+               <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+           </a>
+       </div> 
+       <div class="navbar-div">
+           <a href="profile.html" >
+               <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+           </a>
+       </div>
+    </div>
+    <script>
+        function show1(){
+            var div = document.getElementById('div1');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div7').style.display="none";
+                document.getElementById('div8').style.display="none";
+
+                window.location.href = 'tikerinfo.html';
+            } else {
+                div.style.display = "none";
+            }
+            
+            
+        }
+        
+        function show2() {
+            var div = document.getElementById('div2');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div1').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div7').style.display="none";
+                document.getElementById('div8').style.display="none";
+
+                window.location.href = 'dailyinfo.html';
+            
+            } else {
+                div.style.display = "none";
+            }
+            
+        }
+        
+        function show3() {
+            var div = document.getElementById('div3');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div1').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div7').style.display="none";
+                document.getElementById('div8').style.display="none";
+
+                window.location.href = 'rateinfo.html';
+            } else {
+                div.style.display = "none";
+            }
+            
+        }
+        
+        function show4() {
+            var div = document.getElementById('div4');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div1').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div7').style.display="none";
+                document.getElementById('div8').style.display="none";
+
+                window.location.href = 'correlationinfo.html';
+            } else {
+                div.style.display = "none";
+            }
+            
+        }
+        
+        function show5() {
+            var div = document.getElementById('div5');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div1').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div7').style.display="none";
+                document.getElementById('div8').style.display="none";
+
+                window.location.href = 'gradationinfo.html';
+            } else {
+                div.style.display = "none";
+            }
+            
+        }
+        
+        function show6() {
+            var div = document.getElementById('div6');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div1').style.display="none";
+                document.getElementById('div7').style.display="none";
+                document.getElementById('div8').style.display="none";
+
+            
+            } else {
+                div.style.display = "none";
+            }
+            
+        }
+        
+        function show7() {
+            var div = document.getElementById('div7');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div8').style.display="none";
+                document.getElementById('div1').style.display="none";
+                window.location.href = 'toptikers.html';
+
+            } else {
+                div.style.display = "none";
+            }
+        }
+
+        function show8() {
+            var div = document.getElementById('div8');
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                document.getElementById('div2').style.display="none";
+                document.getElementById('div3').style.display="none";
+                document.getElementById('div4').style.display="none";
+                document.getElementById('div5').style.display="none";
+                document.getElementById('div6').style.display="none";
+                document.getElementById('div1').style.display="none";
+                document.getElementById('div7').style.display="none";
+
+
+            } else {
+                div.style.display = "none";
+            }
+        }
+        
+       
+    </script>
+</body>
+</html>
+
+
+

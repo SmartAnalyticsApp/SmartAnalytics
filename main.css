@@ -1,0 +1,97 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 0px 16px;
+            background-size: cover;
+            min-height: 100vh; 
+            background: linear-gradient(to bottom, #0D1F2D, #0F3D56); /* Цвета градиента */            
+        }
+        h1 {
+            color: #333;
+        }
+        p{
+            margin-left: 6px;
+            color: #999;
+        }
+        .bot-logo {
+            width: 160px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .main-btns{
+            display: grid;
+            background-color: rgb(0,0,0,0);
+            padding: 10px;
+            color: #95A0A5;
+            padding-bottom: 150px;
+        }
+        .main-btns-div{
+            border: 1px solid #95A0A5;
+            margin-bottom: 10px;
+            text-align: left;
+            padding: 12px 16px; 
+            border-radius: 12px;
+        }
+        .main-btns button{
+            background-color: rgb(0,0,0,0);
+            border: 0px;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 12px;
+            text-align: left;
+            color: #95A0A5;
+            display: grid;
+            grid-template-columns: 14% 70% 10%;
+        }
+        #div1,
+        #div2,
+        #div3,
+        #div4,
+        #div5,
+        #div6,
+        #div7,
+        #div8{
+            display: none;
+        }
+        .navbar-bottom{
+            display: grid;
+            position: fixed;
+            width: 100%;
+            left: 0px;
+            border-top: 1px solid #5A8A9F;
+            grid-template-columns: 1fr 1fr 1fr;
+            background-color: #1c5169;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            bottom: 0px;
+        }
+        .navbar-bottom button{
+            background-color: rgb(0,0,0,0);
+            border: 0px;
+            cursor: pointer;
+            
+            
+        }
+        .navbar-bottom img{
+            width: 40px;
+        }
+        .mb-img{
+            right: 40px;
+            position: absolute;
+            width: 200px;
+            margin-top: -40px;
+        }
+        .active-btn{
+            background-color: #0da2c6;
+            padding: 5px;
+            border-radius: 12px;
+        }
+        .disable-btn{
+            padding: 5px;
+            border-radius: 12px;
+        }
+        .div7 video{
+            border: 1px solid #999;
+            width: 100%;
+        }
