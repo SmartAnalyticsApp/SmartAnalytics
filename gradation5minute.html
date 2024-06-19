@@ -1,90 +1,115 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0px;
-    min-height: 100vh;
-    background-size: 100% 100%;
-    background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
-    background-size: cover;
-}
-.navbar-bottom {
-    display: grid;
-    position: fixed;
-    width: 100%;
-    left: 0px;
-    bottom: 0px;
-    padding-bottom: 10px;
-    border-top: 1px solid #5A8A9F;
-    grid-template-columns: 1fr 1fr 1fr;
-    background-color: #1c5169;
-    padding-top: 10px;
-    text-align: center;
-}
-.navbar-bottom button {
-    background-color: rgb(0,0,0,0);
-    border: 0px;
-    cursor: pointer;
-}
-.navbar-bottom img {
-    width: 40px;
-}
-header {
-    width: 100%;
-    text-align: left;
-    display: grid;
-    grid-template-columns: 10% 80%;
-    border-bottom: 2px solid #5a8a9f;
-}
-.header-title {
-    padding-left: 16px;
-    padding-right: 16px;
-    color: white;
-}
-header img {
-    position: relative;
-    top: 15px;
-    left: 16px;
-}
-.active-btn {
-    background-color: #0da2c6;
-    padding: 5px;
-    border-radius: 12px;
-}
-.disable-btn {
-    padding: 5px;
-    border-radius: 12px;
-}
-
-main{
-    padding: 0px 16px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+    <link rel="stylesheet" href="rateinfo.css" type="text/css" media="all" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('tickerForm');
+            var inputField = document.getElementById('tickerInput');
+            var inputField2 = document.getElementById('tickerInput2');
+            var errorMessage = document.getElementById('errorMessage');
+            var tickerInfoContainer = document.getElementById('tickerInfo');
+            var lastUpdateSpan = document.getElementById('lastUpdate');
     
-}
-main p{
-    color: white;
-    margin-bottom: -10px;
-    font-size: 14px;
-    font-weight: 0;
-}
-main h5{
-    color: #5A8A9F;
-    font-weight: 100;
-}
-main h3{
-    color: white;
-    margin-bottom: 0px;
-}
-.main-info{
-    display: grid;
-    padding-top: 10px;
-    grid-template-columns: 20% 50% 20%;
-    gap: 1%;
-}
-main h4{
-    color: #999;
-    margin-bottom: -10px;
-}
-main img{
-    padding-top: 15px;
-}
-.icon-download{
-    float: right;
-}
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+    
+                var ticker = inputField.value.trim().toUpperCase();
+                if (ticker === "") {
+                    errorMessage.style.display = 'block';
+                    inputField.classList.add('error');
+                    inputField2.classList.add('error');
+                    return;
+                } else {
+                    errorMessage.style.display = 'none';
+                    inputField.classList.remove('error');
+                    inputField2.classList.remove('error');
+                }
+    
+                // Simulated data fetch (replace with actual API call)
+                var tickerData = {
+                    fanding: 4.01, // Example positive value
+                };
+    
+                var infoHTML = `<h3>Результат запроса</h3>`;
+                var fandingClass = tickerData.fanding < 0 ? 'negative' : 'positive';
+                var fandingIcon = tickerData.fanding < 0 
+                    ? 'https://i.postimg.cc/wBV07N5n/Icon-5.png' 
+                    : 'https://i.postimg.cc/CK1mn1v1/Icon-6.png';
+                var fandingValue = tickerData.fanding < 0 
+                    ? tickerData.fanding 
+                    : `+${tickerData.fanding}`;
+                
+                var now = new Date();
+                lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
+    
+                // Generate the document content
+                var docContent = `Тикер: ${ticker}\nФандинг: ${fandingValue}\nПоследнее обновление: ${now.toLocaleString('ru-RU')}`;
+                var blob = new Blob([docContent], { type: 'text/plain' });
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `${ticker}_info.txt`;
+                link.innerHTML = '<img src="https://i.postimg.cc/MTp3SCKj/Icon-7.png" class="download-icon" alt="Скачать результат">';
+    
+                // Append the icons to the infoHTML
+                
+                infoHTML += `<img src="https://i.postimg.cc/Cx6bt4Nh/File-Icon.png">`;
+                infoHTML += link.outerHTML; // Append the download link with the image
+                
+                infoHTML += `<h6 style="color:white; margin-top: 15px; margin-bottom: -10px; font-size:13px; font-weight: 100;">За всё время объём изменился на</h6>`;
+                infoHTML += `<h2 class="${fandingClass}"><span>${fandingValue}</span><img src="${fandingIcon}"></h2>`;
+                tickerInfoContainer.innerHTML = infoHTML;
+    
+                // Clear input field
+                inputField.value = '';
+                inputField2.value = '';
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
+        </a>
+        <h3 class="header-title">Градация роста активов за последние 5 минут</h3>
+    </header>
+    <main>
+        <h3>Результат запроса</h3>
+        <div class="main-info">
+            <div>
+                <img src="https://i.postimg.cc/Cx6bt4Nh/File-Icon.png">
+            </div>
+            <div>
+                <h4>funding_data.csv</h4>
+                <h5>11.6 KB</h5>
+            </div>
+            <div>
+                <img class="icon-download" src="https://i.postimg.cc/MTp3SCKj/Icon-7.png">
+            </div>
+        </div>
+        
+    </main>
+    <div class="navbar-bottom">
+       
+        <div class="navbar-div">
+            <a href="setting.html">
+                <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+            </a>
+        </div>
+        <div class="navbar-div">
+            <a href="main.html">
+                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+            </a>
+        </div> 
+        <div class="navbar-div">
+            <a href="profile.html" >
+                <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+            </a>
+        </div>
+     </div>
+</body>
+</html>
