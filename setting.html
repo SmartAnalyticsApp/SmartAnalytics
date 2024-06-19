@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+    <link rel="stylesheet" href="setting.css" type="text/css" media="all" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('tickerForm');
+            var inputField = document.getElementById('tickerInput');
+            var inputField2 = document.getElementById('tickerInput2');
+            var errorMessage = document.getElementById('errorMessage');
+            var tickerInfoContainer = document.getElementById('tickerInfo');
+            var lastUpdateSpan = document.getElementById('lastUpdate');
+    
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+    
+                var ticker = inputField.value.trim().toUpperCase();
+                if (ticker === "") {
+                    errorMessage.style.display = 'block';
+                    inputField.classList.add('error');
+                    inputField2.classList.add('error');
+                    return;
+                } else {
+                    errorMessage.style.display = 'none';
+                    inputField.classList.remove('error');
+                    inputField2.classList.remove('error');
+                }
+    
+                // Simulated data fetch (replace with actual API call)
+                var tickerData = {
+                    fanding: 4.01, // Example positive value
+                };
+    
+                var infoHTML = `<h3>Результат запроса</h3>`;
+                var fandingClass = tickerData.fanding < 0 ? 'negative' : 'positive';
+                var fandingIcon = tickerData.fanding < 0 
+                    ? 'https://i.postimg.cc/wBV07N5n/Icon-5.png' 
+                    : 'https://i.postimg.cc/CK1mn1v1/Icon-6.png';
+                var fandingValue = tickerData.fanding < 0 
+                    ? tickerData.fanding 
+                    : `+${tickerData.fanding}`;
+                
+                var now = new Date();
+                lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
+    
+                // Generate the document content
+                var docContent = `Тикер: ${ticker}\nФандинг: ${fandingValue}\nПоследнее обновление: ${now.toLocaleString('ru-RU')}`;
+                var blob = new Blob([docContent], { type: 'text/plain' });
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `${ticker}_info.txt`;
+                link.innerHTML = '<img src="https://i.postimg.cc/MTp3SCKj/Icon-7.png" class="download-icon" alt="Скачать результат">';
+    
+                // Append the icons to the infoHTML
+                
+                infoHTML += `<img src="https://i.postimg.cc/Cx6bt4Nh/File-Icon.png">`;
+                infoHTML += link.outerHTML; // Append the download link with the image
+                
+                infoHTML += `<h6 style="color:white; margin-top: 15px; margin-bottom: -10px; font-size:13px; font-weight: 100;">За всё время объём изменился на</h6>`;
+                infoHTML += `<h2 class="${fandingClass}"><span>${fandingValue}</span><img src="${fandingIcon}"></h2>`;
+                tickerInfoContainer.innerHTML = infoHTML;
+    
+                // Clear input field
+                inputField.value = '';
+                inputField2.value = '';
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
+        </a>
+        <h3 class="header-title">Настройки уведомлений</h3>
+    </header>
+    <main>
+
+        <div class="settings-container">
+            <div class="setting">
+                <span>Уведомления приложения</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <hr>
+            <div class="setting">
+                <span>Уведомления об импульсах</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <span>Уведомления о цене</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <span>Уведомления о трендовых линиях</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <span>Уведомления об объеме</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <span>Уведомления о ставках финансирования</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>  
+        
+    </main>
+    <div class="navbar-bottom">
+       
+        <div class="navbar-div">
+            <a href="setting.html">
+                <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+            </a>
+        </div>
+        <div class="navbar-div">
+            <a href="main.html">
+                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+            </a>
+        </div> 
+        <div class="navbar-div">
+            <a href="profile.html" >
+                <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+            </a>
+        </div>
+     </div>
+</body>
+</html>
