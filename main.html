@@ -7,70 +7,110 @@
     <link rel="stylesheet" href="main.css" type="text/css" media="all" />
 </head>
 <body>
+    <img src="Logo_blue_wb.gif" alt="Comp 1 Animation" style="width:100px; margin-top: 30px; margin-bottom: 30px; ">
 
     <div class="main-btns">
-        <div class="main-btns-div" >
-            <button onclick="show7()" style="color:white;"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Топ Тикеры</button>
-            <div id="div7" style="margin-top: 100px;">
-                <div style="display: grid; grid-template-columns: repeat(6,1fr);">
-                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
-                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
-                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
-                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
-                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
-                    <video style="width: 30px;" src="images/coin.mp4" autoplay loop muted></video>
-                </div>
-                <p>Топ Тикеры</p>
+        <div class="main-btns-div" id="d1">
+            <button onclick="show7()" style="color:white;"><img src="Icon (8).png">Топ Тикеры</button>
+            <div id="div7">
+                
+                <a href="toptikers.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                </a>
+                <a href="toptikers.html" style="position: relative; top: 10px;">
+                    <img src="Comp_4.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
+                </a>
+                
             </div>
         </div>
-        <div class="main-btns-div">
-            <button style="color:white;"  onclick="show2()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Информация о тикере</button>
+        <div class="main-btns-div" id="d2">
+            <button style="color:white;"  onclick="show2()"><img src="Icon (9).png">Информация о тикере</button>
             <div id="div2">
-                <p>Информация о тикере</p>
+                <a href="tikerinfo.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="tikerinfo.html" style="position: relative; top: 10px;">
+                    <img src="inform.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
+                </a>
             </div>
         </div>
-        <div class="main-btns-div"> 
-            <button onclick="show1()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Суточные объемы тикера<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+        <div class="main-btns-div" id="d3"> 
+            <button onclick="show1()"><img src="Icon (10).png">Суточные объемы тикера<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block1"></button>
             <div id="div1">
-                <p>Суточные объемы тикера</p>
+                <a href="dailyinfo.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="dailyinfo.html" style=" position: relative; top: 10px;">
+                    <img src="sutochny.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
+                </a>
             </div>
         </div>
-        <div class="main-btns-div"> 
-            <button onclick="show9()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Ставки финансирования<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+        <div class="main-btns-div" id="d4"> 
+            <button onclick="show9()"><img src="Icon (11).png">Ставки финансирования<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block2"></button>
             <div id="div9">
-                <p>Ставки финансирования</p>
+                <a href="rateinfo.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="rateinfo.html" style="position: relative; top: 10px;">
+                    <img src="NOTUSDT.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
+                </a>
             </div>
         </div>
-        <div class="main-btns-div">
-            <button onclick="show4()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Корреляция двух активов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+        <div class="main-btns-div" id="d5">
+            <button onclick="show4()"><img src="Icon (12).png">Корреляция двух активов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block3"></button>
             <div id="div4">
-                <p>Корреляция двух активов</p>
+                <a href="correlationinfo.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="correlationinfo.html" style=" position: relative; top: 10px;">
+                    <img src="Charge_connect.gif" alt="Comp 1 Animation" style="width:100%;">
+                </a>
             </div>
         </div>
-        <div class="main-btns-div">
-            <button onclick="show5()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Градация роста объемов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+        <div class="main-btns-div" id="d6">
+            <button onclick="show5()"><img src="Icon (13).png">Градация роста объемов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block4"></button>
             <div id="div5">
-                <p>Градация роста объемов</p>
+                <a href="gradationinfo.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="gradationinfo.html" style="position: relative; top: 10px;">
+                    <img src="Gorki_vid.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
+                </a>
             </div>
         </div>
-        <div class="main-btns-div">
-            <button onclick="show3()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Градация роста активов за последние 5 минут<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+        <div class="main-btns-div" id="d7">
+            <button onclick="show3()"><img src="Icon (14).png">Градация роста активов за последние 5 минут<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block5"></button>
             <div id="div3">
-                <p>Градация роста активов за последние 5 минут</p>
+                <a href="gradation5mintes.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="gradation5mintes.html" style="position: relative; top: 10px;">
+                    <img src="Watches.gif" alt="Comp 1 Animation" style="width:100%; height:150px;">
+                </a>
             </div>
         </div>
         
         
-       <div class="main-btns-div">
-           <button onclick="show6()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Отслеживание импульсов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+       <div class="main-btns-div" id="d8">
+           <button onclick="show6()"><img src="Icon (15).png">Отслеживание импульсов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block6"></button>
             <div id="div6">
-                <p>Отслеживание импульсов</p>
+                <a href="impulse.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="impulse.html" style="position: relative; top: 10px;">
+                    <img src="impuls.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
+                </a>
             </div>
        </div>
-       <div class="main-btns-div">
-            <button onclick="show8()"><img src="https://i.postimg.cc/BbT4gc0g/Icon.png">Отслеживание выбранного актива<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png"></button>
+       <div class="main-btns-div" id="d9">
+            <button onclick="show8()"><img src="Icon (16).png">Отслеживание выбранного актива<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block7"></button>
             <div id="div8">
-                <p>Отслеживание выбранного актива</p>
+                <a href="impulsechoosen.html">
+                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                    </a>
+                <a href="impulsechoosen.html" style=" position: relative; top: 10px;">
+                    <img src="Comp_6.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
+                </a>
             </div>
         </div>
         
@@ -108,10 +148,36 @@
                 document.getElementById('div8').style.display="none";
                 document.getElementById('div9').style.display="none";
 
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="block";
+                document.getElementById('block1').style.display="none";
+                
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="1px solid #5A8A9F";
 
-                window.location.href = 'dailyinfo.html';
+
+
+                
+
             } else {
                 div.style.display = "none";
+                document.getElementById('block1').style.display="block";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+
+
             }
             
             
@@ -130,11 +196,34 @@
                 document.getElementById('div8').style.display="none";
                 document.getElementById('div9').style.display="none";
 
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="block";
 
-                window.location.href = 'tikerinfo.html';
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="1px solid #5A8A9F";
+
+
             
             } else {
                 div.style.display = "none";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+
+
+                
             }
             
         }
@@ -152,10 +241,35 @@
                 document.getElementById('div8').style.display="none";
                 document.getElementById('div9').style.display="none";
 
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="block";
+                document.getElementById('block5').style.display="none";
 
-                window.location.href = 'gradation5minute.html';
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="1px solid #5A8A9F";
+
+
+
+
             } else {
+                document.getElementById('block5').style.display="block";
                 div.style.display = "none";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+
+
             }
             
         }
@@ -173,10 +287,36 @@
                 document.getElementById('div8').style.display="none";
                 document.getElementById('div9').style.display="none";
 
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="block";
+                document.getElementById('block3').style.display="none";
 
-                window.location.href = 'correlationinfo.html';
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="1px solid #5A8A9F";
+
+
+
+
             } else {
                 div.style.display = "none";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+
+
             }
             
         }
@@ -194,10 +334,35 @@
                 document.getElementById('div8').style.display="none";
                 document.getElementById('div9').style.display="none";
 
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="block";
+                document.getElementById('block4').style.display="none";
 
-                window.location.href = 'gradationinfo.html';
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="1px solid #5A8A9F";
+
+
+
+
             } else {
+                document.getElementById('block4').style.display="block";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
                 div.style.display = "none";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+                
+
             }
             
         }
@@ -215,10 +380,35 @@
                 document.getElementById('div8').style.display="none";
                 document.getElementById('div9').style.display="none";
 
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="none";
+                document.getElementById('block7').style.display="block";
+
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="1px solid #5A8A9F";
+
 
             
             } else {
                 div.style.display = "none";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+                document.getElementById('block6').style.display="block";
+
+
+                
             }
             
         }
@@ -236,10 +426,29 @@
                 document.getElementById('div1').style.display="none";
                 document.getElementById('div9').style.display="none";
 
-                window.location.href = 'toptikers.html';
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="block";
+
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
 
             } else {
                 div.style.display = "none";
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+
+               
             }
         }
 
@@ -256,10 +465,35 @@
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div9').style.display="none";
 
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block2').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="none";
+
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="1px solid #5A8A9F";
+
 
 
             } else {
                 div.style.display = "none";
+                document.getElementById('block7').style.display="none";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+                document.getElementById('block7').style.display="block";
+
+
             }
         }
 
@@ -275,11 +509,35 @@
                 document.getElementById('div1').style.display="none";
                 document.getElementById('div7').style.display="none";
                 document.getElementById('div8').style.display="none";
-                window.location.href = 'rateinfo.html';
+
+                document.getElementById('block1').style.display="block";
+                document.getElementById('block3').style.display="block";
+                document.getElementById('block4').style.display="block";
+                document.getElementById('block5').style.display="block";
+                document.getElementById('block6').style.display="block";
+                document.getElementById('block7').style.display="block";
+                document.getElementById('block2').style.display="none";
+
+                document.getElementById('d1').style.border="0px solid #5A8A9F";
+                document.getElementById('d2').style.border="0px solid #5A8A9F";
+                document.getElementById('d3').style.border="0px solid #5A8A9F";
+                document.getElementById('d5').style.border="0px solid #5A8A9F";
+                document.getElementById('d6').style.border="0px solid #5A8A9F";
+                document.getElementById('d7').style.border="0px solid #5A8A9F";
+                document.getElementById('d8').style.border="0px solid #5A8A9F";
+                document.getElementById('d9').style.border="0px solid #5A8A9F";
+                document.getElementById('d4').style.border="1px solid #5A8A9F";
+
+
 
 
             } else {
+                document.getElementById('block2').style.display="block";
                 div.style.display = "none";
+                document.getElementById('d4').style.border="0px solid #5A8A9F";
+                document.getElementById('d1').style.border="1px solid #5A8A9F";
+                document.getElementById('div7').style.display="block";
+
             }
         }
         
