@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+    <link rel="stylesheet" href="impulse.css" type="text/css" media="all" />
+    <script>
+       
+
+
+        function value5(){
+            document.getElementById('value15').style.display="none";
+            document.getElementById('value30').style.display="none";
+            document.getElementById('value60').style.display="none";
+        }
+
+        function value15(){
+            document.getElementById('value5').style.display="none";
+            document.getElementById('value30').style.display="none";
+            document.getElementById('value60').style.display="none";
+        }
+
+        function value30(){
+            document.getElementById('value15').style.display="none";
+            document.getElementById('value5').style.display="none";
+            document.getElementById('value60').style.display="none";
+        }
+
+        function value60(){
+            document.getElementById('value15').style.display="none";
+            document.getElementById('value30').style.display="none";
+            document.getElementById('value5').style.display="none";
+        }
+
+        
+    </script>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
+        </a>
+        <h3 class="header-title">Суточные объемы тикера</h3>
+    </header>
+    <main>
+        
+        <form id="tickerForm">
+            <div class="tickerInput-div">
+                <div>
+                    <p class="main-p">Выберите временной интервал (мин)</p>
+                    <div class="btns">
+                        <div>
+                            <input id="value5" value="5" type="hidden">
+                            <button type="button" onclick="choose5()">5</button>
+                        </div>
+                        <div>
+                            <input id="value15" value="15" type="hidden">
+                            <button type="button" onclick="choose5()">15</button>
+                        </div>
+                        <div>
+                            <input id="value30" value="30" type="hidden">
+                            <button type="button" onclick="choose5()">30</button>
+                        </div>
+                        <div>
+                            <input id="value60" value="60" type="hidden">
+                            <button type="button" onclick="choose5()">60</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div>
+                    <p class="main-p">Введите процент изменения цены</p>
+                    <input id="tickerInput" class="main-input" placeholder="10">
+                </div>
+            </div>
+
+            <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
+            <div id="tickerInfo"></div>
+            <div class="main-form">
+                <button id="submitButton" class="main-btn">Получить информацию о тикере</button>
+                <p>Последнее обновление - <span id="lastUpdate"></span></p>
+            </div>
+        </form>
+    </main>
+    <div class="navbar-bottom">
+        <div class="navbar-div">
+            <a href="setting.html">
+                <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+            </a>
+        </div>
+        <div class="navbar-div">
+            <a href="main.html">
+                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+            </a>
+        </div> 
+        <div class="navbar-div">
+            <a href="profile.html" >
+                <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+            </a>
+        </div>
+     </div>
+</body>
+</html>
