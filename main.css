@@ -22,16 +22,15 @@
         .main-btns{
             display: grid;
             background-color: rgb(0,0,0,0);
-            padding: 10px;
             color: #95A0A5;
             padding-bottom: 150px;
         }
         .main-btns-div{
-            border: 1px solid #95A0A5;
             margin-bottom: 10px;
             text-align: left;
-            padding: 12px 16px; 
             border-radius: 12px;
+            border: 1px solid #5A8A9F;
+            padding: 12px;
         }
         .main-btns button{
             background-color: rgb(0,0,0,0);
@@ -42,7 +41,7 @@
             text-align: left;
             color: #95A0A5;
             display: grid;
-            grid-template-columns: 14% 70% 10%;
+            grid-template-columns: 15% 77% 5%;
         }
         #div1,
         #div2,
@@ -50,7 +49,6 @@
         #div4,
         #div5,
         #div6,
-        #div7,
         #div8,
         #div9{
             display: none;
@@ -74,6 +72,13 @@
             
             
         }
+        .nexticon{
+            position: absolute;
+            margin-top: -35px;
+            width: 35px;
+            right: 32px;
+            border-radius: 50%;
+        }
         .navbar-bottom img{
             width: 40px;
         }
@@ -93,6 +98,16 @@
             border-radius: 12px;
         }
         .div7 video{
-            border: 1px solid #999;
+            border: 1px solid #999 ;
             width: 100%;
+        }
+        #d2,
+        #d3,
+        #d4,
+        #d5,
+        #d6,
+        #d7,
+        #d8,
+        #d9{
+            border: 0px solid #5A8A9F;
         }
