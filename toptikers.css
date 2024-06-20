@@ -126,7 +126,7 @@
         .main-info{
             padding: 0px 16px;
             margin-top: 20px;
-            padding-bottom: 150px;
+            padding-bottom: 180px;
         }
         .transactions-info{
             background-color: #1B4F66;
@@ -153,4 +153,25 @@
             text-align: left;
             padding: 0px 16px;
             grid-template-columns: 1fr 1fr;
+        }
+        .main-form {
+            position: fixed;
+            bottom: 70px;
+            left: 0%;
+            width: 100%;
+            background-color: #1c5169;
+            border-top: 1px solid #5A8A9F;
+            padding-top: 15px;
+        }
+        .main-btn {
+            background-color: #0DA2C6;
+            width: 98%;
+            padding: 10px;
+            color: white;
+            font-size: 17px;
+            border: 0px;
+            border-radius: 12px;
+        }
+        .main-form p {
+            color: white;
         }
