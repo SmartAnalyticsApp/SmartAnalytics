@@ -82,6 +82,21 @@ main {
     border: 0px;
     margin-left: 2%;
     border-radius: 12px;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    justify-items: center;
+}
+.btns-div {
+    position: fixed;
+    bottom: 170px;
+    left: 0%;
+    display: grid;
+    grid-template-columns: 79% 20%;
+    justify-items: center;
+    width: 100%;
+    background-color: #1c5169;
+    border-top: 1px solid #5A8A9F;
+    padding-top: 15px;
 }
 .main-form p {
     color: white;
@@ -105,22 +120,20 @@ main {
 #tickerInfo p {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     color: white;
-    text-align: left;
 }
-.inputs-div{
+.inputs-div {
     display: grid;
     width: 92%;
     gap: 10%;
     grid-template-columns: repeat(4,1fr);
 }
-.btns{
+.btns {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 10px;
 }
-.btns button{
+.btns button {
     width: 100%;
     padding: 10px 5px;
     background-color: rgb(0, 0, 0, 0);
@@ -138,20 +151,20 @@ main {
     color: #5A8A9F;
     border: 0.7px solid #5A8A9F;
 }
-#tickerInfo div {
-    min-height: 900px;
-}
+
 #tickerInfo h2 {
     text-align: left;
 }
-.positive { color: #20B513; }
-.negative { color: #D4503D; }
-
+.positive {
+    color: #20B513;
+}
+.negative {
+    color: #D4503D;
+}
 .tickerInput-div {
     display: grid;
-    
 }
-.result-title{
+.result-title {
     width: 100%;
 }
 .file-info {
@@ -169,7 +182,53 @@ main {
     grid-template-columns: 1fr 1fr;
     align-items: center;
 }
-.download-icon{
+.download-icon {
     margin-left: 250px;
-    
+}
+.interval-btn.active {
+    background-color: #0DA2C6;
+    color: white;
+}
+.interval-btn {
+    background-color: transparent;
+    border: 1px solid #5A8A9F;
+    color: white;
+    padding: 10px 5px;
+    border-radius: 12px;
+    font-size: 17px;
+    width: 100%;
+}
+.main-input {
+    background-color: transparent;
+    border: 1px solid #5A8A9F;
+    padding: 12px 20px;
+    border-radius: 12px;
+    color: white;
+}
+#tickerInfo {
+    background-color: #1c5169;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 250px;
+    margin-top: 20px;
+    color: white;
+}
+.p-div{
+    display: grid;
+    grid-template-columns: 60% 20%;
+}
+.combo {
+    display: grid;
+}
+.combo-1{
+    display: grid;
+    grid-template-columns: 35% 30% 30%;
+    justify-items: center;
+}
+
+.positive {
+    color: #20B513;
+}
+.negative {
+    color: #D4503D;
 }
