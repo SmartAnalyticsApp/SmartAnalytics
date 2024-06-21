@@ -23,7 +23,7 @@
 
             // Инициализация TON Connect UI
             const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                manifestUrl: 'https://amirbek-star.github.io/new-TMA/tonconnect-manifest.json',
+                manifestUrl: '',
                 buttonRootId: 'ton-connect-btn'
             });
 
@@ -33,6 +33,11 @@
                     const connectedWallet = await tonConnectUI.connectWallet();
                     console.log('Connected Wallet:', connectedWallet);
                     alert('Wallet connected!');
+                    
+                    // Изменяем цвет кнопки "Оформить подписку" на синий
+                    const offerBtn = document.querySelector('.offer-btn');
+                    offerBtn.classList.remove('if-disable');
+                    offerBtn.classList.add('if-enable');
                 } catch (error) {
                     console.error('Error connecting to wallet:', error);
                     if (error.message.includes('declined')) {
@@ -44,6 +49,12 @@
             });
         });
     </script>
+    <style>
+        .if-enable {
+            background-color: blue;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -100,7 +111,7 @@
             <a href="profile.html">
                 <img class="active-btn" src="https://i.postimg.cc/GhZ1LWz6/user-circle-1.png">
             </a>
-        </div>
+          </div>
     </div>
 </body>
 </html>
