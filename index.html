@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Page</title>
     <link rel="stylesheet" href="index.css" type="text/css" media="all" />
-   
 </head>
 <body>
     <div>
-        <img src="Logo_blue_wb.gif" alt="Comp 1 Animation" style="width:150px; margin-top: 170px;; ">
+        <img src="Logo_blue_wb.gif" alt="Comp 1 Animation" style="width:150px; margin-top: 170px;">
     </div>
 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
+        const tg = window.Telegram.WebApp;
+
+        // Автоматическое расширение при загрузке страницы
+        tg.expand();
+
         setTimeout(() => {
             window.location.href = 'main.html';
         }, 6000);
