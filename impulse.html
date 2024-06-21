@@ -95,7 +95,51 @@
                     selectInterval(this.dataset.interval);
                 });
             });
+
+            document.querySelector('.cancel').addEventListener('click', function() {
+                document.getElementById('popup').classList.remove('active');
+            });
+
+            document.querySelector('.popup-cancel').addEventListener('click', function() {
+                document.getElementById('popup').classList.remove('active');
+            });
+
+            document.querySelector('.popup-off').addEventListener('click', function() {
+                document.getElementById('popup').classList.remove('active');
+                toggleTracking();
+            });
         });
+
+        function showPopup() {
+            document.getElementById('popup').classList.toggle('active');
+        }
+
+        function toggleTracking() {
+            const trackingButton = document.querySelector('.main-btn.tracking');
+            const trackingImage = document.getElementById('img');
+            const trackingPopupText = document.getElementById('tt');
+            const trackingText = trackingButton.querySelector('span');
+
+            if (trackingButton.classList.contains('active')) {
+                trackingButton.classList.remove('active');
+                trackingButton.style.backgroundColor = '#0DA2C6';
+                trackingButton.style.color = 'white';
+                trackingText.textContent = 'Подключить отслеживание';
+                trackingImage.src = 'Icon (19).png';
+                trackingPopupText.textContent = 'Отключить';
+                trackingPopupText.style.backgroundColor = '#D4503D';
+            } else {
+                trackingButton.classList.add('active');
+                trackingButton.style.backgroundColor = '#D4503D';
+                trackingButton.style.color = '';
+                trackingText.textContent = 'Отключить уведомления';
+                trackingImage.src = 'Icon (18).png';
+                trackingPopupText.textContent = 'Подключить';
+                trackingPopupText.style.backgroundColor = '#0DA2C6';
+                trackingPopupText.style.border = '1px solid #0DA2C6';
+
+            }
+        }
     </script>
 </head>
 <body>
@@ -105,6 +149,17 @@
         </a>
         <h3 class="header-title">Суточные объемы тикера</h3>
     </header>
+    <div id="popup" class="popup">
+        <p class="popup-p">Отключить уведомления?</p>
+        <div class="popup-div">
+            <button class="popup-cancel">Отмена</button>
+            <button class="popup-off" id="tt">Отключить</button>
+        </div>
+        <button class="cancel">
+            <img src="cancel.png">
+        </button>
+    </div>
+        
     <main>
         <form id="tickerForm" onsubmit="validateForm(event)">
             <div class="tickerInput-div">
@@ -140,26 +195,26 @@
             </div>
         </form>
         <div class="btns-div">
-            <button class="main-btn">Подключить отслеживание <img style="margin-left: 10px;" src="Icon (18).png"></button>
-            <button style="border-radius: 12px; background-color: #95A0A5; border: 0px; padding-left: 20px; padding-right: 20px;"><img style="background-color: #95A0A5; padding: 0px;" src="Icon (19).png"></button>
+            <button class="main-btn tracking" onclick="showPopup()"><span>Подключить отслеживание</span> <img style="margin-left: 10px;" src="Icon (18).png"></button>
+            <button type="button" style="border-radius: 12px; background-color: #95A0A5; border: 0px; padding-left: 20px; padding-right: 20px;" id="img" onclick="showPopup()"><img style="background-color: #95A0A5; padding: 0px;" src="Icon (19).png"></button>
         </div>
     </main>
     <div class="navbar-bottom">
         <div class="navbar-div">
             <a href="setting.html">
-                <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png" alt="Settings">
+                <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png">
             </a>
         </div>
         <div class="navbar-div">
             <a href="main.html">
-                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png" alt="Home">
+                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
             </a>
-        </div>
+        </div> 
         <div class="navbar-div">
-            <a href="profile.html">
-                <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png" alt="Profile">
+            <a href="profile.html" >
+                <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
             </a>
         </div>
-     </div>
+    </div>
 </body>
 </html>
