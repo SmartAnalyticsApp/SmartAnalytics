@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0px;
     min-height: 100vh;
     background-size: 100% 100%;
@@ -58,7 +57,7 @@ main{
 }
 .settings-container {
     border-radius: 10px;
-    width: 300px;
+    width: 90%;
 }
 
 h2 {
@@ -68,16 +67,14 @@ h2 {
 
 .setting {
     display: grid;
-    grid-template-columns: 95% 10%;
+    grid-template-columns: 90% 10%;
     gap: 1em;
     margin-bottom: 20px;
     color: white;
+    font-size: 20px;
 }
 
-.setting span{
-    font-weight: lighter;
-    font-size: 18px;
-}
+
 .switch {
     position: relative;
     display: inline-block;
