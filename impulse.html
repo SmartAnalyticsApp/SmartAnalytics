@@ -5,98 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добро пожаловать!</title>
     <link rel="stylesheet" href="impulse.css" type="text/css" media="all" />
+
     <script>
-       
-
-
-        function value5(){
-            document.getElementById('value15').style.display="none";
-            document.getElementById('value30').style.display="none";
-            document.getElementById('value60').style.display="none";
+        function selectInterval(interval) {
+            document.getElementById('selectedInterval').value = interval;
+            document.querySelectorAll('.interval-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-interval="${interval}"]`).classList.add('active');
         }
 
-        function value15(){
-            document.getElementById('value5').style.display="none";
-            document.getElementById('value30').style.display="none";
-            document.getElementById('value60').style.display="none";
+        function validateForm(event) {
+            const tickerInput = document.getElementById('tickerInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const selectedInterval = document.getElementById('selectedInterval').value;
+
+            if (!tickerInput) {
+                errorMessage.textContent = 'Поле пустое. Введите торговую пару';
+                errorMessage.style.display = 'block';
+                event.preventDefault();
+            } else if (!selectedInterval) {
+                errorMessage.textContent = 'Выберите временной интервал';
+                errorMessage.style.display = 'block';
+                event.preventDefault();
+            } else {
+                errorMessage.style.display = 'none';
+                showTickerInfo(tickerInput, selectedInterval);
+                event.preventDefault();
+            }
         }
 
-        function value30(){
-            document.getElementById('value15').style.display="none";
-            document.getElementById('value5').style.display="none";
-            document.getElementById('value60').style.display="none";
+        function showTickerInfo(ticker, interval) {
+            const tickerInfo = document.getElementById('tickerInfo');
+            tickerInfo.innerHTML = `
+                <div class="combo">
+                    <div class="combo-1">
+                        <p>COMBOUSDT</p>
+                        <p><span class="positive">13.78%</span></p>
+                        <p style="margin-left: 50px; color: #5A8A9F; font-size: 13px; width: 100%">сегодня, 12:03</p>
+                    </div>
+                    <div class="combo-2">
+                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
+                        <p>Актив ТОП 6 по суточной процентности</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="combo">
+                    <div class="combo-1">
+                        <p>COMBOUSDT</p>
+                        <p><span class="positive">13.78%</span></p>
+                        <p style="margin-left: 50px; color: #5A8A9F; font-size: 13px; width: 100%">сегодня, 12:03</p>
+                    </div>
+                    <div class="combo-2">
+                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
+                        <p>Актив ТОП 6 по суточной процентности</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="combo">
+                    <div class="combo-1">
+                        <p>COMBOUSDT</p>
+                        <p><span class="positive">13.78%</span></p>
+                        <p style="margin-left: 50px; color: #5A8A9F; font-size: 13px; width: 100%">сегодня, 12:03</p>
+                    </div>
+                    <div class="combo-2">
+                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
+                        <p>Актив ТОП 6 по суточной процентности</p>
+                    </div>
+                </div>
+            `;
+            tickerInfo.style.display = 'block';
+            updateLastUpdateTime();
         }
 
-        function value60(){
-            document.getElementById('value15').style.display="none";
-            document.getElementById('value30').style.display="none";
-            document.getElementById('value5').style.display="none";
+        function updateLastUpdateTime() {
+            const now = new Date();
+            const formattedTime = now.toLocaleString('ru-RU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('lastUpdate').textContent = formattedTime;
         }
 
-        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.interval-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    selectInterval(this.dataset.interval);
+                });
+            });
+        });
     </script>
 </head>
 <body>
     <header>
         <a href="main.html">
-            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
+            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png" alt="Icon">
         </a>
         <h3 class="header-title">Суточные объемы тикера</h3>
     </header>
     <main>
-        
-        <form id="tickerForm">
+        <form id="tickerForm" onsubmit="validateForm(event)">
             <div class="tickerInput-div">
                 <div>
                     <p class="main-p">Выберите временной интервал (мин)</p>
                     <div class="btns">
                         <div>
-                            <input id="value5" value="5" type="hidden">
-                            <button type="button" onclick="choose5()">5</button>
+                            <button type="button" class="interval-btn" data-interval="5">5</button>
                         </div>
                         <div>
-                            <input id="value15" value="15" type="hidden">
-                            <button type="button" onclick="choose5()">15</button>
+                            <button type="button" class="interval-btn" data-interval="15">15</button>
                         </div>
                         <div>
-                            <input id="value30" value="30" type="hidden">
-                            <button type="button" onclick="choose5()">30</button>
+                            <button type="button" class="interval-btn" data-interval="30">30</button>
                         </div>
                         <div>
-                            <input id="value60" value="60" type="hidden">
-                            <button type="button" onclick="choose5()">60</button>
+                            <button type="button" class="interval-btn" data-interval="60">60</button>
                         </div>
-                        
                     </div>
                 </div>
                 <div>
                     <p class="main-p">Введите процент изменения цены</p>
-                    <input id="tickerInput" class="main-input" placeholder="10">
+                    <input id="tickerInput" name="tickerInput" class="main-input" placeholder="10">
                 </div>
+                <input id="selectedInterval" name="selectedInterval" type="hidden">
             </div>
 
-            <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
-            <div id="tickerInfo"></div>
+            <span id="errorMessage" class="error-message" style="display:none"></span>
+            <div id="tickerInfo" style="display:none"></div>
             <div class="main-form">
-                <button id="submitButton" class="main-btn">Получить информацию о тикере</button>
+                <button id="submitButton" class="main-btn" type="submit">Получить информацию о тикере <img src="search.png"></button>
                 <p>Последнее обновление - <span id="lastUpdate"></span></p>
             </div>
         </form>
+        <div class="btns-div">
+            <button class="main-btn">Подключить отслеживание <img style="margin-left: 10px;" src="Icon (18).png"></button>
+            <button style="border-radius: 12px; background-color: #95A0A5; border: 0px; padding-left: 20px; padding-right: 20px;"><img style="background-color: #95A0A5; padding: 0px;" src="Icon (19).png"></button>
+        </div>
     </main>
     <div class="navbar-bottom">
         <div class="navbar-div">
             <a href="setting.html">
-                <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+                <img class="disable-btn" src="https://i.postimg.cc/Px14rPHc/Setting.png" alt="Settings">
             </a>
         </div>
         <div class="navbar-div">
             <a href="main.html">
-                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png" alt="Home">
             </a>
-        </div> 
+        </div>
         <div class="navbar-div">
-            <a href="profile.html" >
-                <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+            <a href="profile.html">
+                <img class="disable-btn" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png" alt="Profile">
             </a>
         </div>
      </div>
