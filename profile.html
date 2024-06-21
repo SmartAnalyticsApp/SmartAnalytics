@@ -17,9 +17,7 @@
             const user = tg.initDataUnsafe.user;
 
             // Обновляем имя пользователя в заголовке
-            if (user) {
-                document.querySelector('.header-title').textContent = user.first_name + ' ' + (user.last_name || '');
-            }
+            document.getElementById('header-title').textContent = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
 
             // Инициализация TON Connect UI
             const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
