@@ -17,9 +17,10 @@
             const user = tg.initDataUnsafe.user;
 
             // Обновляем имя пользователя в заголовке
-             if (user) {
+            if (user) {
                 document.querySelector('.header-title').textContent = user.first_name + ' ' + (user.last_name || '');
             }
+
             // Инициализация TON Connect UI
             const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
                 manifestUrl: 'https://amirbek-star.github.io/new-TMA/tonconnect-manifest.json',
@@ -46,7 +47,7 @@
 </head>
 <body>
     <header>
-        <h3 id="header-username" class="header-title">@Amiro’kami</h3>
+        <h3 class="header-title">@Amiro’kami</h3>
     </header>
     <main>
         <div class="main-top">
