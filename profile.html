@@ -17,7 +17,7 @@
             const user = tg.initDataUnsafe.user;
 
             // Обновляем имя пользователя в заголовке
-            document.querySelector('.header-title').textContent = user.first_name + ' ' + user.last_name;
+            document.getElementById('header-title').textContent = user.first_name + ' ' + user.last_name;
 
             // Инициализация TON Connect UI
             const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
@@ -45,7 +45,7 @@
 </head>
 <body>
     <header>
-        <h3 class="header-title">@Amiro’kami</h3>
+        <h3 id="header-username" class="header-title">@Amiro’kami</h3>
     </header>
     <main>
         <div class="main-top">
