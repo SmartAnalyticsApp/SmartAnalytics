@@ -250,10 +250,7 @@ main {
 }
 
 /* Style for the active button */
-.interval-btn.active {
-    /* Add styles for the active interval button */
-    background-color: #ccc; /* Example: Change background color */
-}
+
 .popup-cancel{
     color: #0DA2C6;
     border: 1px solid #0DA2C6;
