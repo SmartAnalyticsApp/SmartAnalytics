@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="profile.css" type="text/css" media="all" />
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="manifest" href="tonconnect-manifest.json">
+   
     
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -20,7 +20,7 @@
 
             // Обновляем имя пользователя в заголовке
             if (user) {
-                document.querySelector('.header-title').textContent = user.first_name + ' ' + (user.last_name || '');
+                document.querySelector('.header-title').innerHTML = user.first_name + ' ' + (user.last_name || '');
             }
 
             // Инициализация TON Connect UI
@@ -60,7 +60,7 @@
 </head>
 <body>
     <header>
-        <h3 class="header-title">@Amiro’kami</h3>
+        <h3 class="header-title"></h3>
     </header>
     <main>
         <div class="main-top">
