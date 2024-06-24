@@ -56,27 +56,28 @@
                     fanding: '0.01%(0.00%)'
                 };
 
-                const infoHTML = `<h3>Результат запроса</h3>
-                    <p>Тикер: <span>${tickerData.symbol}</span></p>
-                    <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
-                    <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
-                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</п>
-                    <div>
+                var infoHTML = <h3>Результат запроса</h3>;
+        infoHTML += <p>Тикер: <span>${tickerData.symbol}</span></p>;
+        infoHTML += <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>;
+        infoHTML += <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>;
+        infoHTML += <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>;
+        
+        infoHTML += <div>
                         <hr>
                         <h4>Фандинг</h4>
-                        <p>4 часа назад: <span>${tickerData.fanding}</span></p>
-                        <p>3 часа назад: <span>${tickerData.fanding}</span></p>
-                        <p>2 часа назад: <span>${tickerData.fanding}</span></p>
-                        <p>1 час назад: <span>${tickerData.fanding}</span></p>
-                        <p>45 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>30 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>20 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>15 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>10 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>5 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>Текущий фандинг: <span>${tickerData.fanding}</span></p>
-                    </div>;
-                tickerInfoContainer.innerHTML = infoHTML;
+                        <p>4 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>3 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>2 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>1 часа назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>45 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>30 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>20 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>15 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>10 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>5 мин назад: <span>${tickerData.fanding}</span> раз(а)</p>
+                        <p>Текущий фандинг: <span>${tickerData.fanding}</span> раз(а)</p>
+                     </div>;
+        tickerInfoContainer.innerHTML = infoHTML;
 
                 // Update last update time (example)
                 const now = new Date();
