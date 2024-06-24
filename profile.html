@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добро пожаловать!</title>
     <link rel="stylesheet" href="profile.css" type="text/css" media="all" />
@@ -30,7 +31,7 @@
         </div>
         <div class="main">
             <div>
-                <button id="ton-connect-btn">Подключить кошелек</button>
+                <button id="ton-connect-btn"></button>
             </div>
         </div>
         <div class="main-info">
@@ -65,9 +66,17 @@
             </a>
         </div>
     </div>
+
+    <style>
+        .if-enable {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+
     <script>
         import { TonConnectUI } from "@tonconnect/ui";
-
+        
         document.addEventListener("DOMContentLoaded", () => {
             // Инициализация Telegram Web App
             const tg = window.Telegram.WebApp;
@@ -82,7 +91,7 @@
             }
 
             // Инициализация TON Connect UI
-            const tonConnectUI = new TonConnectUI({
+            const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
                 manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
                 buttonRootId: 'ton-connect-btn'
             });
@@ -94,11 +103,6 @@
                     offerBtn.classList.remove('if-disable');
                     offerBtn.classList.add('if-enable');
                     alert('Wallet connected!');
-                } else if (status === 'disconnected') {
-                    const offerBtn = document.querySelector('.offer-btn');
-                    offerBtn.classList.remove('if-enable');
-                    offerBtn.classList.add('if-disable');
-                    alert('Wallet disconnected!');
                 }
             });
 
