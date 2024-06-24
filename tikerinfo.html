@@ -6,34 +6,6 @@
     <title>Добро пожаловать!</title>
     <link rel="stylesheet" href="tikerinfo.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script>
-        function animatePageTransition(url) {
-            const transitionOut = gsap.timeline({
-                onComplete: () => {
-                    window.location.href = url;
-                }
-            });
-
-            transitionOut.to("body", { opacity: 0, duration: 0.5 });
-        }
-
-        function animatePageEnter() {
-            gsap.from("body", { opacity: 0, duration: 0.5 });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            animatePageEnter();
-
-            document.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const targetUrl = this.getAttribute('href');
-                    animatePageTransition(targetUrl);
-                });
-            });
-        });
-    </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -88,12 +60,12 @@
                     <p>Тикер: <span>${tickerData.symbol}</span></p>
                     <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
                     <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
-                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>
+                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</п>
                     <div>
                         <hr>
                         <h4>Фандинг</h4>
-                        <p>4 часа назад: <span>${tickerData.fanding}</span></p>
-                        <p>3 часа назад: <span>${tickerData.fanding}</span></п>
+                        <п>4 часа назад: <span>${tickerData.fanding}</span></п>
+                        <п>3 часа назад: <span>${tickerData.fanding}</span></п>
                         <п>2 часа назад: <span>${tickerData.fanding}</span></п>
                         <п>1 час назад: <span>${tickerData.fanding}</span></п>
                         <п>45 мин назад: <span>${tickerData.fanding}</span></п>
@@ -113,14 +85,11 @@
                 // Clear input field
                 inputField.value = '';
 
-                // Send data to Telegram Web App
-                tg.sendData(JSON.stringify(tickerData));
-
-                  // Keep Web App open after sending data
+                // Instead of sending data, use MainButton to indicate completion
                 tg.MainButton.setParams({
-                    text: 'Data sent, continue using the app',
+                    text: 'Данные отправлены',
                     is_visible: true,
-                    is_active: false
+                    is_active: true
                 });
 
                 // Prevent closing
