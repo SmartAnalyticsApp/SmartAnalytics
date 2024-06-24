@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добро пожаловать!</title>
     <link rel="stylesheet" href="setting.css" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Nunito Sans', sans-serif;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var form = document.getElementById('tickerForm');
@@ -13,7 +19,17 @@
             var errorMessage = document.getElementById('errorMessage');
             var tickerInfoContainer = document.getElementById('tickerInfo');
             var lastUpdateSpan = document.getElementById('lastUpdate');
-    
+            
+            var masterToggle = document.getElementById('masterToggle');
+            var switches = document.querySelectorAll('.setting .switch input');
+
+            masterToggle.addEventListener('change', function() {
+                var isChecked = masterToggle.checked;
+                switches.forEach(function(switchInput) {
+                    switchInput.checked = isChecked;
+                });
+            });
+
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent actual form submission
     
@@ -72,24 +88,28 @@
 </head>
 <body>
     <header>
-        <a href="main.html">
-            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
-        </a>
         <h3 class="header-title">Настройки уведомлений</h3>
     </header>
     <main>
-
         <div class="settings-container">
+            
             <div class="setting">
-                <span>Уведомления приложения</span>
+                <span>Уведомления от Smart Analytics</span>
                 <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" id="masterToggle" checked>
                     <span class="slider"></span>
                 </label>
             </div>
             <hr>
             <div class="setting">
-                <span>Уведомления об импульсах</span>
+                <span>Отслеживание импульсов</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <span>Отслеживание актива</span>
                 <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider"></span>
@@ -98,7 +118,7 @@
             <div class="setting">
                 <span>Уведомления о цене</span>
                 <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -124,10 +144,8 @@
                 </label>
             </div>
         </div>  
-        
     </main>
     <div class="navbar-bottom">
-       
         <div class="navbar-div">
             <a href="setting.html">
                 <img class="active-btn" src="https://i.postimg.cc/y6gWPnFV/Setting.png">
