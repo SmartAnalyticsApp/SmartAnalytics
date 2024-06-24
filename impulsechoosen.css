@@ -44,15 +44,7 @@ header img {
     top: 15px;
     left: 16px;
 }
-.active-btn {
-    background-color: #0da2c6;
-    padding: 5px;
-    border-radius: 12px;
-}
-.disable-btn {
-    padding: 5px;
-    border-radius: 12px;
-}
+
 main {
     padding: 0px 16px;
     margin-top: 20px;
@@ -75,101 +67,79 @@ main {
 }
 .main-btn {
     background-color: #0DA2C6;
-    width: 96%;
-    padding: 10px;
+    padding: 10px 32%;
+    text-decoration: none;
     color: white;
     font-size: 17px;
     border: 0px;
     margin-left: 2%;
     border-radius: 12px;
 }
+
 .main-form p {
     color: white;
     text-align: center;
 }
 .main-form {
     position: fixed;
-    bottom: 70px;
+    bottom: 65px;
     left: 0%;
+    padding-bottom: 20px;
     width: 100%;
     background-color: #1c5169;
     border-top: 1px solid #5A8A9F;
     padding-top: 15px;
 }
-.error-message {
-    color: #D4503D;
-    text-align: left;
-    margin-top: 5px;
-    display: none;
-}
-#tickerInfo p {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    color: white;
-    text-align: left;
-}
-.inputs-div{
-    display: grid;
-    width: 92%;
-    gap: 10%;
-    grid-template-columns: repeat(4,1fr);
-}
-.btns{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 10px;
-}
-.btns button{
-    width: 100%;
-    padding: 10px 5px;
-    background-color: rgb(0, 0, 0, 0);
-    color: white;
-    font-weight: 100;
-    border: 1px solid #5A8A9F;
-    border-radius: 12px;
-    font-size: 17px;
-}
-#tickerInfo h3, h4 {
-    text-align: left;
-    color: white;
-}
-#tickerInfo hr {
-    color: #5A8A9F;
-    border: 0.7px solid #5A8A9F;
-}
-#tickerInfo div {
-    min-height: 900px;
-}
-#tickerInfo h2 {
-    text-align: left;
-}
-.positive { color: #20B513; }
-.negative { color: #D4503D; }
 
-.tickerInput-div {
+.info{
+    background-color: #1B4F66;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+
+}
+.info-1{
     display: grid;
-    
+    grid-template-columns: 50% 50%;
+
 }
-.result-title{
-    width: 100%;
-}
-.file-info {
+.info-2{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    align-items: center;
+    grid-template-columns: 60% 40%;
+
 }
-.file-info img {
-    width: 50px;
-    height: auto;
-}
-.icon-container {
+.info-3{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+    grid-template-columns: 50% 50%;
+
 }
-.download-icon{
-    margin-left: 250px;
-    
+.info-4{
+    display: grid;
+    grid-template-columns: 80% 20%;
+
+}
+.info h4{
+    float: right;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    color: white;
+}
+.info p{
+    color: white;
+}
+.info h3{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: white;
+}
+.info h5{
+    float: right;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: #5A8A9F;
+    font-weight: 100;
+    font-size: 13px;
+}
+main{
+    padding-bottom: 200px;
 }
