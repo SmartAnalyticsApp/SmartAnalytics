@@ -85,8 +85,20 @@
                 // Clear input field
                 inputField.value = '';
 
-                 // Send data to Telegram Web App
-                tg.sendData(JSON.stringify(tickerData));
+                    // Display success message to user
+                tg.MainButton.setParams({
+                    text: "Данные отправлены",
+                    is_visible: true,
+                    is_active: false
+                });
+
+                // Optionally, add an action to close the app manually if desired
+                tg.MainButton.onClick(function() {
+                    tg.close();
+                });
+            });
+
+            tg.ready();
             });
         });
     </script>
