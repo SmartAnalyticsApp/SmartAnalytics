@@ -83,7 +83,7 @@ main {
     margin-left: 2%;
     border-radius: 12px;
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 85% 15%;
     justify-items: center;
 }
 .btns-div {
@@ -198,6 +198,7 @@ main {
     font-size: 17px;
     width: 100%;
 }
+
 .main-input {
     background-color: transparent;
     border: 1px solid #5A8A9F;
@@ -261,12 +262,11 @@ main {
 }
 .popup-off{
     color: white;
-    border: 1px solid #D4503D;
     padding: 12px;
-    background-color: #D4503D;
     width: 100%;
     border-radius: 12px;
-
+    border: 0px;
+    background-color: #0DA2C6;
 
 }
 
