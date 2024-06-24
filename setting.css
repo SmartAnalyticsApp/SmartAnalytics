@@ -4,6 +4,8 @@ body {
     background-size: 100% 100%;
     background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
     background-size: cover;
+    font-family: 'Nunito Sans', sans-serif;
+
 }
 .navbar-bottom {
     display: grid;
@@ -26,11 +28,15 @@ body {
 .navbar-bottom img {
     width: 40px;
 }
+span{
+    font-weight: 100;
+    color: #999;
+
+}
 header {
     width: 100%;
     text-align: left;
     display: grid;
-    grid-template-columns: 10% 80%;
     border-bottom: 2px solid #5a8a9f;
 }
 .header-title {
@@ -46,7 +52,10 @@ header img {
 .active-btn {
     background-color: #0da2c6;
     padding: 5px;
-    border-radius: 12px;
+    position: absolute;
+    left: 0px;
+    padding-left: 43px;
+    border-radius: 0px 12px 12px 0px;
 }
 .disable-btn {
     padding: 5px;
@@ -68,22 +77,24 @@ h2 {
 .setting {
     display: grid;
     grid-template-columns: 90% 10%;
-    gap: 1em;
     margin-bottom: 20px;
     color: white;
     font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
 }
 
 
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px;
-    height: 20px;
+    width: 50px;
+    height: 25px;
 }
 .settings-container hr{
     margin-bottom: 30px;
-    width: 110%;
+    width: 107%;
     border: 0.5px solid #5A8A9F;
 }
 .switch input {
@@ -107,17 +118,17 @@ h2 {
 .slider:before {
     position: absolute;
     content: "";
-    height: 12px;
-    width: 12px;
-    left: 4px;
-    bottom: 4px;
+    height: 20px;
+    width: 20px;
+    left: 7px;
+    bottom: 2.5px;
     background-color: white;
     transition: .4s;
     border-radius: 50%;
 }
 
 input:checked + .slider {
-    background-color: #3a7bd5;
+    background-color: #52D0EE;
 }
 
 input:checked + .slider:before {
