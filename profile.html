@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добро пожаловать!</title>
     <link rel="stylesheet" href="profile.css" type="text/css" media="all" />
     <link rel="manifest" href="tonconnect-manifest.json">
-     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tonconnect/ui"></script>
-     <script type="module" src="profile.js"></script>
 </head>
 <body>
     <header>
@@ -67,5 +65,56 @@
             </a>
         </div>
     </div>
+    <script>
+        import { TonConnectUI } from "@tonconnect/ui";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Инициализация Telegram Web App
+            const tg = window.Telegram.WebApp;
+            tg.expand(); // Расширяем веб-приложение на весь экран
+
+            // Получаем данные пользователя
+            const user = tg.initDataUnsafe.user;
+
+            // Обновляем имя пользователя в заголовке
+            if (user) {
+                document.querySelector('.header-title').innerHTML = user.first_name + ' ' + (user.last_name || '');
+            }
+
+            // Инициализация TON Connect UI
+            const tonConnectUI = new TonConnectUI({
+                manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
+                buttonRootId: 'ton-connect-btn'
+            });
+
+            tonConnectUI.onStatusChange((status) => {
+                console.log('Status changed:', status);
+                if (status === 'connected') {
+                    const offerBtn = document.querySelector('.offer-btn');
+                    offerBtn.classList.remove('if-disable');
+                    offerBtn.classList.add('if-enable');
+                    alert('Wallet connected!');
+                } else if (status === 'disconnected') {
+                    const offerBtn = document.querySelector('.offer-btn');
+                    offerBtn.classList.remove('if-enable');
+                    offerBtn.classList.add('if-disable');
+                    alert('Wallet disconnected!');
+                }
+            });
+
+            document.getElementById('ton-connect-btn').addEventListener('click', async () => {
+                try {
+                    await tonConnectUI.connectWallet();
+                } catch (error) {
+                    console.error('Error connecting to wallet:', error);
+                    if (error.message.includes('declined')) {
+                        alert('Connection declined by user');
+                    } else {
+                        alert('Error connecting to wallet: ' + error.message);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
