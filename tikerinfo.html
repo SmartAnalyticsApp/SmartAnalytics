@@ -56,11 +56,11 @@
                     fanding: '0.01%(0.00%)'
                 };
 
-                const infoHTML = <h3>Результат запроса</h3>
+                const infoHTML = `<h3>Результат запроса</h3>
                     <p>Тикер: <span>${tickerData.symbol}</span></p>
                     <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
                     <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
-                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>
+                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</п>
                     <div>
                         <hr>
                         <h4>Фандинг</h4>
@@ -75,7 +75,7 @@
                         <p>10 мин назад: <span>${tickerData.fanding}</span></p>
                         <p>5 мин назад: <span>${tickerData.fanding}</span></p>
                         <p>Текущий фандинг: <span>${tickerData.fanding}</span></p>
-                    </div>;
+                    </div>`;
                 tickerInfoContainer.innerHTML = infoHTML;
 
                 // Update last update time (example)
@@ -85,20 +85,15 @@
                 // Clear input field
                 inputField.value = '';
 
-                    // Display success message to user
+                // Instead of sending data, use MainButton to indicate completion
                 tg.MainButton.setParams({
-                    text: "Данные отправлены",
+                    text: 'Данные отправлены',
                     is_visible: true,
-                    is_active: false
+                    is_active: true
                 });
 
-                // Optionally, add an action to close the app manually if desired
-                tg.MainButton.onClick(function() {
-                    tg.close();
-                });
-            });
-
-            tg.ready();
+                // Prevent closing
+                tg.ready();
             });
         });
     </script>
@@ -111,7 +106,7 @@
         <h3 class="header-title">Информация о тикере</h3>
     </header>
     <main>
-        <p class="main-p">Введите торговую пару к USDT</п>
+        <p class="main-p">Введите торговую пару к USDT</p>
         <form id="tickerForm">
             <input id="tickerInput" class="main-input" placeholder="BTC">
             <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
