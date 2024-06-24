@@ -87,6 +87,16 @@
 
                 // Send data to Telegram Web App
                 tg.sendData(JSON.stringify(tickerData));
+
+                  // Keep Web App open after sending data
+                tg.MainButton.setParams({
+                    text: 'Data sent, continue using the app',
+                    is_visible: true,
+                    is_active: false
+                });
+
+                // Prevent closing
+                tg.ready();
             });
         });
     </script>
