@@ -92,10 +92,8 @@
                     is_active: false
                 });
 
+                 tg.sendData(JSON.stringify(tickerData));
                 // Optionally, add an action to close the app manually if desired
-                tg.MainButton.onClick(function() {
-                    tg.close();
-                });
             });
 
             tg.ready();
