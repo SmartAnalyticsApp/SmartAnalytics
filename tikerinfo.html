@@ -41,7 +41,14 @@
             fanding: '0.01%(0.00%)'
             // Example volume, replace with fetched data
         };
+     
 
+        var now = new Date();
+            lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
+
+                // Формируем данные для отправки
+        var data = JSON.stringify(tickerData);
+            Telegram.WebApp.sendData(data);
         // Display fetched data
         
         var infoHTML = `<h3>Результат запроса</h3>`;
