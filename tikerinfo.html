@@ -56,11 +56,11 @@
                     fanding: '0.01%(0.00%)'
                 };
 
-                const infoHTML = `<h3>Результат запроса</h3>
+                const infoHTML = <h3>Результат запроса</h3>
                     <p>Тикер: <span>${tickerData.symbol}</span></p>
                     <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
-                    <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></п>
-                    <п>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</п>
+                    <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
+                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>
                     <div>
                         <hr>
                         <h4>Фандинг</h4>
@@ -75,7 +75,7 @@
                         <p>10 мин назад: <span>${tickerData.fanding}</span></p>
                         <p>5 мин назад: <span>${tickerData.fanding}</span></p>
                         <p>Текущий фандинг: <span>${tickerData.fanding}</span></p>
-                    </div>`;
+                    </div>;
                 tickerInfoContainer.innerHTML = infoHTML;
 
                 // Update last update time (example)
@@ -85,18 +85,9 @@
                 // Clear input field
                 inputField.value = '';
 
-                // Display success message to user
-                tg.MainButton.setParams({
-                    text: "Данные отправлены",
-                    is_visible: true,
-                    is_active: false
-                });
-
-                 tg.sendData(JSON.stringify(tickerData));
-                // Optionally, add an action to close the app manually if desired
+                // Send data to Telegram Web App
+                tg.sendData(JSON.stringify(tickerData));
             });
-
-            tg.ready();
         });
     </script>
 </head>
