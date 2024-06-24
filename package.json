@@ -1,4 +1,1 @@
-npm init vite@latest my-tonconnect-app --template vanilla
-cd my-tonconnect-app
-npm install
 npm install @tonconnect/sdk @tonconnect/ui
