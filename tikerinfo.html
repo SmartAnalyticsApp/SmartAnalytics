@@ -59,8 +59,8 @@
                 const infoHTML = `<h3>Результат запроса</h3>
                     <p>Тикер: <span>${tickerData.symbol}</span></p>
                     <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
-                    <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
-                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>
+                    <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></п>
+                    <п>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</п>
                     <div>
                         <hr>
                         <h4>Фандинг</h4>
@@ -85,9 +85,20 @@
                 // Clear input field
                 inputField.value = '';
 
-                // Send data to Telegram Web App
-                tg.sendData(JSON.stringify(tickerData));
+                // Display success message to user
+                tg.MainButton.setParams({
+                    text: "Данные отправлены",
+                    is_visible: true,
+                    is_active: false
+                });
+
+                // Optionally, add an action to close the app manually if desired
+                tg.MainButton.onClick(function() {
+                    tg.close();
+                });
             });
+
+            tg.ready();
         });
     </script>
 </head>
