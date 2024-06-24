@@ -60,7 +60,7 @@
                     <p>Тикер: <span>${tickerData.symbol}</span></p>
                     <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
                     <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
-                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</п>
+                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>
                     <div>
                         <hr>
                         <h4>Фандинг</h4>
@@ -85,15 +85,8 @@
                 // Clear input field
                 inputField.value = '';
 
-                // Instead of sending data, use MainButton to indicate completion
-                tg.MainButton.setParams({
-                    text: 'Данные отправлены',
-                    is_visible: true,
-                    is_active: true
-                });
-
-                // Prevent closing
-                tg.ready();
+                // Send data to Telegram Web App
+                tg.sendData(JSON.stringify(tickerData));
             });
         });
     </script>
@@ -106,7 +99,7 @@
         <h3 class="header-title">Информация о тикере</h3>
     </header>
     <main>
-        <p class="main-p">Введите торговую пару к USDT</p>
+        <p class="main-p">Введите торговую пару к USDT</п>
         <form id="tickerForm">
             <input id="tickerInput" class="main-input" placeholder="BTC">
             <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
