@@ -1,4 +1,4 @@
-import TonConnect from "@tonconnect/sdk";
+
 import { TonConnectUI, init } from "@tonconnect/ui";
 
 document.addEventListener("DOMContentLoaded", () => {
