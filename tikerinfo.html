@@ -42,7 +42,21 @@
             // Example volume, replace with fetched data
         };
      
+        let showInfo = document.getElementById("submitButton");
 
+        showInfo.addEventListener("click", ()=> {
+          var tickerData = {
+            symbol: ticker+"USDT",
+            corelation: "100%",
+            volume: '11,877,027,059.31',
+            standartvolume: 1.31,
+            fanding: '0.01%(0.00%)'
+            // Example volume, replace with fetched data
+        };
+
+        tg.sendData(JSON.stringify(tikerData))
+        tg.close();
+        })
         
         var infoHTML = `<h3>Результат запроса</h3>`;
         infoHTML += `<p>Тикер: <span>${tickerData.symbol}</span></p>`;
