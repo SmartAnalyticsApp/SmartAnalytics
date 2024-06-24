@@ -83,7 +83,10 @@ body {
         .active-btn{
             background-color: #0da2c6;
             padding: 5px;
-            border-radius: 12px;
+            position: absolute;
+            right: 0px;
+            padding-right: 43px;
+            border-radius: 12px 0px 0px 12px;
         }
         .disable-btn{
             padding: 5px;
@@ -156,6 +159,6 @@ body {
             text-align: center;
             border: 0px solid;
             justify-items: center;
-            padding-left: 115px;
+            padding-left: 100px;
         }
             
