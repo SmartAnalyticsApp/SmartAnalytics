@@ -54,7 +54,7 @@
 
             // Обновляем имя пользователя в заголовке
             if (user) {
-                document.querySelector('.header-title').innerHTML = user.first_name + ' ' + (user.last_name || '');
+                document.querySelector('.header-title').innerHTML = user.username;
             }
 
             // Инициализация TON Connect UI
