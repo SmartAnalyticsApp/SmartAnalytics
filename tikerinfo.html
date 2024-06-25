@@ -28,6 +28,14 @@
             let tg = window.Telegram.WebApp;
             tg.expand(); // Расширяем веб-приложение на весь экран
 
+            // Получаем данные пользователя
+            const user = tg.initDataUnsafe.user;
+            const username = user.username ? user.username : 'неизвестный пользователь';
+
+            // Отображаем никнейм пользователя
+            const userInfoContainer = document.getElementById('userInfo');
+            userInfoContainer.textContent = `Добро пожаловать, @${username}!`;
+
             const form = document.getElementById('tickerForm');
             const inputField = document.getElementById('tickerInput');
             const errorMessage = document.getElementById('errorMessage');
@@ -60,7 +68,7 @@
                     <p>Тикер: <span>${tickerData.symbol}</span></p>
                     <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
                     <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
-                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</п>
+                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>
                     <div>
                         <hr>
                         <h4>Фандинг</h4>
@@ -85,12 +93,30 @@
                 // Clear input field
                 inputField.value = '';
 
-                // Instead of sending data, use MainButton to indicate completion
-                tg.MainButton.setParams({
-                    text: 'Данные отправлены',
-                    is_visible: true,
-                    is_active: true
-                });
+                // Send data to GitHub Actions using AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://api.github.com/repos/YOUR_GITHUB_USERNAME/YOUR_REPO/dispatches", true);
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.setRequestHeader("Authorization", "token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN");
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 204) {
+                        console.log("Data sent to bot");
+                        tg.MainButton.setParams({
+                            text: 'Данные отправлены',
+                            is_visible: true,
+                            is_active: true
+                        });
+                    }
+                };
+
+                xhr.send(JSON.stringify({
+                    event_type: "webapp_data",
+                    client_payload: {
+                        username: username,
+                        tickerData: tickerData
+                    }
+                }));
 
                 // Prevent closing
                 tg.ready();
@@ -106,7 +132,8 @@
         <h3 class="header-title">Информация о тикере</h3>
     </header>
     <main>
-        <p class="main-p">Введите торговую пару к USDT</p>
+        <p id="userInfo" class="main-p">Добро пожаловать, @неизвестный пользователь!</p>
+        <p class="main-p">Введите торговую пару к USDT</п>
         <form id="tickerForm">
             <input id="tickerInput" class="main-input" placeholder="BTC">
             <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
@@ -116,7 +143,7 @@
                     <span style="position: relative; bottom: 5px; margin-right: 10px;">Получить информацию о тикере</span>
                     <img src="search.png" alt="Поиск">
                 </button>
-                <p>Последнее обновление - <span id="lastUpdate"></span></п>
+                <p>Последнее обновление - <span id="lastUpdate"></span></p>
             </div>
         </form>
     </main>
