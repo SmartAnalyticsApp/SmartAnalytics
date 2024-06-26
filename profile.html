@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="profile.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+      <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function animatePageTransition(url) {
             const transitionOut = gsap.timeline({
                 onComplete: () => {
-                    document.querySelector('.main-content').style.display = 'none';
-                    document.querySelector('.disconnect-message').style.display = 'block';
+                    window.location.href = url;
                 }
             });
 
@@ -42,8 +41,9 @@
             font-family: 'Nunito Sans', sans-serif;
         }
     </style>
-
+  
     <script>
+        
         document.addEventListener("DOMContentLoaded", () => {
             // Инициализация Telegram Web App
             const tg = window.Telegram.WebApp;
@@ -53,98 +53,43 @@
             const user = tg.initDataUnsafe.user;
 
             // Обновляем имя пользователя в заголовке
-            if (user) {
-                const headerTitle = document.querySelector('.header-title');
-                if (user.username) {
-                    headerTitle.innerHTML = user.username;
-                } else {
-                    headerTitle.innerHTML = `${user.first_name} ${user.last_name}`;
-                }
-            }
-
-            // Инициализация TON Connect UI
-            const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
-                buttonRootId: 'ton-connect-btn'
-            });
-
-            document.getElementById('disconnect-btn').addEventListener('click', async () => {
-                try {
-                    // Disconnect the wallet using TON Connect UI
-                    await tonConnectUI.disconnect();
-
-                    // Update UI to reflect disconnected state
-                    document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
-                    document.getElementById('disconnect-message').style.display = 'block';
-
-                    // (Optional) Clear any displayed user information
-                    document.querySelector('.main-content').style.display = 'none';
-
-                } catch (error) {
-                    console.error('Error disconnecting wallet:', error);
-                    // Handle disconnection error (e.g., display an error message to the user)
-                }
-            });
-              // Проверяем, подключен ли TON кошелек при загрузке страницы
-    tonConnectUI.getStatus().then((status) => {
-        const offerBtn = document.querySelector('.offer-btn');
-        const mainTopRight = document.querySelector('.main-top_right');
-        const connectionStatus = document.querySelector('.connection-status');
-        const disconnectBtn = document.getElementById('ton-disconnect-btn');
-
-        if (status === 'connected') {
-            offerBtn.classList.remove('offer-btn_disabled');
-            offerBtn.classList.add('offer-btn_enabled');
-            offerBtn.disabled = false;
-
-            mainTopRight.classList.remove('main-top_right_disconnected');
-            mainTopRight.classList.add('main-top_right_connected');
-
-            connectionStatus.innerHTML = 'Привязан';
-            disconnectBtn.style.display = 'block';
-
-            offerBtn.addEventListener('click', () => {
-                // Добавьте ваш код оформления подписки здесь
-                alert('Подписка оформлена!');
-            });
-        }
-    });
-
-    // Обработчик изменения статуса подключения TON кошелька
-    tonConnectUI.onStatusChange((status) => {
-        const offerBtn = document.querySelector('.offer-btn');
-        const mainTopRight = document.querySelector('.main-top_right');
-        const connectionStatus = document.querySelector('.connection-status');
-        const disconnectBtn = document.getElementById('ton-disconnect-btn');
-
-        if (status === 'connected') {
-            offerBtn.classList.remove('offer-btn_disabled');
-            offerBtn.classList.add('offer-btn_enabled');
-            offerBtn.disabled = false;
-
-            mainTopRight.classList.remove('main-top_right_disconnected');
-            mainTopRight.classList.add('main-top_right_connected');
-
-            connectionStatus.innerHTML = 'Привязан';
-            disconnectBtn.style.display = 'block';
-
-            offerBtn.addEventListener('click', () => {
-                // Добавьте ваш код оформления подписки здесь
-                alert('Подписка оформлена!');
-            });
+                  if (user) {
+        const headerTitle = document.querySelector('.header-title');
+        if (user.username) {
+            headerTitle.innerHTML = user.username;
         } else {
-            offerBtn.classList.remove('offer-btn_enabled');
-            offerBtn.classList.add('offer-btn_disabled');
-            offerBtn.disabled = true;
-
-            mainTopRight.classList.remove('main-top_right_connected');
-            mainTopRight.classList.add('main-top_right_disconnected');
-
-            connectionStatus.innerHTML = 'Не привязан';
-            disconnectBtn.style.display = 'block'; // Ensure the button is always visible
+            headerTitle.innerHTML = `${user.first_name} ${user.last_name}`;
         }
-    });
+    }
+            // Инициализация TON Connect UI
+           const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+    manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
+    buttonRootId: 'ton-connect-btn'
+});
 
+document.getElementById('disconnect-btn').addEventListener('click', async () => {
+  try {
+    // Disconnect the wallet using TON Connect UI
+    await tonConnectUI.disconnect();
+
+    // Update UI to reflect disconnected state
+    document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
+    document.getElementById('disconnect-message').style.display = 'block';
+
+    // (Optional) Clear any displayed user information
+    // ... (code to clear user info)
+
+  } catch (error) {
+    console.error('Error disconnecting wallet:', error);
+    // Handle disconnection error (e.g., display an error message to the user)
+  }
+});
+    tonConnectUI.on('connected', () => {
+        const subscribeButton = document.querySelector('.offer-btn');
+        subscribeButton.classList.add('if-enable');
+        subscribeButton.classList.remove('if-disable');
+    });
+            
         });
     </script>
     <style>
@@ -152,16 +97,13 @@
             background-color: blue;
             color: white;
         }
-        .disconnect-message {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <header>
         <h3 class="header-title"></h3>
     </header>
-    <main class="main-content">
+    <main>
         <div class="main-top">
             <div class="main-top_left">
                 <div class="price-info">
@@ -181,7 +123,7 @@
             <div>
                 <button id="ton-connect-btn"></button>
                 <button id="disconnect-btn">Отключить кошелек (Disconnect Wallet)</button>
-                <p id="disconnect-message" class="disconnect-message">Кошелек успешно отключен (Wallet disconnected successfully)</p>
+<p id="disconnect-message" style="display: none;"></p>
             </div>
         </div>
         <div class="main-info">
@@ -209,7 +151,7 @@
             <a href="main.html">
                 <img class="disable-btn" src="https://i.postimg.cc/ZYC7XFC7/user-circle-1.png">
             </a>
-        </div>
+        </div> 
         <div class="navbar-div">
             <a href="profile.html">
                 <img class="active-btn" src="https://i.postimg.cc/GhZ1LWz6/user-circle-1.png">
