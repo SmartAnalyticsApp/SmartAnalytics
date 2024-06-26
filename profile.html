@@ -53,10 +53,14 @@
             const user = tg.initDataUnsafe.user;
 
             // Обновляем имя пользователя в заголовке
-            if (user) {
-                document.querySelector('.header-title').innerHTML = user.username;
-            }
-
+                  if (user) {
+        const headerTitle = document.querySelector('.header-title');
+        if (user.username) {
+            headerTitle.innerHTML = user.username;
+        } else {
+            headerTitle.innerHTML = `${user.first_name} ${user.last_name}`;
+        }
+    }
             // Инициализация TON Connect UI
             const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
                 manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
