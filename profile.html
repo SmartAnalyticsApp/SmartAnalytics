@@ -219,29 +219,9 @@
             });
 
             // Обработчик для disconnect кнопки
-            document.getElementById('ton-disconnect-btn').addEventListener('click', () => {
-                console.log('Disconnect button clicked'); // Logging click event
-                tonConnectUI.disconnect().then(() => {
-                    console.log('Wallet disconnected'); // Logging after successful disconnection
-                    // Обновляем UI после успешного отключения
-                    const offerBtn = document.querySelector('.offer-btn');
-                    const mainTopRight = document.querySelector('.main-top_right');
-                    const connectionStatus = document.querySelector('.connection-status');
-                    const disconnectBtn = document.getElementById('ton-disconnect-btn');
-
-                    offerBtn.classList.remove('offer-btn_enabled');
-                    offerBtn.classList.add('offer-btn_disabled');
-                    offerBtn.disabled = true;
-
-                    mainTopRight.classList.remove('main-top_right_connected');
-                    mainTopRight.classList.add('main-top_right_disconnected');
-
-                    connectionStatus.innerHTML = 'Не привязан';
-                    disconnectBtn.style.display = 'block'; // Ensure the button is always visible
-                }).catch((error) => {
-                    console.error('Error disconnecting wallet:', error); // Logging errors
-                });
-            });
+           if (connector.connected) {
+                await connector.disconnect();
+            }
         });
     </script>
 </body>
