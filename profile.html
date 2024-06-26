@@ -67,7 +67,7 @@
         buttonRootId: 'ton-connect-btn'
     });
     
-                tonConnectUI.connector.onStatusChange((status) => {
+                tonConnectUI.onStatusChange((status) => {
                 if (status === 'connected') {
                     document.querySelector('.offer-btn').classList.add('if-enable');
                     document.querySelector('.offer-btn').classList.remove('if-disable');
