@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="profile.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-      <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function animatePageTransition(url) {
             const transitionOut = gsap.timeline({
                 onComplete: () => {
-                    window.location.href = url;
+                    document.querySelector('.main-content').style.display = 'none';
+                    document.querySelector('.disconnect-message').style.display = 'block';
                 }
             });
 
@@ -41,9 +42,8 @@
             font-family: 'Nunito Sans', sans-serif;
         }
     </style>
-  
+
     <script>
-        
         document.addEventListener("DOMContentLoaded", () => {
             // Инициализация Telegram Web App
             const tg = window.Telegram.WebApp;
@@ -53,41 +53,39 @@
             const user = tg.initDataUnsafe.user;
 
             // Обновляем имя пользователя в заголовке
-                  if (user) {
-        const headerTitle = document.querySelector('.header-title');
-        if (user.username) {
-            headerTitle.innerHTML = user.username;
-        } else {
-            headerTitle.innerHTML = `${user.first_name} ${user.last_name}`;
-        }
-    }
+            if (user) {
+                const headerTitle = document.querySelector('.header-title');
+                if (user.username) {
+                    headerTitle.innerHTML = user.username;
+                } else {
+                    headerTitle.innerHTML = `${user.first_name} ${user.last_name}`;
+                }
+            }
+
             // Инициализация TON Connect UI
-           const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-    manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
-    buttonRootId: 'ton-connect-btn'
-});
+            const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+                manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
+                buttonRootId: 'ton-connect-btn'
+            });
 
-document.getElementById('disconnect-btn').addEventListener('click', async () => {
-  try {
-    // Disconnect the wallet using TON Connect UI
-    await tonConnectUI.disconnect();
+            document.getElementById('disconnect-btn').addEventListener('click', async () => {
+                try {
+                    // Disconnect the wallet using TON Connect UI
+                    await tonConnectUI.disconnect();
 
-    // Update UI to reflect disconnected state
-    document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
-    document.getElementById('disconnect-message').style.display = 'block';
+                    // Update UI to reflect disconnected state
+                    document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
+                    document.getElementById('disconnect-message').style.display = 'block';
 
-    // (Optional) Clear any displayed user information
-    // ... (code to clear user info)
+                    // (Optional) Clear any displayed user information
+                    document.querySelector('.main-content').style.display = 'none';
 
-  } catch (error) {
-    console.error('Error disconnecting wallet:', error);
-    // Handle disconnection error (e.g., display an error message to the user)
-  }
-});
+                } catch (error) {
+                    console.error('Error disconnecting wallet:', error);
+                    // Handle disconnection error (e.g., display an error message to the user)
+                }
+            });
 
-        event.preventDefault();
-
-            
         });
     </script>
     <style>
@@ -95,13 +93,16 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
             background-color: blue;
             color: white;
         }
+        .disconnect-message {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <header>
         <h3 class="header-title"></h3>
     </header>
-    <main>
+    <main class="main-content">
         <div class="main-top">
             <div class="main-top_left">
                 <div class="price-info">
@@ -121,7 +122,7 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
             <div>
                 <button id="ton-connect-btn"></button>
                 <button id="disconnect-btn">Отключить кошелек (Disconnect Wallet)</button>
-<p id="disconnect-message" style="display: none;"></p>
+                <p id="disconnect-message" class="disconnect-message">Кошелек успешно отключен (Wallet disconnected successfully)</p>
             </div>
         </div>
         <div class="main-info">
@@ -149,7 +150,7 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
             <a href="main.html">
                 <img class="disable-btn" src="https://i.postimg.cc/ZYC7XFC7/user-circle-1.png">
             </a>
-        </div> 
+        </div>
         <div class="navbar-div">
             <a href="profile.html">
                 <img class="active-btn" src="https://i.postimg.cc/GhZ1LWz6/user-circle-1.png">
