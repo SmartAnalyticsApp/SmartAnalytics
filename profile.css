@@ -1,7 +1,6 @@
 
-body {
+        body {
             font-family: Arial, sans-serif;
-            text-align: center;
             background-size: cover;
             margin: 0px;
             height: 100vh;
@@ -10,6 +9,7 @@ body {
         .navbar-bottom{
             display: grid;
             position: fixed;
+            text-align: center;
             width: 100%;
             left: 0px;
             padding-bottom: 10px;
@@ -58,7 +58,7 @@ body {
         .price-info{
             display: grid;
             grid-template-columns: 1fr 1fr; 
-            text-align: left;
+            margin-bottom: -15px;
         }
         .price-info h3{
             font-size: 25px;
@@ -129,22 +129,30 @@ body {
         .transactions-info_header{
             margin: 0px;
             display: grid;
-            grid-template-columns: 20% 80%;
+            grid-template-columns: 17% 80%;
             text-align: left;
+            margin-bottom: -30px;
+        }
+        .transactions-info_header p{
+            margin-top: 15px;
         }
         .transactions-info_header img{
             padding: 12px;
+            margin-left: 10px;
         }
         .transactions-info p{
             color: white;
         }
         .transactions-info_main{
-            margin: 0px;
-            padding-bottom: 12px;
+            padding: 5px 12px;
+            padding-top: 10px;
         }
         .transactions-info_main p{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+        }
+        .transactions-info_main span{
+            text-align: center;
         }
         #ton-connect-btn{
             width: 100%;
@@ -155,10 +163,10 @@ body {
         }
         #ton-connect-btn button{
             width: 100%;
-            border-radius: 20px;
+            border-radius: 12px;
             text-align: center;
             border: 0px solid;
             justify-items: center;
-            padding-left: 100px;
+            padding-left: 27%;
         }
             
