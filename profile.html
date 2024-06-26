@@ -62,10 +62,29 @@
         }
     }
             // Инициализация TON Connect UI
-            const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
-                buttonRootId: 'ton-connect-btn'
-            });
+           const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+    manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
+    buttonRootId: 'ton-connect-btn'
+});
+
+document.getElementById('disconnect-btn').addEventListener('click', async () => {
+  try {
+    // Disconnect the wallet using TON Connect UI
+    await tonConnectUI.disconnect();
+
+    // Update UI to reflect disconnected state
+    document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
+    document.getElementById('disconnect-message').style.display = 'block';
+
+    // (Optional) Clear any displayed user information
+    // ... (code to clear user info)
+
+  } catch (error) {
+    console.error('Error disconnecting wallet:', error);
+    // Handle disconnection error (e.g., display an error message to the user)
+  }
+});
+
             
         });
     </script>
@@ -99,6 +118,8 @@
         <div class="main">
             <div>
                 <button id="ton-connect-btn"></button>
+                <button id="disconnect-btn">Отключить кошелек (Disconnect Wallet)</button>
+<p id="disconnect-message" style="display: none;"></p>
             </div>
         </div>
         <div class="main-info">
