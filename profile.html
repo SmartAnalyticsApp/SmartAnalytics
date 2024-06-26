@@ -63,6 +63,21 @@
             background-color: #95A0A5;
             cursor: not-allowed;
         }
+
+        #ton-disconnect-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #ton-disconnect-btn:hover {
+            background-color: #ff3333;
+        }
     </style>
 </head>
 <body>
@@ -88,7 +103,7 @@
         <div class="main">
             <div>
                 <button id="ton-connect-btn"></button>
-                <button id="ton-disconnect-btn" style="display:none;">Отвязать кошелек</button>
+                <button id="ton-disconnect-btn">Отвязать кошелек</button>
             </div>
         </div>
         <div class="main-info">
@@ -199,7 +214,7 @@
                     mainTopRight.classList.add('main-top_right_disconnected');
 
                     connectionStatus.innerHTML = 'Не привязан';
-                    disconnectBtn.style.display = 'none';
+                    disconnectBtn.style.display = 'block'; // Ensure the button is always visible
                 }
             });
 
@@ -222,7 +237,7 @@
                     mainTopRight.classList.add('main-top_right_disconnected');
 
                     connectionStatus.innerHTML = 'Не привязан';
-                    disconnectBtn.style.display = 'none';
+                    disconnectBtn.style.display = 'block'; // Ensure the button is always visible
                 }).catch((error) => {
                     console.error('Error disconnecting wallet:', error); // Logging errors
                 });
