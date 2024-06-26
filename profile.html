@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="profile.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+      <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function animatePageTransition(url) {
@@ -37,46 +38,38 @@
         });
     </script>
     <style>
-        body {
+        body{
             font-family: 'Nunito Sans', sans-serif;
         }
+    </style>
+  
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            // Инициализация Telegram Web App
+            const tg = window.Telegram.WebApp;
+            tg.expand(); // Расширяем веб-приложение на весь экран
 
+            // Получаем данные пользователя
+            const user = tg.initDataUnsafe.user;
+
+            // Обновляем имя пользователя в заголовке
+            if (user) {
+                document.querySelector('.header-title').innerHTML = user.username;
+            }
+
+            // Инициализация TON Connect UI
+            const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+                manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
+                buttonRootId: 'ton-connect-btn'
+            });
+            
+        });
+    </script>
+    <style>
         .if-enable {
-            background-color: #0DA2C6;
+            background-color: blue;
             color: white;
-        }
-
-        .main-top_right_connected {
-            background-color: rgba(32, 181, 19, 0.5);
-        }
-
-        .main-top_right_disconnected {
-            background-color: rgba(149, 160, 165, 0.15);
-        }
-
-        .offer-btn_enabled {
-            background-color: #0DA2C6;
-            cursor: pointer;
-        }
-
-        .offer-btn_disabled {
-            background-color: #95A0A5;
-            cursor: not-allowed;
-        }
-
-        #ton-disconnect-btn {
-            display: block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #ff4c4c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #ton-disconnect-btn:hover {
-            background-color: #ff3333;
         }
     </style>
 </head>
@@ -92,12 +85,12 @@
                     <p style="margin-top: 0px; text-align: right;">на 1 месяц</p>
                 </div>
                 <div>
-                    <button class="offer-btn offer-btn_disabled" style="position: relative; top: 5px;">Оформить подписку</button>
+                    <button class="offer-btn if-disable" style="position: relative; top: 5px;">Оформить подписку</button>
                 </div>
             </div>
-            <div class="main-top_right main-top_right_disconnected">
+            <div class="main-top_right">
                 <img src="Comp_1.gif" alt="Comp 1 Animation" style="width:90%; margin-left: 5%; margin-top: -15px; margin-bottom: -20px;">
-                <p class="connection-status" style="font-size: 13px; text-align: center;">Не привязан</p>
+                <p style="font-size: 13px; text-align: center;">Не привязан</p>
             </div>
         </div>
         <div class="main">
@@ -122,7 +115,7 @@
     </main>
     <div class="navbar-bottom">
         <div class="navbar-div">
-            <a href="setting.html">
+            <a href="setting.html" >
                 <img style="position: absolute;padding: 5px; padding-left: 43px;  left: 0px;" src="https://i.postimg.cc/Px14rPHc/Setting.png">
             </a>
         </div>
@@ -130,98 +123,182 @@
             <a href="main.html">
                 <img class="disable-btn" src="https://i.postimg.cc/ZYC7XFC7/user-circle-1.png">
             </a>
-        </div>
+        </div> 
         <div class="navbar-div">
             <a href="profile.html">
                 <img class="active-btn" src="https://i.postimg.cc/GhZ1LWz6/user-circle-1.png">
             </a>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Инициализация Telegram Web App
-            const tg = window.Telegram.WebApp;
-            tg.expand(); // Расширяем веб-приложение на весь экран
-
-            // Получаем данные пользователя
-            const user = tg.initDataUnsafe.user;
-
-            // Обновляем имя пользователя в заголовке
-            if (user) {
-                document.querySelector('.header-title').innerHTML = user.username;
-            }
-
-            // Инициализация TON Connect UI
-            const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
-                buttonRootId: 'ton-connect-btn'
-            });
-
-            // Проверяем, подключен ли TON кошелек при загрузке страницы
-            tonConnectUI.getStatus().then((status) => {
-                const offerBtn = document.querySelector('.offer-btn');
-                const mainTopRight = document.querySelector('.main-top_right');
-                const connectionStatus = document.querySelector('.connection-status');
-                const disconnectBtn = document.getElementById('ton-disconnect-btn');
-
-                if (status === 'connected') {
-                    offerBtn.classList.remove('offer-btn_disabled');
-                    offerBtn.classList.add('offer-btn_enabled');
-                    offerBtn.disabled = false;
-
-                    mainTopRight.classList.remove('main-top_right_disconnected');
-                    mainTopRight.classList.add('main-top_right_connected');
-
-                    connectionStatus.innerHTML = 'Привязан';
-                    disconnectBtn.style.display = 'block';
-
-                    offerBtn.addEventListener('click', () => {
-                        // Добавьте ваш код оформления подписки здесь
-                        alert('Подписка оформлена!');
-                    });
-                }
-            });
-
-            // Обработчик изменения статуса подключения TON кошелька
-            tonConnectUI.onStatusChange((status) => {
-                const offerBtn = document.querySelector('.offer-btn');
-                const mainTopRight = document.querySelector('.main-top_right');
-                const connectionStatus = document.querySelector('.connection-status');
-                const disconnectBtn = document.getElementById('ton-disconnect-btn');
-
-                if (status === 'connected') {
-                    offerBtn.classList.remove('offer-btn_disabled');
-                    offerBtn.classList.add('offer-btn_enabled');
-                    offerBtn.disabled = false;
-
-                    mainTopRight.classList.remove('main-top_right_disconnected');
-                    mainTopRight.classList.add('main-top_right_connected');
-
-                    connectionStatus.innerHTML = 'Привязан';
-                    disconnectBtn.style.display = 'block';
-
-                    offerBtn.addEventListener('click', () => {
-                        // Добавьте ваш код оформления подписки здесь
-                        alert('Подписка оформлена!');
-                    });
-                } else {
-                    offerBtn.classList.remove('offer-btn_enabled');
-                    offerBtn.classList.add('offer-btn_disabled');
-                    offerBtn.disabled = true;
-
-                    mainTopRight.classList.remove('main-top_right_connected');
-                    mainTopRight.classList.add('main-top_right_disconnected');
-
-                    connectionStatus.innerHTML = 'Не привязан';
-                    disconnectBtn.style.display = 'block'; // Ensure the button is always visible
-                }
-            });
-
-            // Обработчик для disconnect кнопки
-           if (connector.connected) {
-                await connector.disconnect();
-            }
-        });
-    </script>
 </body>
 </html>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            margin: 0px;
+            height: 100vh;
+            background: linear-gradient(to bottom, #0D1F2D, #0F3D56); /* Цвета градиента */            
+        }
+        .navbar-bottom{
+            display: grid;
+            position: fixed;
+            text-align: center;
+            width: 100%;
+            left: 0px;
+            padding-bottom: 10px;
+            bottom: 0px;
+            border-top: 1px solid #5A8A9F;
+            grid-template-columns: 1fr 1fr 1fr;
+            background-color: #1c5169;
+            padding-top: 10px;
+        }
+        .navbar-bottom button{
+            background-color: rgb(0,0,0,0);
+            border: 0px;
+            cursor: pointer;
+        }
+        .navbar-bottom img{
+            width: 40px;
+        }
+        header{
+            width: 100%;
+            text-align: left;
+            border-bottom: 2px solid #5a8a9f;
+        }
+        .header-title{
+            padding-left: 16px;
+            padding-top: 5px;
+            padding-right: 16px;
+            color: white;
+        }
+        .main-top{
+            display: grid;
+            padding: 0px 16px;
+            grid-template-columns: 69% 29%;
+            gap: 2%; 
+            margin-top: 20px;
+        }
+        .main-top_right{
+            background-color: rgb(149, 160, 165, 15%);
+            border-radius: 12px;
+            padding-top: 16px;
+        }
+        .main-top_left{
+            border: 1px solid #A3A8D5;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .price-info{
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            margin-bottom: -15px;
+        }
+        .price-info h3{
+            font-size: 25px;
+            padding-top: 0px;
+            margin-top: 0px;
+            color: #20B513;
+        }
+        .price-info p{
+            margin-top: 10px;
+            color: #999;
+        }
+        .offer-btn{
+            background-color: #0da2c6;
+            border: 0px;
+            width: 100%;
+            font-size: 17px;
+            font-weight: 500;
+            color: white;
+            border-radius: 12px;
+            padding: 10px;
+        }
+        .active-btn{
+            background-color: #0da2c6;
+            padding: 5px;
+            position: absolute;
+            right: 0px;
+            padding-right: 43px;
+            border-radius: 12px 0px 0px 12px;
+        }
+        .disable-btn{
+            padding: 5px;
+            border-radius: 12px;
+        }
+        .main-top_right p{
+            color: #999;
+        }
+        .if-disable{
+            background-color: #95A0A5;
+        }
+        .main{
+            padding: 0px 16px;
+            margin-top: 20px;
+        }
+        .main-ton_btn{
+            display: grid;
+            grid-template-columns: 80% 10%;
+            background-color: #0DA2C6;
+            gap: 1em;
+            border: 0px;
+            border-radius: 12px;
+            width: 100%;
+            text-align: right;
+            font-size: 17px;
+            color: white;
+            cursor: pointer;
+        }
+        .main-ton_btn img{
+            padding: 12px;
+        }
+        .main-info{
+            padding: 0px 16px;
+            margin-top: 20px;
+        }
+        .transactions-info{
+            background-color: #1B4F66;
+            border-radius: 12px;
+        }
+        .transactions-info_header{
+            margin: 0px;
+            display: grid;
+            grid-template-columns: 17% 80%;
+            text-align: left;
+            margin-bottom: -30px;
+        }
+        .transactions-info_header p{
+            margin-top: 15px;
+        }
+        .transactions-info_header img{
+            padding: 12px;
+            margin-left: 10px;
+        }
+        .transactions-info p{
+            color: white;
+        }
+        .transactions-info_main{
+            padding: 5px 12px;
+            padding-top: 10px;
+        }
+        .transactions-info_main p{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .transactions-info_main span{
+            text-align: center;
+        }
+        #ton-connect-btn{
+            width: 100%;
+            border-radius: 20px;
+            padding: 0px;
+            border: 0px solid;
+
+        }
+        #ton-connect-btn button{
+            width: 100%;
+            border-radius: 12px;
+            text-align: center;
+            border: 0px solid;
+            justify-items: center;
+            padding-left: 27%;
+        }
