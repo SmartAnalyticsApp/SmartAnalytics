@@ -64,6 +64,7 @@ header img {
 }
 main{
     padding: 16px;
+    margin-bottom: 150px;
 }
 .settings-container {
     border-radius: 10px;
