@@ -67,11 +67,12 @@
     buttonRootId: 'ton-connect-btn'
 });
 
-    tonConnectUI.on('connected', () => {
-        const subscribeButton = document.querySelector('.offer-btn');
-        subscribeButton.classList.add('if-enable');
-        subscribeButton.classList.remove('if-disable');
-    });
+     tonConnectUI.onStatusChange((status) => {
+                if (status === 'connected') {
+                    document.querySelector('.offer-btn').classList.add('if-enable');
+                    document.querySelector('.offer-btn').classList.remove('if-disable');
+                }
+            });
 
 document.getElementById('disconnect-btn').addEventListener('click', async () => {
   try {
