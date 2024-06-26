@@ -67,6 +67,12 @@
     buttonRootId: 'ton-connect-btn'
 });
 
+    tonConnectUI.on('connected', () => {
+        const subscribeButton = document.querySelector('.offer-btn');
+        subscribeButton.classList.add('if-enable');
+        subscribeButton.classList.remove('if-disable');
+    });
+
 document.getElementById('disconnect-btn').addEventListener('click', async () => {
   try {
     // Disconnect the wallet using TON Connect UI
@@ -84,11 +90,7 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
     // Handle disconnection error (e.g., display an error message to the user)
   }
 });
-    tonConnectUI.on('connected', () => {
-        const subscribeButton = document.querySelector('.offer-btn');
-        subscribeButton.classList.add('if-enable');
-        subscribeButton.classList.remove('if-disable');
-    });
+    
             
         });
     </script>
