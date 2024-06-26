@@ -67,8 +67,6 @@
     buttonRootId: 'ton-connect-btn'
 });
 
-
-
 document.getElementById('disconnect-btn').addEventListener('click', async () => {
   try {
     // Disconnect the wallet using TON Connect UI
@@ -86,7 +84,9 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
     // Handle disconnection error (e.g., display an error message to the user)
   }
 });
-    
+
+        event.preventDefault();
+
             
         });
     </script>
