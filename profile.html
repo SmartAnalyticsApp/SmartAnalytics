@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="profile.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-      <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function animatePageTransition(url) {
@@ -34,17 +34,7 @@
                     animatePageTransition(targetUrl);
                 });
             });
-        });
-    </script>
-    <style>
-        body{
-            font-family: 'Nunito Sans', sans-serif;
-        }
-    </style>
-  
-    <script>
-        
-        document.addEventListener("DOMContentLoaded", () => {
+
             // Инициализация Telegram Web App
             const tg = window.Telegram.WebApp;
             tg.expand(); // Расширяем веб-приложение на весь экран
@@ -53,47 +43,102 @@
             const user = tg.initDataUnsafe.user;
 
             // Обновляем имя пользователя в заголовке
-                  if (user) {
-        const headerTitle = document.querySelector('.header-title');
-        if (user.username) {
-            headerTitle.innerHTML = user.username;
-        } else {
-            headerTitle.innerHTML = `${user.first_name} ${user.last_name}`;
-        }
-    }
+            if (user) {
+                const headerTitle = document.querySelector('.header-title');
+                if (user.username) {
+                    headerTitle.innerHTML = user.username;
+                } else {
+                    headerTitle.innerHTML = `${user.first_name} ${user.last_name}`;
+                }
+            }
+
             // Инициализация TON Connect UI
-           const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-    manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
-    buttonRootId: 'ton-connect-btn'
-});
+            const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+                manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
+                buttonRootId: 'ton-connect-btn'
+            });
 
-document.getElementById('disconnect-btn').addEventListener('click', async () => {
-  try {
-    // Disconnect the wallet using TON Connect UI
-    await tonConnectUI.disconnect();
+            // Проверка статуса кошелька при загрузке страницы
+            tonConnectUI.getStatus().then((status) => {
+                updateUI(status);
+            });
 
-    // Update UI to reflect disconnected state
-    document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
-    document.getElementById('disconnect-message').style.display = 'block';
+            // Обработка изменения статуса подключения TON кошелька
+            tonConnectUI.onStatusChange((status) => {
+                updateUI(status);
+            });
 
-    // (Optional) Clear any displayed user information
-    // ... (code to clear user info)
+            function updateUI(status) {
+                const offerBtn = document.querySelector('.offer-btn');
+                const mainTopRight = document.querySelector('.main-top_right');
+                const connectionStatus = document.querySelector('.connection-status');
+                const disconnectBtn = document.getElementById('disconnect-btn');
 
-  } catch (error) {
-    console.error('Error disconnecting wallet:', error);
-    // Handle disconnection error (e.g., display an error message to the user)
-  }
-});
+                if (status === 'connected') {
+                    offerBtn.classList.remove('if-disable');
+                    offerBtn.classList.add('if-enable');
+                    offerBtn.disabled = false;
 
-        event.preventDefault();
+                    mainTopRight.classList.remove('main-top_right_disconnected');
+                    mainTopRight.classList.add('main-top_right_connected');
 
-            
+                    connectionStatus.innerHTML = 'Привязан';
+                    disconnectBtn.style.display = 'block';
+
+                    offerBtn.addEventListener('click', () => {
+                        // Добавьте ваш код оформления подписки здесь
+                        alert('Подписка оформлена!');
+                    });
+                } else {
+                    offerBtn.classList.remove('if-enable');
+                    offerBtn.classList.add('if-disable');
+                    offerBtn.disabled = true;
+
+                    mainTopRight.classList.remove('main-top_right_connected');
+                    mainTopRight.classList.add('main-top_right_disconnected');
+
+                    connectionStatus.innerHTML = 'Не привязан';
+                    disconnectBtn.style.display = 'none';
+                }
+            }
+
+            // Обработчик для disconnect кнопки
+            document.getElementById('disconnect-btn').addEventListener('click', async () => {
+                try {
+                    // Disconnect the wallet using TON Connect UI
+                    await tonConnectUI.disconnect();
+
+                    // Update UI to reflect disconnected state
+                    document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
+                    document.getElementById('disconnect-message').style.display = 'block';
+
+                    // Обновление UI
+                    updateUI('disconnected');
+
+                } catch (error) {
+                    console.error('Error disconnecting wallet:', error);
+                    // Handle disconnection error (e.g., display an error message to the user)
+                }
+            });
         });
     </script>
     <style>
         .if-enable {
             background-color: blue;
             color: white;
+        }
+
+        .if-disable {
+            background-color: grey;
+            color: white;
+        }
+
+        .main-top_right_connected {
+            background-color: rgba(32, 181, 19, 0.5);
+        }
+
+        .main-top_right_disconnected {
+            background-color: rgba(149, 160, 165, 0.15);
         }
     </style>
 </head>
@@ -112,16 +157,16 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
                     <button class="offer-btn if-disable" style="position: relative; top: 5px;">Оформить подписку</button>
                 </div>
             </div>
-            <div class="main-top_right">
+            <div class="main-top_right main-top_right_disconnected">
                 <img src="Comp_1.gif" alt="Comp 1 Animation" style="width:90%; margin-left: 5%; margin-top: -15px; margin-bottom: -20px;">
-                <p style="font-size: 13px; text-align: center;">Не привязан</p>
+                <p class="connection-status" style="font-size: 13px; text-align: center;">Не привязан</p>
             </div>
         </div>
         <div class="main">
             <div>
                 <button id="ton-connect-btn"></button>
-                <button id="disconnect-btn">Отключить кошелек (Disconnect Wallet)</button>
-<p id="disconnect-message" style="display: none;"></p>
+                <button id="disconnect-btn" style="display: none;">Отключить кошелек (Disconnect Wallet)</button>
+                <p id="disconnect-message" style="display: none;"></p>
             </div>
         </div>
         <div class="main-info">
@@ -141,7 +186,7 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
     </main>
     <div class="navbar-bottom">
         <div class="navbar-div">
-            <a href="setting.html" >
+            <a href="setting.html">
                 <img style="position: absolute;padding: 5px; padding-left: 43px;  left: 0px;" src="https://i.postimg.cc/Px14rPHc/Setting.png">
             </a>
         </div>
