@@ -85,6 +85,65 @@
                     // Handle disconnection error (e.g., display an error message to the user)
                 }
             });
+              // Проверяем, подключен ли TON кошелек при загрузке страницы
+    tonConnectUI.getStatus().then((status) => {
+        const offerBtn = document.querySelector('.offer-btn');
+        const mainTopRight = document.querySelector('.main-top_right');
+        const connectionStatus = document.querySelector('.connection-status');
+        const disconnectBtn = document.getElementById('ton-disconnect-btn');
+
+        if (status === 'connected') {
+            offerBtn.classList.remove('offer-btn_disabled');
+            offerBtn.classList.add('offer-btn_enabled');
+            offerBtn.disabled = false;
+
+            mainTopRight.classList.remove('main-top_right_disconnected');
+            mainTopRight.classList.add('main-top_right_connected');
+
+            connectionStatus.innerHTML = 'Привязан';
+            disconnectBtn.style.display = 'block';
+
+            offerBtn.addEventListener('click', () => {
+                // Добавьте ваш код оформления подписки здесь
+                alert('Подписка оформлена!');
+            });
+        }
+    });
+
+    // Обработчик изменения статуса подключения TON кошелька
+    tonConnectUI.onStatusChange((status) => {
+        const offerBtn = document.querySelector('.offer-btn');
+        const mainTopRight = document.querySelector('.main-top_right');
+        const connectionStatus = document.querySelector('.connection-status');
+        const disconnectBtn = document.getElementById('ton-disconnect-btn');
+
+        if (status === 'connected') {
+            offerBtn.classList.remove('offer-btn_disabled');
+            offerBtn.classList.add('offer-btn_enabled');
+            offerBtn.disabled = false;
+
+            mainTopRight.classList.remove('main-top_right_disconnected');
+            mainTopRight.classList.add('main-top_right_connected');
+
+            connectionStatus.innerHTML = 'Привязан';
+            disconnectBtn.style.display = 'block';
+
+            offerBtn.addEventListener('click', () => {
+                // Добавьте ваш код оформления подписки здесь
+                alert('Подписка оформлена!');
+            });
+        } else {
+            offerBtn.classList.remove('offer-btn_enabled');
+            offerBtn.classList.add('offer-btn_disabled');
+            offerBtn.disabled = true;
+
+            mainTopRight.classList.remove('main-top_right_connected');
+            mainTopRight.classList.add('main-top_right_disconnected');
+
+            connectionStatus.innerHTML = 'Не привязан';
+            disconnectBtn.style.display = 'block'; // Ensure the button is always visible
+        }
+    });
 
         });
     </script>
