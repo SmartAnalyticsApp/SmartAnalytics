@@ -1,7 +1,28 @@
+function animatePageTransition(url) {
+    const transitionOut = gsap.timeline({
+        onComplete: () => {
+            window.location.href = url;
+        }
+    });
 
-import { TonConnectUI, init } from "@tonconnect/ui";
+    transitionOut.to("body", { opacity: 0, duration: 0.5 });
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+function animatePageEnter() {
+    gsap.from("body", { opacity: 0, duration: 0.5 });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    animatePageEnter();
+
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            animatePageTransition(targetUrl);
+        });
+    });
+
     // Инициализация Telegram Web App
     const tg = window.Telegram.WebApp;
     tg.expand(); // Расширяем веб-приложение на весь экран
@@ -11,35 +32,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Обновляем имя пользователя в заголовке
     if (user) {
-        document.querySelector('.header-title').innerHTML = user.first_name + ' ' + (user.last_name || '');
+        const headerTitle = document.querySelector('.header-title');
+        headerTitle.innerHTML = user.username || `${user.first_name} ${user.last_name}`;
     }
 
     // Инициализация TON Connect UI
-    const tonConnectUI = new TonConnectUI({
-        manifestUrl: 'https://your-domain.com/tonconnect-manifest.json',
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+        manifestUrl: 'https://smartanalyticsapp.github.io/SmartAnalytics/tonconnect-manifest.json',
         buttonRootId: 'ton-connect-btn'
     });
 
-    tonConnectUI.onStatusChange((status) => {
-        console.log('Status changed:', status);
+    tonConnectUI.connector.onStatusChange((status) => {
         if (status === 'connected') {
-            const offerBtn = document.querySelector('.offer-btn');
-            offerBtn.classList.remove('if-disable');
-            offerBtn.classList.add('if-enable');
-            alert('Wallet connected!');
+            document.querySelector('.offer-btn').classList.add('if-enable');
+            document.querySelector('.offer-btn').classList.remove('if-disable');
+        } else if (status === 'disconnected') {
+            document.querySelector('.offer-btn').classList.add('if-disable');
+            document.querySelector('.offer-btn').classList.remove('if-enable');
         }
     });
 
-    document.getElementById('ton-connect-btn').addEventListener('click', async () => {
+    document.getElementById('disconnect-btn').addEventListener('click', async () => {
         try {
-            await tonConnectUI.connectWallet();
+            // Disconnect the wallet using TON Connect UI
+            await tonConnectUI.disconnect();
+
+            // Update UI to reflect disconnected state
+            document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
+            document.getElementById('disconnect-message').style.display = 'block';
+
+            // (Optional) Clear any displayed user information
+            // ... (code to clear user info)
+
         } catch (error) {
-            console.error('Error connecting to wallet:', error);
-            if (error.message.includes('declined')) {
-                alert('Connection declined by user');
-            } else {
-                alert('Error connecting to wallet: ' + error.message);
-            }
+            console.error('Error disconnecting wallet:', error);
+            // Handle disconnection error (e.g., display an error message to the user)
         }
     });
 });
