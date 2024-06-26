@@ -86,18 +86,6 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
     // Handle disconnection error (e.g., display an error message to the user)
   }
 });
-            // 1. Check Network Connectivity:
-      if (!navigator.onLine) {
-        console.error('Error: No internet connection. Disconnection failed.');
-        // Display an error message to the user
-        return;  // Prevent further execution to avoid potential errors
-      }
-
-      // 2. Handle Disconnection Errors Gracefully:
-      try {
-        await tonConnectUI.disconnect();
-      } catch (error) {
-        console.error('Error disconnecting wallet:', error);
 
         event.preventDefault();
 
