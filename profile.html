@@ -67,16 +67,15 @@
         buttonRootId: 'ton-connect-btn'
     });
     
-                async function checkConnectionStatus() {
-  const isConnected = await tonConnectUI.isConnected();
-  console.log('Wallet connected:', isConnected);
-
-  // Update UI or perform actions based on connection status
-  if (isConnected) {
-    document.querySelector('.offer-btn').classList.add('if-enable');
-    document.querySelector('.offer-btn').classList.remove('if-disable');
-  } 
-}
+                tonConnectUI.connector.onStatusChange((status) => {
+                if (status === 'connected') {
+                    document.querySelector('.offer-btn').classList.add('if-enable');
+                    document.querySelector('.offer-btn').classList.remove('if-disable');
+                } else if (status === 'disconnected') {
+                    document.querySelector('.offer-btn').classList.add('if-disable');
+                    document.querySelector('.offer-btn').classList.remove('if-enable');
+                }
+            });
 
     
     document.getElementById('disconnect-btn').addEventListener('click', async () => {
