@@ -67,6 +67,49 @@
     buttonRootId: 'ton-connect-btn'
 });
 
+  tonConnectUI.getStatus().then((status) => {
+                updateUI(status);
+            });
+
+            // Обработка изменения статуса подключения TON кошелька
+            tonConnectUI.onStatusChange((status) => {
+                updateUI(status);
+            });
+
+            function updateUI(status) {
+                const offerBtn = document.querySelector('.offer-btn');
+                const mainTopRight = document.querySelector('.main-top_right');
+                const connectionStatus = document.querySelector('.connection-status');
+                const disconnectBtn = document.getElementById('disconnect-btn');
+
+                if (status === 'connected') {
+                    offerBtn.classList.remove('if-disable');
+                    offerBtn.classList.add('if-enable');
+                    offerBtn.disabled = false;
+
+                    mainTopRight.classList.remove('main-top_right_disconnected');
+                    mainTopRight.classList.add('main-top_right_connected');
+
+                    connectionStatus.innerHTML = 'Привязан';
+                    disconnectBtn.style.display = 'block';
+
+                    offerBtn.addEventListener('click', () => {
+                        // Добавьте ваш код оформления подписки здесь
+                        alert('Подписка оформлена!');
+                    });
+                } else {
+                    offerBtn.classList.remove('if-enable');
+                    offerBtn.classList.add('if-disable');
+                    offerBtn.disabled = true;
+
+                    mainTopRight.classList.remove('main-top_right_connected');
+                    mainTopRight.classList.add('main-top_right_disconnected');
+
+                    connectionStatus.innerHTML = 'Не привязан';
+                    disconnectBtn.style.display = 'none';
+                }
+            }
+
 document.getElementById('disconnect-btn').addEventListener('click', async () => {
   try {
     // Disconnect the wallet using TON Connect UI
@@ -84,6 +127,18 @@ document.getElementById('disconnect-btn').addEventListener('click', async () => 
     // Handle disconnection error (e.g., display an error message to the user)
   }
 });
+            // 1. Check Network Connectivity:
+      if (!navigator.onLine) {
+        console.error('Error: No internet connection. Disconnection failed.');
+        // Display an error message to the user
+        return;  // Prevent further execution to avoid potential errors
+      }
+
+      // 2. Handle Disconnection Errors Gracefully:
+      try {
+        await tonConnectUI.disconnect();
+      } catch (error) {
+        console.error('Error disconnecting wallet:', error);
 
         event.preventDefault();
 
