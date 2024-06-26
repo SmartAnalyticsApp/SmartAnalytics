@@ -205,7 +205,9 @@
 
             // Обработчик для disconnect кнопки
             document.getElementById('ton-disconnect-btn').addEventListener('click', () => {
+                console.log('Disconnect button clicked'); // Logging click event
                 tonConnectUI.disconnect().then(() => {
+                    console.log('Wallet disconnected'); // Logging after successful disconnection
                     // Обновляем UI после успешного отключения
                     const offerBtn = document.querySelector('.offer-btn');
                     const mainTopRight = document.querySelector('.main-top_right');
@@ -221,6 +223,8 @@
 
                     connectionStatus.innerHTML = 'Не привязан';
                     disconnectBtn.style.display = 'none';
+                }).catch((error) => {
+                    console.error('Error disconnecting wallet:', error); // Logging errors
                 });
             });
         });
