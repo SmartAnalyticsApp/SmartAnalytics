@@ -38,66 +38,9 @@
         body{
             font-family: 'Nunito Sans', sans-serif;
         }
-        .lang-btns{
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            width: 20%;
-            border: 1px solid #5A8A9F;
-            border-radius: 12px;
-            padding-right: 30px;
-        }
-        .lang-btns button{
-            padding: 5px 15px;
-        }
-        .active-button-lang{
-            color: white;
-            background-color: #0da2c6; 
-            border-radius: 12px;
-            border: 0px;
-        }
-        .disable-button-lang{
-            color: white;
-            padding: 5px 10px;
-            background-color: rgb(0, 0, 0, 0); 
-            border-radius: 12px;
-            border: 0px;
-        }
     </style>
-    <script>
-        function toggleActiveButton(event, lang) {
-            event.preventDefault();
-
-            var ruButton = document.getElementById('ruButton');
-            var engButton = document.getElementById('engButton');
-
-            if (lang === 'ru') {
-                ruButton.classList.add('active-button-lang');
-                ruButton.classList.remove('disable-button-lang');
-                engButton.classList.add('disable-button-lang');
-                engButton.classList.remove('active-button-lang');
-            } else {
-                engButton.classList.add('active-button-lang');
-                engButton.classList.remove('disable-button-lang');
-                ruButton.classList.add('disable-button-lang');
-                ruButton.classList.remove('active-button-lang');
-            }
-        }
-    </script>
 </head>
 <body>
-    <div class="lang-btns">
-        <form>
-            <input type="hidden" value="ru">
-            <button id="ruButton" class="active-button-lang" onclick="toggleActiveButton(event, 'ru')">RU</button>
-        </form>
-        <form>
-            <input type="hidden" value="en">
-            <button id="engButton" class="disable-button-lang" onclick="toggleActiveButton(event, 'en')">ENG</button>
-        </form>
-    </div>
     <img src="Logo_blue_wb.gif" alt="Comp 1 Animation" style="width:100px; margin-top: 30px; margin-bottom: 30px; ">
 
     <div class="main-btns">
