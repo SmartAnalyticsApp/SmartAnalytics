@@ -3,579 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать!</title>
-    <link rel="stylesheet" href="main.css" type="text/css" media="all" />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script>
-        function animatePageTransition(url) {
-            const transitionOut = gsap.timeline({
-                onComplete: () => {
-                    window.location.href = url;
-                }
-            });
-
-            transitionOut.to("body", { opacity: 0, duration: 0.5 });
-        }
-
-        function animatePageEnter() {
-            gsap.from("body", { opacity: 0, duration: 0.5 });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            animatePageEnter();
-
-            document.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const targetUrl = this.getAttribute('href');
-                    animatePageTransition(targetUrl);
-                });
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="main.css">
+    <title>Transition Example</title>
     <style>
-        body{
-            font-family: 'Nunito Sans', sans-serif;
+        
+
+        .top-tickers-button {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .block {
+            position: absolute;
+            right: 30px;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        .top-tickers-content {
+            padding: 10px 20px;
+            border-radius: 0 0 8px 8px;
+            display: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .tickers {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .icon-tiker{
+            margin-right: 20px;
+        }
+        .active-text{
+            color: white;
+        }
+        .disable-text{
+            color: #999;
+            max-width: 80%;
+            text-align: left;
+        }
+
+       
+
+        .content-giv {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        main {
+            margin-bottom: 150px;
+        }
+       
+        .div-block{
+            margin-bottom: 10px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        .div-block-active {
+            border: 1px solid #5A8A9F;
         }
     </style>
 </head>
 <body>
-    <img src="Logo_blue_wb.gif" alt="Comp 1 Animation" style="width:100px; margin-top: 30px; margin-bottom: 30px; ">
+    <main>
+        <img src="Logo_blue_wb.gif" alt="Comp 1 Animation" style="width: 100px; margin-top: 30px; margin-bottom: 30px;">
 
-    <div class="main-btns">
-        <div class="main-btns-div" id="d1">
-            <button onclick="show7()" style="color:white;"><img src="Icon (8).png">Топ Тикеры</button>
-            <div id="div7">
-                
-                <a href="toptikers.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                </a>
-                <a href="toptikers.html" style="position: relative; top: 10px;">
-                    <img src="toptikers.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
-                </a>
-                
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-1">
+                    <img src="Icon (8).png" class="icon-tiker"><span class="active-text">Топ Тикеры</span>
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-1">
+                    <div class="tickers">
+                        <a href="toptikers.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="toptikers.html">
+                            <img src="toptikers.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="main-btns-div" id="d2">
-            <button style="color:white;"  onclick="show2()"><img src="Icon (9).png">Информация о тикере</button>
-            <div id="div2">
-                <a href="tikerinfo.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="tikerinfo.html" style="position: relative; top: 10px;">
-                    <img src="tikerinfo.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
-                </a>
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-2">
+                    <img src="Icon (9).png" class="icon-tiker"><span class="active-text">Информация о тикере</span>
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-2">
+                    <div class="tickers">
+                        <a href="tikerinfo.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="tikerinfo.html">
+                            <img src="tikerinfo.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="main-btns-div" id="d3"> 
-            <button onclick="show1()"><img src="Icon (10).png">Суточные объемы тикера<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block1"></button>
-            <div id="div1">
-                <a href="dailyinfo.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="dailyinfo.html" style=" position: relative; top: 10px;">
-                    <img src="Candles.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
-                </a>
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-3">
+                    <img src="Icon (10).png" class="icon-tiker"><span class="disable-text">Суточные объемы тикера</span><img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" class="block">
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-3">
+                    <div class="tickers">
+                        <a href="dailyinfo.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="dailyinfo.html">
+                            <img src="Candles.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="main-btns-div" id="d4"> 
-            <button onclick="show9()"><img src="Icon (11).png">Ставки финансирования<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block2"></button>
-            <div id="div9">
-                <a href="rateinfo.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="rateinfo.html" style="position: relative; top: 10px;">
-                    <img src="NOTUSDT.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
-                </a>
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-4">
+                    <img src="Icon (11).png" class="icon-tiker"><span class="disable-text">Ставки финансирования</span><img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" class="block">
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-4">
+                    <div class="tickers">
+                        <a href="rateinfo.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="rateinfo.html">
+                            <img src="NOTUSDT.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="main-btns-div" id="d5">
-            <button onclick="show4()"><img src="Icon (12).png">Корреляция двух активов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block3"></button>
-            <div id="div4">
-                <a href="correlationinfo.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="correlationinfo.html" style=" position: relative; top: 10px;">
-                    <img src="Graphick.gif" alt="Comp 1 Animation" style="width:100%;">
-                </a>
-            </div>
-        </div>
-        <div class="main-btns-div" id="d6">
-            <button onclick="show5()"><img src="Icon (13).png">Градация роста объемов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block4"></button>
-            <div id="div5">
-                <a href="gradationinfo.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="gradationinfo.html" style="position: relative; top: 10px;">
-                    <img src="gorki.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
-                </a>
-            </div>
-        </div>
-        <div class="main-btns-div" id="d7">
-            <button onclick="show3()"><img src="Icon (14).png">Градация роста активов за последние 5 минут<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block5"></button>
-            <div id="div3">
-                <a href="gradation5minute.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="gradation5minute.html" style="position: relative; top: 10px;">
-                    <img src="Watches_1.gif" alt="Comp 1 Animation" style="width:50%; margin-left: 25%;">
-                </a>
-            </div>
-        </div>
-        
-        
-       <div class="main-btns-div" id="d8">
-           <button onclick="show6()"><img src="Icon (15).png">Отслеживание импульсов<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block6"></button>
-            <div id="div6">
-                <a href="impulse.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="impulse.html" style="position: relative; top: 10px;">
-                    <img src="otslhimpl.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
-                </a>
-            </div>
-       </div>
-       <div class="main-btns-div" id="d9">
-            <button onclick="show8()"><img src="Icon (16).png">Отслеживание выбранного актива<img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" id="block7"></button>
-            <div id="div8">
-                <a href="impulsechoosen.html">
-                    <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
-                    </a>
-                <a href="impulsechoosen.html" style=" position: relative; top: 10px;">
-                    <img src="fav.gif" alt="Comp 1 Animation" style="width:100%; height:auto;">
-                </a>
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-5">
+                    <img src="Icon (12).png" class="icon-tiker"><span class="disable-text">Корреляция двух активов</span><img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" class="block">
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-5">
+                    <div class="tickers">
+                        <a href="correlationinfo.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="correlationinfo.html">
+                            <img src="Graphick.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-6">
+                    <img src="Icon (13).png" class="icon-tiker"><span class="disable-text">Градация роста объемов</span><img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" class="block">
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-6">
+                    <div class="tickers">
+                        <a href="gradationinfo.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="gradationinfo.html">
+                            <img src="gorki.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-7">
+                    <img src="Icon (14).png" class="icon-tiker"><span class="disable-text">Градация роста активов за последние 5 минут</span><img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" class="block">
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-7">
+                    <div class="tickers">
+                        <a href="gradation5minute.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="gradation5minute.html">
+                            <img src="Watches_1.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-    </div>
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-8">
+                    <img src="Icon (15).png" class="icon-tiker"><span class="disable-text">Отслеживание импульсов</span><img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" class="block">
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-8">
+                    <div class="tickers">
+                        <a href="impulse.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="impulse.html" style="position: relative; top: 10px;">
+                            <img src="otslhimpl.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div class="div-block">
+            <div class="top-tickers-section">
+                <div class="top-tickers-button" id="topTickersButton2-9">
+                    <img src="Icon (16).png" class="icon-tiker"><span class="disable-text">Отслеживание выбранного актива</span><img src="https://i.postimg.cc/ZKnw6Yx9/Icon-1.png" class="block">
+                </div>
+                <div class="top-tickers-content" id="topTickersContent2-9">
+                    <div class="tickers">
+                        <a href="impulsechoosen.html">
+                            <img src="Strleka.gif" alt="Comp 1 Animation" class="nexticon">
+                        </a>
+                        <a href="impulsechoosen.html">
+                            <img src="fav.gif" alt="Comp 1 Animation" class="content-giv">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </main>
+
     <div class="navbar-bottom">
-       
-       <div class="navbar-div">
-           <a href="setting.html">
-               <img  style="position: absolute;padding: 5px; padding-left: 43px;  left: 0px;" src="https://i.postimg.cc/Px14rPHc/Setting.png">
-           </a>
-       </div>
-       <div class="navbar-div">
-           <a href="main.html">
-               <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
-           </a>
-       </div> 
-       <div class="navbar-div">
-           <a href="profile.html" >
-               <img  style="position: absolute;padding: 5px; padding-right: 43px;  right: 0px;" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
-           </a>
-       </div>
+        <div class="navbar-div">
+            <a href="setting.html">
+                <img style="position: absolute; padding: 5px; padding-left: 43px; left: 0px;" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+            </a>
+        </div>
+        <div class="navbar-div">
+            <a href="main.html">
+                <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+            </a>
+        </div> 
+        <div class="navbar-div">
+            <a href="profile.html">
+                <img style="position: absolute; padding: 5px; padding-right: 43px; right: 0px;" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+            </a>
+        </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script>
-        function show1(){
-            var div = document.getElementById('div1');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div8').style.display="none";
-                document.getElementById('div9').style.display="none";
+        document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.top-tickers-button');
+    const contents = document.querySelectorAll('.top-tickers-content');
+    const divBlocks = document.querySelectorAll('.div-block');
+    const blocks = document.querySelectorAll('.block');
 
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="block";
-                document.getElementById('block1').style.display="none";
-                
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="1px solid #5A8A9F";
+    buttons.forEach((button, index) => {
+        const content = contents[index];
+        const divBlock = divBlocks[index];
+        const block = blocks[index];
 
-
-
-                
-
+        button.addEventListener('click', function () {
+            if (divBlock.classList.contains('div-block-active')) {
+                closeSection(index);
             } else {
-                div.style.display = "none";
-                document.getElementById('block1').style.display="block";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-
-
+                openSection(index);
             }
-            
-            
-        }
-        
-        function show2() {
-            var div = document.getElementById('div2');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div8').style.display="none";
-                document.getElementById('div9').style.display="none";
+        });
 
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="block";
+        function openSection(index) {
+            const content = contents[index];
+            const divBlock = divBlocks[index];
+            const block = blocks[index];
 
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="1px solid #5A8A9F";
+            // Close other sections
+            contents.forEach((otherContent, otherIndex) => {
+                if (otherIndex !== index && otherContent.style.display !== 'none') {
+                    closeSection(otherIndex);
+                }
+            });
 
+            // Open current section
+            gsap.set(content, { height: 'auto', display: 'block' });
+            const contentHeight = content.clientHeight;
+            gsap.set(content, { height: 0 });
 
-            
-            } else {
-                div.style.display = "none";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-
-
-                
-            }
-            
-        }
-        
-        function show3() {
-            var div = document.getElementById('div3');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div8').style.display="none";
-                document.getElementById('div9').style.display="none";
-
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="block";
-                document.getElementById('block5').style.display="none";
-
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="1px solid #5A8A9F";
-
-
-
-
-            } else {
-                document.getElementById('block5').style.display="block";
-                div.style.display = "none";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-
-
-            }
-            
-        }
-        
-        function show4() {
-            var div = document.getElementById('div4');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div8').style.display="none";
-                document.getElementById('div9').style.display="none";
-
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="block";
-                document.getElementById('block3').style.display="none";
-
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="1px solid #5A8A9F";
-
-
-
-
-            } else {
-                div.style.display = "none";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-
-
-            }
-            
-        }
-        
-        function show5() {
-            var div = document.getElementById('div5');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div8').style.display="none";
-                document.getElementById('div9').style.display="none";
-
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="block";
-                document.getElementById('block4').style.display="none";
-
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="1px solid #5A8A9F";
-
-
-
-
-            } else {
-                document.getElementById('block4').style.display="block";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                div.style.display = "none";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-                
-
-            }
-            
-        }
-        
-        function show6() {
-            var div = document.getElementById('div6');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div8').style.display="none";
-                document.getElementById('div9').style.display="none";
-
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="none";
-                document.getElementById('block7').style.display="block";
-
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="1px solid #5A8A9F";
-
-
-            
-            } else {
-                div.style.display = "none";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-                document.getElementById('block6').style.display="block";
-
-
-                
-            }
-            
-        }
-        
-        function show7() {
-            var div = document.getElementById('div7');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div8').style.display="none";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div9').style.display="none";
-
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="block";
-
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-
-            } else {
-                div.style.display = "none";
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-
-               
-            }
+            gsap.to(content, {
+                height: contentHeight,
+                opacity: 1,
+                ease: 'power2.out',
+                duration: 0.5,
+                onStart: function () {
+                    divBlock.classList.add('div-block-active');
+                },
+                onComplete: function () {
+                    gsap.to(block, {
+                        opacity: 0,
+                        duration: 0.2
+                    });
+                }
+            });
         }
 
-        function show8() {
-            var div = document.getElementById('div8');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div9').style.display="none";
+        function closeSection(index) {
+            const content = contents[index];
+            const divBlock = divBlocks[index];
+            const block = blocks[index];
 
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block2').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="none";
-
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="1px solid #5A8A9F";
-
-
-
-            } else {
-                div.style.display = "none";
-                document.getElementById('block7').style.display="none";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-                document.getElementById('block7').style.display="block";
-
-
-            }
+            gsap.to(content, {
+                height: 0,
+                opacity: 0,
+                ease: 'power2.out',
+                duration: 0.5,
+                onStart: function () {
+                    gsap.to(block, {
+                        opacity: 1,
+                        duration: 0.2
+                    });
+                },
+                onComplete: function () {
+                    content.style.display = 'none';
+                    divBlock.classList.remove('div-block-active');
+                }
+            });
         }
+    });
+});
 
-        function show9() {
-            var div = document.getElementById('div9');
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-                document.getElementById('div2').style.display="none";
-                document.getElementById('div3').style.display="none";
-                document.getElementById('div4').style.display="none";
-                document.getElementById('div5').style.display="none";
-                document.getElementById('div6').style.display="none";
-                document.getElementById('div1').style.display="none";
-                document.getElementById('div7').style.display="none";
-                document.getElementById('div8').style.display="none";
-
-                document.getElementById('block1').style.display="block";
-                document.getElementById('block3').style.display="block";
-                document.getElementById('block4').style.display="block";
-                document.getElementById('block5').style.display="block";
-                document.getElementById('block6').style.display="block";
-                document.getElementById('block7').style.display="block";
-                document.getElementById('block2').style.display="none";
-
-                document.getElementById('d1').style.border="0px solid #5A8A9F";
-                document.getElementById('d2').style.border="0px solid #5A8A9F";
-                document.getElementById('d3').style.border="0px solid #5A8A9F";
-                document.getElementById('d5').style.border="0px solid #5A8A9F";
-                document.getElementById('d6').style.border="0px solid #5A8A9F";
-                document.getElementById('d7').style.border="0px solid #5A8A9F";
-                document.getElementById('d8').style.border="0px solid #5A8A9F";
-                document.getElementById('d9').style.border="0px solid #5A8A9F";
-                document.getElementById('d4').style.border="1px solid #5A8A9F";
-
-
-
-
-            } else {
-                document.getElementById('block2').style.display="block";
-                div.style.display = "none";
-                document.getElementById('d4').style.border="0px solid #5A8A9F";
-                document.getElementById('d1').style.border="1px solid #5A8A9F";
-                document.getElementById('div7').style.display="block";
-
-            }
-        }
-        
-       
     </script>
+    
 </body>
 </html>
