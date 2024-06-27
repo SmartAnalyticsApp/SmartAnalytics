@@ -46,9 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (status === 'connected') {
             document.querySelector('.offer-btn').classList.add('if-enable');
             document.querySelector('.offer-btn').classList.remove('if-disable');
+            document.querySelector('.main-top_right p').textContent = 'Привязан'; // Clear any previous messages
+
         } else if (status === 'disconnected') {
             document.querySelector('.offer-btn').classList.add('if-disable');
             document.querySelector('.offer-btn').classList.remove('if-enable');
+            document.querySelector('.main-top_right p').textContent = 'Не привязан'; // Clear any previous messages
         }
     });
 
