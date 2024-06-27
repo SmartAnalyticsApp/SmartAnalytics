@@ -81,12 +81,12 @@ main {
 }
 .main-btn {
     background-color: #0DA2C6;
-    width: 96%;
+    width: 92%;
     padding: 10px;
     color: white;
     font-size: 17px;
     border: 0px;
-    margin-left: 2%;
+    margin-left: 3%;
     border-radius: 12px;
 }
 .main-form p {
