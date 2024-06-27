@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update UI to reflect disconnected state
             document.getElementById('disconnect-message').textContent = 'Кошелек успешно отключен (Wallet disconnected successfully)';
             document.getElementById('disconnect-message').style.display = 'block';
+            document.querySelector('.main-top_right p').textContent = 'Привязан'; // Clear any previous messages
 
             // (Optional) Clear any displayed user information
             // ... (code to clear user info)
