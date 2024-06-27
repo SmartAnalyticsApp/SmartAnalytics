@@ -67,13 +67,14 @@ main {
 }
 .main-btn {
     background-color: #0DA2C6;
-    padding: 10px 32%;
+    padding: 10px 30%;
     text-decoration: none;
     color: white;
     font-size: 17px;
     border: 0px;
-    margin-left: 2%;
+    margin-left: 4%;
     border-radius: 12px;
+    width: 92%;
 }
 
 .main-form p {
@@ -91,7 +92,7 @@ main {
     padding-top: 15px;
 }
 
-.info{
+.info{  
     background-color: #1B4F66;
     padding: 12px;
     margin-bottom: 12px;
