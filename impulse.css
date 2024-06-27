@@ -75,12 +75,12 @@ main {
 }
 .main-btn {
     background-color: #0DA2C6;
-    width: 96%;
+    width: 92%;
     padding: 10px;
     color: white;
     font-size: 17px;
     border: 0px;
-    margin-left: 2%;
+    margin-left: 4%;
     border-radius: 12px;
     display: grid;
     grid-template-columns: 85% 15%;
@@ -91,7 +91,10 @@ main {
     bottom: 170px;
     left: 0%;
     display: grid;
-    grid-template-columns: 79% 20%;
+    grid-template-columns: 80% 10%;
+    gap: 15px;
+    margin-left: -1%;
+    padding-right: 1%;
     justify-items: center;
     width: 100%;
     background-color: #1c5169;
