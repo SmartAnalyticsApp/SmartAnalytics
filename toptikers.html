@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+    <link rel="stylesheet" href="css/toptikers.css" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    
+    <style>
+        body{
+            font-family: 'Nunito Sans', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="main.html" id="header-link">
+            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
+        </a>
+        <h3 class="header-title">Топ тикеры</h3>
+    </header>
+    <div class="main-info">
+        <form id="tickerForm">
+            
+            <div id="tickerInfo">
+                
+            </div>
+            <div class="main-form">
+                <button id="submitButton" class="main-btn">Обновить тикер</button>
+                <p>Последнее обновление - <span id="lastUpdate"></span></p>
+                
+            </div>
+        </form>
+        <div class="transactions-info">
+            <div class="transactions-info_header">
+                <p>ТОП 5 по объёму</p>
+            </div>
+            <div class="transactions-info_main">
+                <p><span>1000PEPEUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>PEOPLEUSDT:</span><span>2,135,193,063.38$</span></p>
+                <p><span>ETHFIUSDT:</span><span>1,267,727,217.63$</span></p>
+                <p><span>DOGEUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>EDUUSDT:</span><span>939,149,689.75$</span></p>
+                <p><span>ETCUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>XRPUSDT:</span><span>3,583,377,248.89$</span></p>
+            </div>
+        </div>
+
+        <div class="transactions-info">
+            <div class="transactions-info_header">
+                <p>ТОП 5 по фандингу (отрицательные)</p>
+            </div>
+            <div class="transactions-info_main">
+                <p><span>1000PEPEUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>PEOPLEUSDT:</span><span>2,135,193,063.38$</span></p>
+                <p><span>ETHFIUSDT:</span><span>1,267,727,217.63$</span></p>
+                <p><span>DOGEUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>EDUUSDT:</span><span>939,149,689.75$</span></p>
+                <p><span>ETCUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>XRPUSDT:</span><span>3,583,377,248.89$</span></p>
+            </div>
+        </div>
+
+        <div class="transactions-info">
+            <div class="transactions-info_header">
+                <p>ТОП 5 по фандингу (положительные)</p>
+            </div>
+            <div class="transactions-info_main">
+                <p><span>1000PEPEUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>PEOPLEUSDT:</span><span>2,135,193,063.38$</span></p>
+                <p><span>ETHFIUSDT:</span><span>1,267,727,217.63$</span></p>
+                <p><span>DOGEUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>EDUUSDT:</span><span>939,149,689.75$</span></p>
+                <p><span>ETCUSDT:</span><span>3,583,377,248.89$</span></p>
+                <p><span>XRPUSDT:</span><span>3,583,377,248.89$</span></p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <a href="#" class="footer-link" id="setting-link">
+            <img src="images/setting_icon.png">
+        </a>
+        <a href="main.html" class="footer-link" id="home-link">
+            <img class="active-btn" src="images/home.png">
+        </a>
+        <a href="#" class="footer-link" id="profile-link">
+            <img src="images/profile_icon.png">
+        </a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        // Анимация перехода при клике на ссылку в заголовке
+        const headerLink = document.getElementById('header-link');
+
+        headerLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const nextPage = this.getAttribute('href');
+
+            gsap.to('body', {
+                x: '200%', // Сдвиг тела влево за пределы видимости
+                opacity: 0, // Затухание текущей страницы
+                duration: 0.5,
+                onComplete: function() {
+                    window.location.href = nextPage; // Переход на следующую страницу
+                }
+            });
+        });
+
+        // Анимация перехода для ссылок в футере
+        function animatePageTransition(url, useAnimation = true) {
+            if (useAnimation) {
+                const transitionOut = gsap.timeline({
+                    onComplete: () => {
+                        window.location.href = url;
+                    }
+                });
+                transitionOut.to("body", { opacity: 0, duration: 0.5 });
+            } else {
+                window.location.href = url; // Без анимации
+            }
+        }
+
+        function animatePageEnter() {
+            gsap.from("body", { opacity: 0, duration: 0.5 });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            animatePageEnter();
+
+            // Обработка кликов по ссылкам в футере
+            document.querySelectorAll('.footer-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetUrl = this.getAttribute('href');
+                    animatePageTransition(targetUrl);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

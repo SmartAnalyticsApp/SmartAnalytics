@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="cards-1">
+            <a href="toptikers.html">
+                <div class="card bg1"> 
+                    <h3 class="large-title" style="margin-bottom: 40px;">Топ тикеры</h3>
+                    <img src="images/coinback.png" class="coinback">
+                    <img src="images/coincenter.png" class="coincenter">
+                    <img src="images/cointop.png" class="cointop">
+                </div>
+            </a>
+            
+            <div>
+                <a href="tikerinfo.html">
+                    <div class="card bg2"> 
+                        <img class="card-img" src="images/tiker.png">
+                        <h3 class="title">Тикер</h3>
+                    </div>
+                </a>
+                <a href="daily.html">
+                    <div class="card bg3"> 
+                        <img class="card-img" src="images/daily.png">
+                        <h3 class="title">Суточные объемы</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="cards-2">
+            <a href="frs.html">
+                <div class="card bg4"> 
+                    <img class="card-img" src="images/fanding.png">
+                    <h3 class="title">Фандинг</h3>
+                </div>
+            </a>
+            <a href="correlation.html">
+                <div class="card bg5"> 
+                    <img class="card-img" src="images/correlation.png">
+                    <h3 class="title">Корреляция активов</h3>
+                </div>
+            </a>
+        </div>
+        <div class="cards-3">
+        <a href="volumes.html">
+            <div class="card bg2"> 
+                <img class="card-img" src="images/volumerost.png">
+                <h3 class="title">Рост объемов</h3>
+            </div>
+        </a>
+        </div>
+        <div class="cards-4">
+            <div>
+                <a href="gradariontime.html">
+                    <div class="card bg4"> 
+                        <img class="card-img" src="images/fanding.png">
+                        <h3 class="title">Обьемы за 5 минут</h3>
+                    </div>
+                </a>
+                <a href="active.html">
+                    <div class="card bg5"> 
+                        <img class="card-img" src="images/correlation.png">
+                        <h3 class="title">Отслеживание актива</h3>
+                    </div>
+                </a>
+            </div>
+            <a href="impulse.html">
+                <div class="card bg1"> 
+                    <h3 class="large-title">Отслеживание импульса</h3>
+                    <img src="images/coinback.png" class="coinback">
+                    <img src="images/coincenter.png" class="coincenter">
+                    <img src="images/cointop.png" class="cointop">
+                </div>
+            </a>
+        </div>
+    </main>
+    <footer>
+        <a href="setting.html" class="footer-link">
+            <img src="images/setting_icon.png">
+        </a>
+        <a href="#" class="footer-link">
+            <img class="active-btn" src="images/home.png">
+        </a>
+        <a href="profile.html" class="footer-link">
+            <img src="images/profile_icon.png">
+        </a>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        // JavaScript code to animate page transitions
+    const cardsLinks = document.querySelectorAll('.cards-1 a, .cards-2 a, .cards-3 a, .cards-4 a');
+
+    cardsLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            const nextPage = this.getAttribute('href'); // Get the href attribute
+
+            // Animate out current page
+            gsap.to('main', {
+                x: '-100vw', // Move main content left out of view
+                opacity: 0, // Fade out current page
+                duration: 0.5, // Animation duration
+                onComplete: function() {
+                    // Navigate to next page
+                    window.location.href = nextPage;
+                }
+            });
+        });
+    });
+        
+    </script>
+     <script>
+        function animatePageTransition(url) {
+            const transitionOut = gsap.timeline({
+                onComplete: () => {
+                    window.location.href = url;
+                }
+            });
+
+            transitionOut.to("body", { opacity: 0, duration: 0.5 });
+        }
+
+        function animatePageEnter() {
+            gsap.from("body", { opacity: 0, duration: 0.5 });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            animatePageEnter();
+
+            document.querySelectorAll('.footer-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetUrl = this.getAttribute('href');
+                    animatePageTransition(targetUrl);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

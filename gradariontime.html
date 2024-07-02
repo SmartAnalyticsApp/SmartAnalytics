@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать!</title>
+    <link rel="stylesheet" href="css/gradariontime.css" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+
+    <style>
+        body{
+            font-family: 'Nunito Sans', sans-serif;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('tickerForm');
+            var inputField = document.getElementById('tickerInput');
+            var inputField2 = document.getElementById('tickerInput2');
+            var errorMessage = document.getElementById('errorMessage');
+            var tickerInfoContainer = document.getElementById('tickerInfo');
+            var lastUpdateSpan = document.getElementById('lastUpdate');
+    
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+    
+                var ticker = inputField.value.trim().toUpperCase();
+                if (ticker === "") {
+                    errorMessage.style.display = 'block';
+                    inputField.classList.add('error');
+                    inputField2.classList.add('error');
+                    return;
+                } else {
+                    errorMessage.style.display = 'none';
+                    inputField.classList.remove('error');
+                    inputField2.classList.remove('error');
+                }
+    
+                // Simulated data fetch (replace with actual API call)
+                var tickerData = {
+                    fanding: 4.01, // Example positive value
+                };
+    
+                var infoHTML = `<h3>Результат запроса</h3>`;
+                var fandingClass = tickerData.fanding < 0 ? 'negative' : 'positive';
+                var fandingIcon = tickerData.fanding < 0 
+                    ? 'https://i.postimg.cc/wBV07N5n/Icon-5.png' 
+                    : 'https://i.postimg.cc/CK1mn1v1/Icon-6.png';
+                var fandingValue = tickerData.fanding < 0 
+                    ? tickerData.fanding 
+                    : `+${tickerData.fanding}`;
+                
+                var now = new Date();
+                lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
+    
+                // Generate the document content
+                var docContent = `Тикер: ${ticker}\nФандинг: ${fandingValue}\nПоследнее обновление: ${now.toLocaleString('ru-RU')}`;
+                var blob = new Blob([docContent], { type: 'text/plain' });
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `${ticker}_info.txt`;
+                link.innerHTML = '<img src="https://i.postimg.cc/MTp3SCKj/Icon-7.png" class="download-icon" alt="Скачать результат">';
+    
+                // Append the icons to the infoHTML
+                
+                infoHTML += `<img src="https://i.postimg.cc/Cx6bt4Nh/File-Icon.png">`;
+                infoHTML += link.outerHTML; // Append the download link with the image
+                
+                infoHTML += `<h6 style="color:white; margin-top: 15px; margin-bottom: -10px; font-size:13px; font-weight: 100;">За всё время объём изменился на</h6>`;
+                infoHTML += `<h2 class="${fandingClass}"><span>${fandingValue}</span><img src="${fandingIcon}"></h2>`;
+                tickerInfoContainer.innerHTML = infoHTML;
+    
+                // Clear input field
+                inputField.value = '';
+                inputField2.value = '';
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <a href="main.html" id="header-link">
+            <img src="https://i.postimg.cc/D0LPqbkr/Icon-4.png">
+        </a>
+        <h3 class="header-title">Градация роста активов за последние 5 минут</h3>
+    </header>
+    <main>
+        <h3>Результат запроса</h3>
+        <div class="main-info">
+            <div>
+                <img src="https://i.postimg.cc/Cx6bt4Nh/File-Icon.png">
+            </div>
+            <div>
+                <h4>funding_data.csv</h4>
+                <h5>11.6 KB</h5>
+            </div>
+            <div>
+                <img class="icon-download" src="https://i.postimg.cc/MTp3SCKj/Icon-7.png">
+            </div>
+        </div>
+        
+    </main>
+    <div class="navbar-bottom">
+       
+        <div class="navbar-div">
+           <a href="setting.html">
+               <img  style="position: absolute;padding: 5px; padding-left: 43px;  left: 0px;" src="https://i.postimg.cc/Px14rPHc/Setting.png">
+           </a>
+       </div>
+       <div class="navbar-div">
+           <a href="main.html">
+               <img class="active-btn" src="https://i.postimg.cc/8czTvLr3/user-circle-1.png">
+           </a>
+       </div> 
+       <div class="navbar-div">
+           <a href="profile.html" >
+               <img  style="position: absolute;padding: 5px; padding-right: 43px;  right: 0px;" src="https://i.postimg.cc/J0q5ZvG5/user-circle-1.png">
+           </a>
+       </div>
+     </div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+     <script>
+         // Анимация перехода при клике на ссылку в заголовке
+         const headerLink = document.getElementById('header-link');
+ 
+         headerLink.addEventListener('click', function(e) {
+             e.preventDefault();
+             const nextPage = this.getAttribute('href');
+ 
+             gsap.to('body', {
+                 x: '200%', // Сдвиг тела влево за пределы видимости
+                 opacity: 0, // Затухание текущей страницы
+                 duration: 0.5,
+                 onComplete: function() {
+                     window.location.href = nextPage; // Переход на следующую страницу
+                 }
+             });
+         });
+ 
+         // Анимация перехода для ссылок в футере
+         function animatePageTransition(url, useAnimation = true) {
+             if (useAnimation) {
+                 const transitionOut = gsap.timeline({
+                     onComplete: () => {
+                         window.location.href = url;
+                     }
+                 });
+                 transitionOut.to("body", { opacity: 0, duration: 0.5 });
+             } else {
+                 window.location.href = url; // Без анимации
+             }
+         }
+ 
+         function animatePageEnter() {
+             gsap.from("body", { opacity: 0, duration: 0.5 });
+         }
+ 
+         document.addEventListener('DOMContentLoaded', function() {
+             animatePageEnter();
+ 
+             // Обработка кликов по ссылкам в футере
+             document.querySelectorAll('.footer-link').forEach(link => {
+                 link.addEventListener('click', function(event) {
+                     event.preventDefault();
+                     const targetUrl = this.getAttribute('href');
+                     animatePageTransition(targetUrl);
+                 });
+             });
+         });
+     </script>
+</body>
+</html>
