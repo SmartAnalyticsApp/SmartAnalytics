@@ -3,7 +3,7 @@ body {
     margin: 0px;
     min-height: 100vh;
     background-size: 100% 100%;
-    background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
+    background: linear-gradient(to bottom, #8EFFB4, #76FFDE) no-repeat;
     background-size: cover;
 }
 footer{
@@ -28,7 +28,7 @@ footer img{
     padding: 5px 0px;
 }
 .active-btn{
-    background: linear-gradient(to bottom, #8EFFB4, #76FFDE) no-repeat;
+    background-color: #8EE9FF;
     border-radius: 50px;
     padding: 5px 15px;
 }
@@ -42,7 +42,8 @@ header {
 .header-title {
     padding-left: 16px;
     padding-right: 16px;
-    color: white;
+    margin-top: 15px;
+    color: #1c5169;
 }
 header img {
     position: relative;
@@ -60,7 +61,7 @@ main {
 }
 .main-p {
     text-align: left;
-    color: white;
+    color: #1c5169;
     margin-top: 0px;
     font-size: 12px;
     position: absolute;
@@ -73,7 +74,7 @@ main {
     padding: 12px 20px;
     width: 100%;
     border-radius: 12px;
-    color: #95A0A5;
+    color: #1c5169;
     margin-top: 25px;
 }
 .main-input.error {
@@ -113,12 +114,12 @@ main {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    color: white;
+    color: #1c5169;
     text-align: left;
 }
 #tickerInfo h3, h4 {
     text-align: left;
-    color: white;
+    color: #1c5169;
 }
 #tickerInfo hr {
     color: #5A8A9F;
