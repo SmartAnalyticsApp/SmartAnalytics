@@ -3,7 +3,7 @@ body {
     margin: 0px;
     min-height: 100vh;
     background-size: 100% 100%;
-    background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
+    background: linear-gradient(to bottom, #908EFF, #BEA7FF) no-repeat;
     background-size: cover;
 }
 footer{
@@ -42,7 +42,8 @@ header {
 .header-title {
     padding-left: 16px;
     padding-right: 16px;
-    color: white;
+    color: #1c5169;
+    margin-top: 15px;
 }
 header img {
     position: relative;
@@ -61,7 +62,7 @@ main {
 .main-p {
     margin-top: 0px;
     text-align: left;
-    color: white;
+    color: #1c5169;
     margin-bottom: 0px;
     margin-left: 5px;
     font-size: 14px;
@@ -78,7 +79,7 @@ main {
 }
 .correlation-info{
     font-size: 13px;
-    color: white;
+    color: #1c5169;
     font-weight: 100;
     margin-bottom: -10px;
 }
