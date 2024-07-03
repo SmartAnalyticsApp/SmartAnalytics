@@ -51,7 +51,7 @@ header img {
     left: 16px;
 }
 .active-btn {
-    background-color: #0da2c6;
+    background: linear-gradient(to bottom, #F6FF8E, #FFE0B1) no-repeat;
     padding: 5px;
     border-radius: 12px;
 }
