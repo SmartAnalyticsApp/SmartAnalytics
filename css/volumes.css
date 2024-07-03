@@ -3,7 +3,7 @@ body {
     margin: 0px;
     min-height: 100vh;
     background-size: 100% 100%;
-    background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
+    background: linear-gradient(to bottom, #F6FF8E, #FFE0B1) no-repeat;
     background-size: cover;
 }
 .navbar-bottom {
@@ -37,7 +37,7 @@ header {
 .header-title {
     padding-left: 16px;
     padding-right: 16px;
-    color: white;
+    color: #1c5169;
 }
 header img {
     position: relative;
@@ -55,7 +55,7 @@ main{
     
 }
 main p{
-    color: white;
+    color: #1c5169;
     margin-bottom: -10px;
     font-size: 14px;
     font-weight: 0;
@@ -65,7 +65,7 @@ main h5{
     font-weight: 100;
 }
 main h3{
-    color: white;
+    color: #1c5169;
     margin-bottom: 0px;
 }
 .main-info{
