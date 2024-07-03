@@ -4,7 +4,7 @@ body {
     margin: 0px;
     min-height: 100vh;
     background-size: 100% 100%;
-    background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
+    background: linear-gradient(to bottom, #F6FF8E, #FFE0B1) no-repeat;
     background-size: cover;
 }
 footer{
@@ -43,7 +43,7 @@ header {
 .header-title {
     padding-left: 16px;
     padding-right: 16px;
-    color: white;
+    color: #1c5169;
 }
 header img {
     position: relative;
@@ -61,7 +61,7 @@ main {
 }
 .main-p {
     text-align: left;
-    color: white;
+    color: #1c5169;
 }
 .main-input {
     background-color: rgb(0,0,0,0);
