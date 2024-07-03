@@ -3,7 +3,7 @@ body {
     margin: 0px;
     min-height: 100vh;
     background-size: 100% 100%;
-    background: linear-gradient(to bottom, #0D1F2D, #0F3D56) no-repeat;
+    background: linear-gradient(to bottom, #FF8E8E, #FFABC4) no-repeat;
     background-size: cover;
 }
 footer{
@@ -37,12 +37,12 @@ header {
     text-align: left;
     display: grid;
     grid-template-columns: 10% 80%;
-    border-bottom: 2px solid #5a8a9f;
+    border-bottom: 2px solid #D4503D;
 }
 .header-title {
     padding-left: 16px;
     padding-right: 16px;
-    color: white;
+    color: #D4503D;
 }
 header img {
     position: relative;
@@ -60,17 +60,18 @@ main{
     
 }
 main p{
-    color: white;
+    color: #862516;
     margin-bottom: -10px;
     font-size: 14px;
     font-weight: 0;
 }
 main h5{
-    color: #5A8A9F;
+    color: #93665f;
+    margin-top: 10px;
     font-weight: 100;
 }
 main h3{
-    color: white;
+    color: #D4503D;
     margin-bottom: 0px;
 }
 .main-info{
@@ -80,7 +81,7 @@ main h3{
     gap: 1%;
 }
 main h4{
-    color: #999;
+    color: #592b24;
     margin-bottom: -10px;
 }
 main img{
