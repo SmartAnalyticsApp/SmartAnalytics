@@ -43,6 +43,7 @@ header {
     padding-left: 16px;
     padding-right: 16px;
     color: #D4503D;
+    margin-top: 15px;
 }
 header img {
     position: relative;
@@ -81,7 +82,7 @@ main h3{
     gap: 1%;
 }
 main h4{
-    color: #592b24;
+    color: #7c453d;
     margin-bottom: -10px;
 }
 main img{
