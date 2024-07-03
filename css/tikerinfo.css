@@ -108,12 +108,12 @@ main {
 #tickerInfo p{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    color: white;
+    color: #1c5169;
     text-align: left;
 }
 #tickerInfo h3, h4{
     text-align: left;
-    color: white;
+    color: #1c5169;
 }
 #tickerInfo hr{
     color: #5A8A9F;
