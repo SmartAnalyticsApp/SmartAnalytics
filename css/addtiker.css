@@ -188,8 +188,9 @@ main {
 .download-icon {
     margin-left: 250px;
 }
+
 .interval-btn.active {
-    background: linear-gradient(to bottom, #3d8bb5, #4f6193) no-repeat;
+    background: linear-gradient(to bottom, #6cb2d7, #0DA2C6) no-repeat;
     color: white;
 }
 .interval-btn {
@@ -199,11 +200,13 @@ main {
     border-radius: 12px;
     font-size: 17px;
     width: 100%;
+    color: #5A8A9F; /* Change this color to blue */
 }
+
 
 .main-input {
     background-color: transparent;
-    border: 1px solid #5A8A9F;
+    border: 1px solid #1c5169;
     padding: 12px 20px;
     border-radius: 12px;
     color: white;
