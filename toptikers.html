@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добро пожаловать!</title>
-    <link rel="stylesheet" href="css/toptikers.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="toptickers.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     
     <style>
-        body{
+        body {
             font-family: 'Nunito Sans', sans-serif;
         }
     </style>
@@ -23,14 +23,10 @@
     </header>
     <div class="main-info">
         <form id="tickerForm">
-            
-            <div id="tickerInfo">
-                
-            </div>
+            <div id="tickerInfo"></div>
             <div class="main-form">
                 <button id="submitButton" class="main-btn">Обновить тикер</button>
                 <p>Последнее обновление - <span id="lastUpdate"></span></p>
-                
             </div>
         </form>
         <div class="transactions-info">
@@ -38,13 +34,7 @@
                 <p>ТОП 5 по объёму</p>
             </div>
             <div class="transactions-info_main">
-                <p><span>1000PEPEUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>PEOPLEUSDT:</span><span>2,135,193,063.38$</span></p>
-                <p><span>ETHFIUSDT:</span><span>1,267,727,217.63$</span></p>
-                <p><span>DOGEUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>EDUUSDT:</span><span>939,149,689.75$</span></p>
-                <p><span>ETCUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>XRPUSDT:</span><span>3,583,377,248.89$</span></p>
+                <!-- Данные будут загружены сюда -->
             </div>
         </div>
 
@@ -53,13 +43,7 @@
                 <p>ТОП 5 по фандингу (отрицательные)</p>
             </div>
             <div class="transactions-info_main">
-                <p><span>1000PEPEUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>PEOPLEUSDT:</span><span>2,135,193,063.38$</span></p>
-                <p><span>ETHFIUSDT:</span><span>1,267,727,217.63$</span></p>
-                <p><span>DOGEUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>EDUUSDT:</span><span>939,149,689.75$</span></p>
-                <p><span>ETCUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>XRPUSDT:</span><span>3,583,377,248.89$</span></p>
+                <!-- Данные будут загружены сюда -->
             </div>
         </div>
 
@@ -68,13 +52,7 @@
                 <p>ТОП 5 по фандингу (положительные)</p>
             </div>
             <div class="transactions-info_main">
-                <p><span>1000PEPEUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>PEOPLEUSDT:</span><span>2,135,193,063.38$</span></p>
-                <p><span>ETHFIUSDT:</span><span>1,267,727,217.63$</span></p>
-                <p><span>DOGEUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>EDUUSDT:</span><span>939,149,689.75$</span></p>
-                <p><span>ETCUSDT:</span><span>3,583,377,248.89$</span></p>
-                <p><span>XRPUSDT:</span><span>3,583,377,248.89$</span></p>
+                <!-- Данные будут загружены сюда -->
             </div>
         </div>
     </div>
@@ -136,6 +114,82 @@
                     event.preventDefault();
                     const targetUrl = this.getAttribute('href');
                     animatePageTransition(targetUrl);
+                });
+            });
+
+            // Запрос к API для получения данных
+            fetch('https://45ef-2a0d-b201-1010-d17f-3d39-7108-bf18-9455.ngrok-free.app/api/tickers', {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data.topVolume || !data.negativeFunding || !data.positiveFunding) {
+                    throw new Error('Data format is incorrect');
+                }
+
+                const containerTopVolume = document.querySelector('.transactions-info:nth-of-type(1) .transactions-info_main');
+                const containerNegativeFunding = document.querySelector('.transactions-info:nth-of-type(2) .transactions-info_main');
+                const containerPositiveFunding = document.querySelector('.transactions-info:nth-of-type(3) .transactions-info_main');
+
+                containerTopVolume.innerHTML = '';  // Очистка контейнера
+                containerNegativeFunding.innerHTML = '';  // Очистка контейнера
+                containerPositiveFunding.innerHTML = '';  // Очистка контейнера
+
+                data.topVolume.forEach(item => {
+                    const p = document.createElement('p');
+                    const spanName = document.createElement('span');
+                    const spanValue = document.createElement('span');
+                    
+                    spanName.textContent = item.ticker + ':';
+                    spanValue.textContent = item.volume + '$';
+
+                    p.appendChild(spanName);
+                    p.appendChild(spanValue);
+                    containerTopVolume.appendChild(p);
+                });
+
+                data.negativeFunding.forEach(item => {
+                    const p = document.createElement('p');
+                    const spanName = document.createElement('span');
+                    const spanValue = document.createElement('span');
+
+                    spanName.textContent = item.ticker + ':';
+                    spanValue.textContent = item.volume + '$';
+
+                    p.appendChild(spanName);
+                    p.appendChild(spanValue);
+                    containerNegativeFunding.appendChild(p);
+                });
+
+                data.positiveFunding.forEach(item => {
+                    const p = document.createElement('p');
+                    const spanName = document.createElement('span');
+                    const spanValue = document.createElement('span');
+
+                    spanName.textContent = item.ticker + ':';
+                    spanValue.textContent = item.volume + '$';
+
+                    p.appendChild(spanName);
+                    p.appendChild(spanValue);
+                    containerPositiveFunding.appendChild(p);
+                });
+
+                // Обновление времени последнего обновления
+                const lastUpdate = document.getElementById('lastUpdate');
+                lastUpdate.textContent = new Date().toLocaleString();
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+                const containers = document.querySelectorAll('.transactions-info_main');
+                containers.forEach(container => {
+                    container.innerHTML = '<p>Failed to load data</p>';
                 });
             });
         });
