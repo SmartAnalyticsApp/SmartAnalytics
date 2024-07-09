@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать!</title>
-    <link rel="stylesheet" href="css/tikerinfo.css" type="text/css" media="all" />
+    <title>Информация о тикере</title>
+    <link rel="stylesheet" href="toptickers.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
             font-family: 'Nunito Sans', sans-serif;
@@ -22,107 +21,10 @@
             display: flex;
             align-items: center;
         }
+        .ticker-info-container {
+            margin-top: 20px;
+        }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let tg = window.Telegram.WebApp;
-            tg.expand(); // Расширяем веб-приложение на весь экран
-
-            // Получаем данные пользователя
-            const user = tg.initDataUnsafe.user;
-            const username = user.username ? user.username : 'неизвестный пользователь';
-
-            // Отображаем никнейм пользователя
-            const userInfoContainer = document.getElementById('userInfo');
-            userInfoContainer.textContent = `Добро пожаловать, @${username}!`;
-
-            const form = document.getElementById('tickerForm');
-            const inputField = document.getElementById('tickerInput');
-            const errorMessage = document.getElementById('errorMessage');
-            const tickerInfoContainer = document.getElementById('tickerInfo');
-            const lastUpdateSpan = document.getElementById('lastUpdate');
-
-            form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent actual form submission
-
-                const ticker = inputField.value.trim().toUpperCase();
-                if (ticker === "") {
-                    errorMessage.style.display = 'block';
-                    inputField.classList.add('error');
-                    return;
-                } else {
-                    errorMessage.style.display = 'none';
-                    inputField.classList.remove('error');
-                }
-
-                // Simulated data fetch (replace with actual API call)
-                const tickerData = {
-                    symbol: ticker + "USDT",
-                    corelation: "100%",
-                    volume: '11,877,027,059.31',
-                    standartvolume: 1.31,
-                    fanding: '0.01%(0.00%)'
-                };
-
-                const infoHTML = `<h3>Результат запроса</h3>
-                    <p>Тикер: <span>${tickerData.symbol}</span></p>
-                    <p>Корреляция с BTC: <span>${tickerData.corelation}</span></p>
-                    <p>Стандартный показатель объёма: <span>${tickerData.volume}$</span></p>
-                    <p>Объём меньше стандартного в: <span>${tickerData.standartvolume}</span> раз(а)</p>
-                    <div>
-                        <hr>
-                        <h4>Фандинг</h4>
-                        <p>4 часа назад: <span>${tickerData.fanding}</span></p>
-                        <p>3 часа назад: <span>${tickerData.fanding}</span></p>
-                        <p>2 часа назад: <span>${tickerData.fanding}</span></p>
-                        <p>1 час назад: <span>${tickerData.fanding}</span></p>
-                        <p>45 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>30 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>20 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>15 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>10 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>5 мин назад: <span>${tickerData.fanding}</span></p>
-                        <p>Текущий фандинг: <span>${tickerData.fanding}</span></p>
-                    </div>`;
-                tickerInfoContainer.innerHTML = infoHTML;
-
-                // Update last update time (example)
-                const now = new Date();
-                lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
-
-                // Clear input field
-                inputField.value = '';
-
-                // Send data to GitHub Actions using AJAX
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "https://api.github.com/repos/YOUR_GITHUB_USERNAME/YOUR_REPO/dispatches", true);
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                xhr.setRequestHeader("Authorization", "token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN");
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 204) {
-                        console.log("Data sent to bot");
-                        tg.MainButton.setParams({
-                            text: 'Данные отправлены',
-                            is_visible: true,
-                            is_active: true
-                        });
-                    }
-                };
-
-                xhr.send(JSON.stringify({
-                    event_type: "webapp_data",
-                    client_payload: {
-                        username: username,
-                        tickerData: tickerData
-                    }
-                }));
-
-                // Prevent closing
-                tg.ready();
-            });
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -137,7 +39,7 @@
         <form id="tickerForm">
             <input id="tickerInput" class="main-input" placeholder="BTC">
             <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
-            <div id="tickerInfo"></div>
+            <div id="tickerInfo" class="ticker-info-container"></div>
             <div class="main-form">
                 <button id="submitButton" class="main-btn">
                     <span style="margin-left: 5%; margin-right: 5%;">Получить информацию о тикере</span>
@@ -158,54 +60,95 @@
             <img src="images/profile_icon.png">
         </a>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script>
-        // Анимация перехода при клике на ссылку в заголовке
-        const headerLink = document.getElementById('header-link');
-
-        headerLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const nextPage = this.getAttribute('href');
-
-            gsap.to('body', {
-                x: '200%', // Сдвиг тела влево за пределы видимости
-                opacity: 0, // Затухание текущей страницы
-                duration: 0.5,
-                onComplete: function() {
-                    window.location.href = nextPage; // Переход на следующую страницу
-                }
-            });
-        });
-
-        // Анимация перехода для ссылок в футере
-        function animatePageTransition(url, useAnimation = true) {
-            if (useAnimation) {
-                const transitionOut = gsap.timeline({
-                    onComplete: () => {
-                        window.location.href = url;
-                    }
-                });
-                transitionOut.to("body", { opacity: 0, duration: 0.5 });
-            } else {
-                window.location.href = url; // Без анимации
-            }
-        }
-
-        function animatePageEnter() {
-            gsap.from("body", { opacity: 0, duration: 0.5 });
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
-            animatePageEnter();
+            // let tg = window.Telegram.WebApp;
+            // tg.expand(); // Расширяем веб-приложение на весь экран
 
-            // Обработка кликов по ссылкам в футере
-            document.querySelectorAll('.footer-link').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const targetUrl = this.getAttribute('href');
-                    animatePageTransition(targetUrl);
+            // Получаем данные пользователя
+            // const user = tg.initDataUnsafe.user;
+            // const username = user.username ? user.username : 'неизвестный пользователь';
+
+            // Отображаем никнейм пользователя
+            // const userInfoContainer = document.getElementById('userInfo');
+            // userInfoContainer.textContent = `Добро пожаловать, @${username}!`;
+
+            const form = document.getElementById('tickerForm');
+            const inputField = document.getElementById('tickerInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const tickerInfoContainer = document.getElementById('tickerInfo');
+            const lastUpdateSpan = document.getElementById('lastUpdate');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Предотвращаем реальную отправку формы
+
+                const ticker = inputField.value.trim().toUpperCase();
+                if (ticker === "") {
+                    errorMessage.style.display = 'block';
+                    inputField.classList.add('error');S
+                    return;
+                } else {
+                    errorMessage.style.display = 'none';
+                    inputField.classList.remove('error');
+                }
+
+                const apiUrl = `http://127.0.0.1:8000/api/ticker/${ticker}`;
+
+                // Запрос данных с бэкенда FastAPI (замените на ваш реальный эндпоинт API)
+                fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ticker: ticker })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка HTTP ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const infoHTML = `<h3>Результат запроса</h3>
+                        <p>Тикер: <span>${data.ticker}</span></p>
+                        <p>Цена: <span>${data.current_price}$</span></p>
+                        <p>Корреляция с BTC: <span>${data.correlation_with_btc}</span></p>
+                        <p>Стандартный объем: <span>${data.standard_daily_volume}$</span></p>
+                        <p>${data.volume_text}</p>
+                        <div>
+                            <hr>
+                            <h4>Фандинг</h4>
+                            ${data.funding_rates.map(rate => `
+                                <p>${rate.time}: <span>${rate.rate} (${rate.change})</span></p>
+                            `).join('')}
+                        </div>
+                        <div>
+                            <hr>
+                            <h4>Объём</h4>
+                            ${data.volumes.map(volume => `
+                                <p>${volume.time}: <span>${volume.volume}$</span></p>
+                            `).join('')}
+                        </div>`;
+                    tickerInfoContainer.innerHTML = infoHTML;
+
+                    // Обновляем время последнего обновления (пример)
+                    const now = new Date();
+                    lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении данных о тикере:', error);
+                    tickerInfoContainer.innerHTML = `<p>Ошибка при получении данных о тикере. Пожалуйста, попробуйте ещё раз позже.</p>`;
                 });
+
+                // Предотвращаем закрытие
+                // tg.ready();
             });
+
+            // Функция для форматирования чисел с запятыми
+            function format_number_with_commas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
         });
     </script>
 </body>
