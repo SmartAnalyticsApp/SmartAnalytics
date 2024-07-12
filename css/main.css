@@ -42,7 +42,7 @@ header img{
     gap: 8px;
     align-self: stretch;
 }
-.card {
+.box {
     position: relative;
     border-radius: 12px;
     display: flex;
@@ -56,11 +56,11 @@ header img{
 }
 
 
-.card img{
+.cards img{
     width: 24px;
     height: 24px;
 }
-.card h3{
+.cards h3{
     color: var(--Text-primary-white, var(--white-text, #FFF));
     font-family: Inter;
     font-size: 12px;
@@ -69,11 +69,11 @@ header img{
     line-height: normal;
     margin-top: 0px;
 }
-.card a{
+.cards a{
     text-decoration: none;
     color: var(--Text-primary-white, var(--white-text, #FFF));
 }
-.card-premium{
+.box-premium{
     
     margin-top: 16px;
     display: flex;
@@ -87,7 +87,7 @@ header img{
     backdrop-filter: blur(32px);
 }
 
-.card-premium p{
+.box-premium p{
     color: var(--Text-secondary-gray, #B8B8B8);
     text-align: right;
     font-family: Inter;
@@ -98,7 +98,7 @@ header img{
     margin-top: 0;
     margin-bottom: 0;
 }
-.card-premium h3{
+.box-premium h3{
     color: var(--Text-primary-white, var(--white-text, #FFF));
     font-family: Inter;
     font-size: 14px;
@@ -250,7 +250,7 @@ footer{
 .premium-icon{
     position: absolute;
     right: 0px;
-    margin-top: -7px;
+    margin-top: -6px;
     border-radius: 6px;
     padding: 2px 5px;
     font-size: small;
@@ -437,4 +437,3 @@ main{
 footer a{
     text-decoration: none;
 }
-
