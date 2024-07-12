@@ -42,7 +42,7 @@ header img{
     gap: 8px;
     align-self: stretch;
 }
-.box {
+.card {
     position: relative;
     border-radius: 12px;
     display: flex;
@@ -56,11 +56,11 @@ header img{
 }
 
 
-.cards img{
+.card img{
     width: 24px;
     height: 24px;
 }
-.cards h3{
+.card h3{
     color: var(--Text-primary-white, var(--white-text, #FFF));
     font-family: Inter;
     font-size: 12px;
@@ -69,11 +69,11 @@ header img{
     line-height: normal;
     margin-top: 0px;
 }
-.cards a{
+.card a{
     text-decoration: none;
     color: var(--Text-primary-white, var(--white-text, #FFF));
 }
-.box-premium{
+.card-premium{
     
     margin-top: 16px;
     display: flex;
@@ -87,7 +87,7 @@ header img{
     backdrop-filter: blur(32px);
 }
 
-.box-premium p{
+.card-premium p{
     color: var(--Text-secondary-gray, #B8B8B8);
     text-align: right;
     font-family: Inter;
@@ -98,7 +98,7 @@ header img{
     margin-top: 0;
     margin-bottom: 0;
 }
-.box-premium h3{
+.card-premium h3{
     color: var(--Text-primary-white, var(--white-text, #FFF));
     font-family: Inter;
     font-size: 14px;
@@ -162,7 +162,8 @@ header img{
     line-height: normal;
 }
 .buttons .active{
-    font-weight: 500;
+    color: white;
+    font-weight: 600;
     border-radius: 4px;
     background: var(--bg-15-secondary-medium-light, linear-gradient(88deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.07) 99.66%));
 }
