@@ -1,155 +1,426 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о тикере</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Document</title>
     <link rel="stylesheet" href="css/tikerinfo.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Nunito Sans', sans-serif;
-        }
-        .error {
-            border: 1px solid red;
-        }
-        .error-message {
-            color: red;
-            display: none;
-        }
-        .main-btn {
-            display: flex;
-            align-items: center;
-        }
-        .ticker-info-container {
-            margin-top: 20px;
-        }
+        .positive {
+    background-color: #33a721;
+    color: white;
+    border-radius: 4px;
+}
+
+.negative {
+    background-color: #ca3140;
+    color: white;
+    border-radius: 4px;
+}
+
+.icon {
+    width: 18px; /* Adjust the size as needed */
+    height: 18px;
+    position: relative;
+    top: 5px;
+    display: none; /* Hide all icons initially */
+     
+}
     </style>
 </head>
 <body>
     <header>
-        <a href="main.html" id="header-link">
-            <img src="images/ssini.png" alt="Главная">
-        </a>
-        <h3 class="header-title">Информация о тикере</h3>
+        <img src="images/Star.png"> 
+        <h3>Analytics</h3>
     </header>
     <main>
-        <p id="userInfo" class="main-p">Добро пожаловать, @неизвестный пользователь!</p>
-        <p class="main-p">Введите торговую пару к USDT</p>
-        <form id="tickerForm">
-            <input id="tickerInput" class="main-input" placeholder="BTC">
-            <span id="errorMessage" class="error-message">Поле пустое. Введите торговую пару</span>
-            <div id="tickerInfo" class="ticker-info-container"></div>
+        <div class="main-top_btns">
+            <button type="button" id="btn1" class="active" onclick="showTikers()">Информация о тикере</button>
+            <button type="button" id="btn2" onclick="showCorrelation()">Корреляция двух активов</button>
+            <button type="button" id="btn3" onclick="showDaily()">Суточные объемы </button>
+        </div>
+        <div id="tikerinfo">
+            <div><p class="title">Введите торговую пару к USDT</p></div>
             <div class="main-form">
-                <button id="submitButton" class="main-btn">
-                    <span style="margin-left: 5%; margin-right: 5%;">Получить информацию о тикере</span>
-                    <img src="images/search.png" alt="Поиск">
-                </button>
-                <p>Последнее обновление - <span id="lastUpdate"></span></p>
+                <form id="trading-pair-form">
+                    <input type="text" id="pair-input" name="pair" placeholder="Search here">
+                    <div class="main-form-btns">
+                        <button type="button" data-pair="BNB">BNB</button>
+                        <button type="button" data-pair="EDU">EDU</button>
+                        <button type="button" data-pair="PEOPLE">PEOPLE</button>
+                        <button type="button" data-pair="ETHFI">ETHFI</button>
+                    </div>
+                    <button class="main-btn" type="submit">Обновить информацию</button>
+                </form>            
             </div>
-        </form>
+            <div id="results" class="results"></div>
+        </div>
+        <div id="correlation" style="display: none;">
+            <div><p class="title">Введите торговый актив 1</p></div>
+            <div class="main-form">
+                <form id="trading-pair-form-2">
+                    <input type="text" id="pair-input-1" name="pair1" placeholder="Search here">
+                    <div class="main-form-btns-2">
+                        <button type="button" data-pair="BNB">BNB</button>
+                        <button type="button" data-pair="EDU">EDU</button>
+                        <button type="button" data-pair="PEOPLE">PEOPLE</button>
+                        <button type="button" data-pair="ETHFI">ETHFI</button>
+                    </div>
+                    <div><p class="title">Введите торговый актив 2</p></div>
+                    <input type="text" id="pair-input-2" name="pair2" placeholder="Search here">
+                    <div class="main-form-btns-3">
+                        <button type="button" data-pair="BNB">BNB</button>
+                        <button type="button" data-pair="EDU">EDU</button>
+                        <button type="button" data-pair="PEOPLE">PEOPLE</button>
+                        <button type="button" data-pair="ETHFI">ETHFI</button>
+                    </div>
+                    <button class="main-btn" type="submit">Обновить информацию</button>
+                </form>            
+            </div>
+            <div id="results-2" class="results">
+                
+            </div>
+        </div>
+        <div id="daily" style="display: none;">
+            <div><p class="title">Введите торговый актив 1</p></div>
+            <div class="main-form">
+                <form id="trading-pair-form-3">
+                    <input type="text" id="pair-input-3" name="pair1" placeholder="Search here">
+                    <div class="main-form-btns-3">
+                        <button type="button" data-pair="BNB">BNB</button>
+                        <button type="button" data-pair="EDU">EDU</button>
+                        <button type="button" data-pair="PEOPLE">PEOPLE</button>
+                        <button type="button" data-pair="ETHFI">ETHFI</button>
+                    </div>
+                    <div><p class="title">Введите торговый актив 2</p></div>
+                    <input type="text" id="pair-input-4" name="pair2" placeholder="Search here">
+                    <div class="main-form-btns-4">
+                        <button type="button" data-pair="BNB">BNB</button>
+                        <button type="button" data-pair="EDU">EDU</button>
+                        <button type="button" data-pair="PEOPLE">PEOPLE</button>
+                        <button type="button" data-pair="ETHFI">ETHFI</button>
+                    </div>
+                    <button class="main-btn" type="submit">Обновить информацию</button>
+                </form>            
+            </div>
+            <div id="results-3" class="results">
+                
+            </div>
+        </div>
     </main>
     <footer>
-        <a href="setting.html" class="footer-link">
-            <img src="images/setting_icon.png">
-        </a>
-        <a href="main.html" class="footer-link">
-            <img class="active-btn" src="images/home.png">
-        </a>
-        <a href="profile.html" class="footer-link">
-            <img src="images/profile_icon.png">
-        </a>
+        <div class="navbar">
+            <div class="navbar-div">
+                <a href="main.html">
+                    <img src="images/HouseNotActive.png">
+                    <h3>Home</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="tikerinfo.html">
+                    <img src="images/AnalyticsActive.png">
+                    <h3 class="active">Analytics</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/Wallet.png">
+                    <h3>Wallet</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/User.png">
+                    <h3>Profile</h3>
+                </a>
+            </div>
+        </div>
     </footer>
     <script>
+        function showTikers(){
+            document.getElementById('tikerinfo').style.display = "block";
+            document.getElementById('correlation').style.display = "none";
+            document.getElementById('daily').style.display = "none";
+
+            document.getElementById('btn1').classList.add('active');
+            document.getElementById('btn2').classList.remove('active');
+            document.getElementById('btn3').classList.remove('active');
+        }
+
+        function showCorrelation(){
+            document.getElementById('tikerinfo').style.display = "none";
+            document.getElementById('correlation').style.display = "block";
+            document.getElementById('daily').style.display = "none";
+
+            document.getElementById('btn2').classList.add('active');
+            document.getElementById('btn1').classList.remove('active');
+            document.getElementById('btn3').classList.remove('active');
+        }
+
+        function showDaily(){
+            document.getElementById('tikerinfo').style.display = "none";
+            document.getElementById('correlation').style.display = "none";
+            document.getElementById('daily').style.display = "block";
+
+            document.getElementById('btn3').classList.add('active');
+            document.getElementById('btn2').classList.remove('active');
+            document.getElementById('btn1').classList.remove('active');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            // let tg = window.Telegram.WebApp;
-            // tg.expand(); // Расширяем веб-приложение на весь экран
+            const form = document.getElementById('trading-pair-form');
+            const input = document.getElementById('pair-input');
+            const buttons = document.querySelectorAll('#trading-pair-form .main-form-btns button');
+            const results = document.getElementById('results');
 
-            // Получаем данные пользователя
-            // const user = tg.initDataUnsafe.user;
-            // const username = user.username ? user.username : 'неизвестный пользователь';
-
-            // Отображаем никнейм пользователя
-            // const userInfoContainer = document.getElementById('userInfo');
-            // userInfoContainer.textContent = `Добро пожаловать, @${username}!`;
-
-            const form = document.getElementById('tickerForm');
-            const inputField = document.getElementById('tickerInput');
-            const errorMessage = document.getElementById('errorMessage');
-            const tickerInfoContainer = document.getElementById('tickerInfo');
-            const lastUpdateSpan = document.getElementById('lastUpdate');
-
-            form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Предотвращаем реальную отправку формы
-
-                const ticker = inputField.value.trim().toUpperCase();
-                if (ticker === "") {
-                    errorMessage.style.display = 'block';
-                    inputField.classList.add('error');S
-                    return;
-                } else {
-                    errorMessage.style.display = 'none';
-                    inputField.classList.remove('error');
-                }
-
-                const apiUrl = `http://127.0.0.1:8000/api/ticker/${ticker}`;
-
-                // Запрос данных с бэкенда FastAPI (замените на ваш реальный эндпоинт API)
-                fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ ticker: ticker })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Ошибка HTTP ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const infoHTML = `<h3>Результат запроса</h3>
-                        <p>Тикер: <span>${data.ticker}</span></p>
-                        <p>Цена: <span>${data.current_price}$</span></p>
-                        <p>Корреляция с BTC: <span>${data.correlation_with_btc}</span></p>
-                        <p>Стандартный объем: <span>${data.standard_daily_volume}$</span></p>
-                        <p>${data.volume_text}</p>
-                        <div>
-                            <hr>
-                            <h4>Фандинг</h4>
-                            ${data.funding_rates.map(rate => `
-                                <p>${rate.time}: <span>${rate.rate} (${rate.change})</span></p>
-                            `).join('')}
-                        </div>
-                        <div>
-                            <hr>
-                            <h4>Объём</h4>
-                            ${data.volumes.map(volume => `
-                                <p>${volume.time}: <span>${volume.volume}$</span></p>
-                            `).join('')}
-                        </div>`;
-                    tickerInfoContainer.innerHTML = infoHTML;
-
-                    // Обновляем время последнего обновления (пример)
-                    const now = new Date();
-                    lastUpdateSpan.textContent = now.toLocaleString('ru-RU');
-                })
-                .catch(error => {
-                    console.error('Ошибка при получении данных о тикере:', error);
-                    tickerInfoContainer.innerHTML = `<p>Ошибка при получении данных о тикере. Пожалуйста, попробуйте ещё раз позже.</p>`;
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    input.value = this.getAttribute('data-pair');
                 });
-
-                // Предотвращаем закрытие
-                // tg.ready();
             });
 
-            // Функция для форматирования чисел с запятыми
-            function format_number_with_commas(x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const pair = input.value.trim();
+                if (pair) {
+                    const resultHtml = `
+                        <div class="result-item">
+                            <div class="update-info">
+                                <div>
+                                    <p>Последнее обновление:</p>
+                                </div>
+                                <div class="update-info_div">
+                                    <img src="images/Clock.png">
+                                    <p>12:03</p>
+                                    <img src="images/CalendarDots.png">
+                                    <p>9.01.2024</p>
+                                </div>
+                            </div>
+                            <h4 class="result-title">${pair}USDT</h4>
+                            <div class="pair-info-div">
+                                <div class="pair-info-p">
+                                    <p>Корреляция с ${pair}:</p>
+                                    <h5>100%</h5>
+                                </div>
+                                <hr>
+                                <div class="pair-info-p">
+                                    <p>Стандартный показатель объёма:</p>
+                                    <h5>11 877 027 059.31 $</h5>
+                                </div>
+                                <hr>
+                                <div class="pair-info-p">
+                                    <p>Объём меньше стандартного в:</p>
+                                    <h5>1.31 раз(а)</h5>
+                                </div>
+                            </div>
+
+                            <h4 class="result-title-2">Фандинг</h4>
+                            <div class="pair-info-div">
+                                <div class="pair-info-p">
+                                    <p>4 часа назад</p>
+                                    <h5>0,01%</h5>
+                                </div>
+                                <hr>
+                                <div class="pair-info-p">
+                                    <p>4 часа назад</p>
+                                    <h5>0,01%</h5>
+                                </div>
+                                <hr>
+                                <div class="pair-info-p">
+                                    <p>4 часа назад</p>
+                                    <h5>0,01%</h5>
+                                </div>
+                                <hr>
+                                <div class="pair-info-p">
+                                    <p>4 часа назад</p>
+                                    <h5>0,01%</h5>
+                                </div>
+                                <hr>
+                                <div class="pair-info-p">
+                                    <p>4 часа назад</p>
+                                    <h5>0,01%</h5>
+                                </div>
+                            </div>
+                            <button type="button" class="main-btn" id="main-btn">Закрыть</button>
+                        </div>
+                    `;
+                    results.innerHTML = resultHtml;
+                } else {
+                    results.innerHTML = '<p class="error">Пожалуйста, введите торговую пару.</p>';
+                }
+            });
+        });
+
+        // Handling form 2
+        document.addEventListener('DOMContentLoaded', function() {
+            const form2 = document.getElementById('trading-pair-form-2');
+            const input1 = document.getElementById('pair-input-1');
+            const input2 = document.getElementById('pair-input-2');
+            const buttons1 = document.querySelectorAll('#trading-pair-form-2 .main-form-btns-2 button');
+            const buttons2 = document.querySelectorAll('#trading-pair-form-2 .main-form-btns-3 button');
+            const results2 = document.getElementById('results-2');
+
+            buttons1.forEach(button => {
+                button.addEventListener('click', function() {
+                    input1.value = this.getAttribute('data-pair');
+                });
+            });
+            buttons2.forEach(button => {
+                button.addEventListener('click', function() {
+                    input2.value = this.getAttribute('data-pair');
+                });
+            });
+
+            
+
+            form2.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const pair1 = input1.value.trim();
+                const pair2 = input2.value.trim();
+                if (pair1 && pair2) {
+                    const resultHtml = `
+                        <div class="result-item">
+                            <div class="update-info">
+                                <div>
+                                    <p>Последнее обновление:</p>
+                                </div>
+                                <div class="update-info_div">
+                                    <img src="images/Clock.png">
+                                    <p>12:03</p>
+                                    <img src="images/CalendarDots.png">
+                                    <p>9.01.2024</p>
+                                </div>
+                            </div>
+                            <h4 class="result-title">Результат запроса</h4>
+                            <div class="result-div">
+                                <div class="result-file-img">
+                                    <img src="images/File.png">
+                                </div>
+                                <div>
+                                    <h3 style="position: absolute; left:100px; margin-top: -20px">volume.csv</h3>
+                                    <p style="position: absolute; left:100px;">11.6 KB</p>
+                                </div>
+                                <div>
+                                    <button style="background-color: rgb(0,0,0,0); border: 0px;">
+                                        <img src="images/Download.png">
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="correlation-info-p">Корреляция между ${pair1} и ${pair2} составляет</p>
+                            <h5 class="percentage">-5.02%
+                                <img src="images/Iconup.png" class="icon up-icon" alt="up">
+                                <img src="images/Icondown.png" class="icon down-icon" alt="down">
+                            </h5>
+                        </div>
+                    `;
+                    results2.innerHTML = resultHtml;
+                } else {
+                    results2.innerHTML = '<p class="error">Пожалуйста, введите оба торговых актива.</p>';
+                }
+            });
+
+            
+           
+        
+            
 
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form3 = document.getElementById('trading-pair-form-3');
+            const input3 = document.getElementById('pair-input-3');
+            const input4 = document.getElementById('pair-input-4');
+            const buttons3 = document.querySelectorAll('#trading-pair-form-3 .main-form-btns-3 button');
+            const buttons4 = document.querySelectorAll('#trading-pair-form-3 .main-form-btns-4 button');
+            const results3 = document.getElementById('results-3');
+
+            buttons3.forEach(button => {
+                button.addEventListener('click', function() {
+                    input3.value = this.getAttribute('data-pair');
+                });
+            });
+            buttons4.forEach(button => {
+                button.addEventListener('click', function() {
+                    input4.value = this.getAttribute('data-pair');
+                });
+            });
+
+            
+
+            form3.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const pair3 = input3.value.trim();
+                const pair4 = input4.value.trim();
+                if (pair3 && pair4) {
+                    const resultHtml = `
+                        <div class="result-item">
+                            <div class="update-info">
+                                <div>
+                                    <p>Последнее обновление:</p>
+                                </div>
+                                <div class="update-info_div">
+                                    <img src="images/Clock.png">
+                                    <p>12:03</p>
+                                    <img src="images/CalendarDots.png">
+                                    <p>9.01.2024</p>
+                                </div>
+                            </div>
+                            <h4 class="result-title">Результат запроса</h4>
+                            <div class="result-div">
+                                <div class="result-file-img">
+                                    <img src="images/File.png">
+                                </div>
+                                <div>
+                                    <h3 style="position: absolute; left:100px; margin-top: -20px">volume.csv</h3>
+                                    <p style="position: absolute; left:100px;">11.6 KB</p>
+                                </div>
+                                <div>
+                                    <button style="background-color: rgb(0,0,0,0); border: 0px;">
+                                        <img src="images/Download.png">
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="correlation-info-p">Корреляция между ${pair3} и ${pair4} составляет</p>
+                            <h5 class="percentage">-5.02%
+                                <img src="images/Iconup.png" class="icon up-icon" alt="up">
+                                <img src="images/Icondown.png" class="icon down-icon" alt="down">
+                            </h5>
+                        </div>
+                    `;
+                    results3.innerHTML = resultHtml;
+                } else {
+                    results3.innerHTML = '<p class="error">Пожалуйста, введите оба торговых актива.</p>';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const percentageElement = document.querySelector('.percentage h5');
+            
+            if (percentageElement) {
+                const upIcon = percentageElement.querySelector('.up-icon');
+                const downIcon = percentageElement.querySelector('.down-icon');
+                
+                const percentageValue = parseFloat(percentageElement.innerText);
+                
+                if (!isNaN(percentageValue)) {
+                    if (percentageValue > 0) {
+                        percentageElement.classList.add('positive');
+                        upIcon.style.display = 'inline';  // Show up arrow
+                        downIcon.style.display = 'none';  // Hide down arrow
+                    } else if (percentageValue < 0) {
+                        percentageElement.classList.add('negative');
+                        upIcon.style.display = 'none';  // Hide up arrow
+                        downIcon.style.display = 'inline';  // Show down arrow
+                    }
+                }
+            }
+        });
+    </script>
+    
+   
 </body>
 </html>
