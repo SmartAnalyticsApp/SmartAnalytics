@@ -165,8 +165,8 @@ footer{
     border-radius: 16px;
     text-align: center;
     padding: 11px 0px;
-    background: var(--bg-7-primary-dark, linear-gradient(88deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 99.66%));
-    backdrop-filter: blur(21px);
+        background-color: #17191D; 
+
 }
 .navbar h3{
     color: var(--Text-third-grey, #797979);
