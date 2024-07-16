@@ -3,317 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать!</title>
-    <link rel="stylesheet" href="css/impulse.css" type="text/css" media="all" />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    
-    <style>
-        body{
-            font-family: 'Nunito Sans', sans-serif;
-        }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #142B3D;
-            padding: 10px 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-        .popup.active {
-            display: block;
-        }
-        .popup .cancel {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-        }
-        .popup .popup-div {
-            display: flex;
-            justify-content: space-between;
-        }
-        .popup .popup-cancel,
-        .popup .popup-off {
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        .popup .popup-cancel {
-            background-color: rgba(0, 0, 0, 0);
-            border: 1px solid #0DA2C6;
-        }
-        .popup .popup-off {
-            background-color: #0DA2C6;
-            color: white;
-        }
-        .cancel{
-            background-color: #142B3D;
-            border: 0px;
-            cursor: pointer;
-            position: absolute;
-            margin-top: 0px;
-            right: 10px;
-        }
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.interval-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    selectInterval(this.dataset.interval);
-                });
-            });
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/impulse.css">
+    <title>Document</title>
 
-            document.querySelector('.cancel').addEventListener('click', function() {
-                document.getElementById('popup').classList.remove('active');
-            });
-
-            document.querySelector('.popup-cancel').addEventListener('click', function() {
-                document.getElementById('popup').classList.remove('active');
-            });
-
-            document.querySelector('.popup-off').addEventListener('click', function() {
-                document.getElementById('popup').classList.remove('active');
-                toggleTracking();
-            });
-        });
-
-        function selectInterval(interval) {
-            document.getElementById('selectedInterval').value = interval;
-            document.querySelectorAll('.interval-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[data-interval="${interval}"]`).classList.add('active');
-        }
-
-        function validateForm(event) {
-            const tickerInput = document.getElementById('tickerInput').value;
-            const errorMessage = document.getElementById('errorMessage');
-            const selectedInterval = document.getElementById('selectedInterval').value;
-
-            if (!tickerInput) {
-                errorMessage.textContent = 'Поле пустое. Введите торговую пару';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-            } else if (!selectedInterval) {
-                errorMessage.textContent = 'Выберите временной интервал';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-            } else {
-                errorMessage.style.display = 'none';
-                showTickerInfo(tickerInput, selectedInterval);
-                event.preventDefault();
-            }
-        }
-
-        function showTickerInfo(ticker, interval) {
-            const tickerInfo = document.getElementById('tickerInfo');
-            tickerInfo.innerHTML = `
-                <div class="combo">
-                    <div class="combo-1">
-                        <p>COMBOUSDT</p>
-                        <p><span class="positive">13.78%</span></p>
-                        <p style="margin-left: 50px; color: #ccc; font-size: 13px; width: 100%">сегодня, 12:03</p>
-                    </div>
-                    <div class="combo-2">
-                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
-                        <p>Актив ТОП 6 по суточной процентности</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="combo">
-                    <div class="combo-1">
-                        <p>COMBOUSDT</p>
-                        <p><span class="positive">13.78%</span></p>
-                        <p style="margin-left: 50px; color: #ccc; font-size: 13px; width: 100%">сегодня, 12:03</p>
-                    </div>
-                    <div class="combo-2">
-                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
-                        <p>Актив ТОП 6 по суточной процентности</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="combo">
-                    <div class="combo-1">
-                        <p>COMBOUSDT</p>
-                        <p><span class="positive">13.78%</span></p>
-                        <p style="margin-left: 50px; color: #ccc; font-size: 13px; width: 100%">сегодня, 12:03</p>
-                    </div>
-                    <div class="combo-2">
-                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
-                        <p>Актив ТОП 6 по суточной процентности</p>
-                    </div>
-                </div>
-            `;
-            tickerInfo.style.display = 'block';
-            updateLastUpdateTime();
-        }
-
-        function updateLastUpdateTime() {
-            const now = new Date();
-            const formattedTime = now.toLocaleString('ru-RU', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            document.getElementById('lastUpdate').textContent = formattedTime;
-        }
-
-        function showPopup() {
-            document.getElementById('popup').classList.toggle('active');
-        }
-
-        function toggleTracking() {
-            const trackingButton = document.querySelector('.main-btn.tracking');
-            const trackingImage = document.querySelector('.main-btn.tracking img');
-            const trackingImage2 = document.querySelector('#img img');
-
-            const trackingText = document.getElementById('btn-text');
-            const trackingPopupText = document.getElementById('tt');
-            const trackingTitle = document.getElementById('pp-title');
-
-            if (trackingButton.classList.contains('active')) {
-                trackingButton.classList.remove('active');
-                trackingText.textContent = 'Подключить отслеживание';
-                trackingImage.src = 'images/switchon.png';
-                trackingImage2.src = 'images/switchoff.png';
-                trackingPopupText.textContent = 'Подключить';
-                trackingPopupText.style.backgroundColor = '#0DA2C6';
-                trackingTitle.textContent = 'Подключить уведомления';
-            } else {
-                trackingButton.classList.add('active');
-                trackingText.textContent = 'Отключить отслеживание';
-                trackingImage.src = 'images/switchoff.png';
-                trackingImage2.src = 'images/switchon.png';
-                trackingPopupText.textContent = 'Отключить';
-                trackingPopupText.style.backgroundColor = '#D4503D';
-                trackingTitle.textContent = 'Отключить уведомления';
-            }
-        }
-    </script>
 </head>
 <body>
     <header>
-        <a href="main.html" id="header-link">
-            <img src="images/tsini.png">
-        </a>
-        <h3 class="header-title">Отслеживание импульсов</h3>
-    </header>
-    <div id="popup" class="popup">
-        <p class="popup-p" id="pp-title">Подключить уведомления?</p>
-        <button onclick="showPopup()" class="cancel">
-            <img src="images/cancel.png">
-        </button>
-        <div class="popup-div">
-            <button class="popup-cancel">Отмена</button>
-            <button class="popup-off" id="tt">Подключить</button>
+        <div><img src="images/Star.png" alt=""></div>
+        <div>
+            <h3 style="text-align: start;">Последние импульсы</h3>
         </div>
-        <button class="cancel">
-            <img src="images/cancel.png" alt="Cancel">
-        </button>
-    </div>
-        
+        <div><a href="main.html" class="goback" id="href">
+            <img style="width: 30px; height: 30px;" src="images/Close.png">
+        </a></div>
+    </header>
     <main>
-        <form id="tickerForm" onsubmit="validateForm(event)">
-            <div class="tickerInput-div">
-                <div>
-                    <p class="main-p">Выберите временной интервал (мин)</p>
-                    <div class="btns">
-                        <div>
-                            <button type="button" class="interval-btn" data-interval="5">5</button>
-                        </div>
-                        <div>
-                            <button type="button" class="interval-btn" data-interval="15">15</button>
-                        </div>
-                        <div>
-                            <button type="button" class="interval-btn" data-interval="30">30</button>
-                        </div>
-                        <div>
-                            <button type="button" class="interval-btn" data-interval="60">60</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <p class="main-p">Введите процент изменения цены</p>
-                    <input id="tickerInput" name="tickerInput" class="main-input" placeholder="10">
-                </div>
-                <input id="selectedInterval" name="selectedInterval" type="hidden">
+        <form id="filterForm">
+            <p class="title">Выберете временной интервал (мин)</p>
+            <div class="btns firstbtns">
+                <button type="button" onclick="selectInterval(5, this)">5</button>
+                <button type="button" onclick="selectInterval(15, this)">15</button>
+                <button type="button" onclick="selectInterval(30, this)">30</button>
+                <button type="button" onclick="selectInterval(60, this)">60</button>
             </div>
-
-            <span id="errorMessage" class="error-message" style="display:none"></span>
-            <div id="tickerInfo" style="display:none"></div>
-            <div class="main-form">
-                <button id="submitButton" class="main-btn" type="submit" style="margin-bottom: -10px;">Получить информацию о тикере <img src="images/search.png" alt="Search"></button>
-                <p>Последнее обновление - <span id="lastUpdate"></span></p>
+            <input type="hidden" name="interval" id="interval">
+            <p class="error-message" id="intervalError">Пожалуйста выберите вариант</p>
+            
+            <p class="title">Введите процент изменения цены</p>
+            <div style="background-image: url(images/bg3.png); background-size: cover;" class="input" id="inputContainer">
+                <input type="search" name="percentage" placeholder="Search" id="percentageInput">
             </div>
+            <p class="error-message" id="percentageError">Пожалуйста заполните поле</p>
+            <div class="btns secondbtns">
+                <button type="button" onclick="selectPercentage(1, this)">1%</button>
+                <button type="button" onclick="selectPercentage(2, this)">2%</button>
+                <button type="button" onclick="selectPercentage(3, this)">3%</button>
+                <button type="button" onclick="selectPercentage(4, this)">4%</button>
+            </div>
+            <input type="hidden" name="percentageChange" id="percentageChange">
+            
+            <button class="submit" type="submit">Обновить информацию</button>
         </form>
-        <div class="btns-div">
-            <button class="main-btn tracking" onclick="showPopup()"><span id="btn-text" style="padding-left: 1px;">Подключить отслеживание</span> <img style="margin-left: 10px;" src="images/switchon.png" alt="Tracking Icon"></button>
-            <button type="button" style="border-radius: 12px; background-color: #95A0A5; border: 0px; padding-left: 20px; padding-right: 20px;"  id="img" ><img style="background-color: #95A0A5; padding: 0px;" src="images/switchoff.png" alt="Another Icon"></button>
+        <div class="results" id="resultsContainer">
         </div>
     </main>
+
     <footer>
-        <a href="setting.html" class="footer-link" id="setting-link">
-            <img src="images/setting_icon.png">
-        </a>
-        <a href="main.html" class="footer-link" id="home-link">
-            <img class="active-btn" src="images/home.png">
-        </a>
-        <a href="profile.html" class="footer-link" id="profile-link">
-            <img src="images/profile_icon.png">
-        </a>
+        <div class="navbar">
+            <div class="navbar-div">
+                <a href="main.html">
+                    <img src="images/HouseSimple.png">
+                    <h3 class="active">Home</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="tikerinfo.html">
+                    <img src="images/ChartPieSlice.png">
+                    <h3>Analytics</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/Wallet.png">
+                    <h3>Wallet</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/User.png">
+                    <h3>Profile</h3>
+                </a>
+            </div>
+        </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script>
-        // Анимация перехода при клике на ссылку в заголовке
-        const headerLink = document.getElementById('header-link');
+        function selectInterval(value, button) {
+            document.getElementById('interval').value = value;
+            setActiveButton(button, '.firstbtns button');
+            hideError('intervalError');
+        }
 
-        headerLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const nextPage = this.getAttribute('href');
+        function selectPercentage(value, button) {
+            document.getElementById('percentageChange').value = value;
+            document.getElementById('percentageInput').value = value + '%';
+            setActiveButton(button, '.secondbtns button');
+            hideError('percentageError');
+            document.getElementById('inputContainer').classList.remove('input-error');
+        }
 
-            gsap.to('body', {
-                x: '200%', // Сдвиг тела влево за пределы видимости
-                opacity: 0, // Затухание текущей страницы
-                duration: 0.5,
-                onComplete: function() {
-                    window.location.href = nextPage; // Переход на следующую страницу
-                }
-            });
+        function setActiveButton(button, selector) {
+            document.querySelectorAll(selector).forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+
+        function hideError(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        document.getElementById('filterForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            if (!document.getElementById('interval').value) {
+                document.getElementById('intervalError').style.display = 'block';
+                isValid = false;
+            }
+
+            const percentageInput = document.getElementById('percentageInput');
+            if (!percentageInput.value) {
+                document.getElementById('percentageError').style.display = 'block';
+                percentageInput.parentElement.classList.add('input-error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                const interval = document.getElementById('interval').value;
+                const percentage = document.getElementById('percentageInput').value;
+                displayResults(interval, percentage);
+            }
         });
 
-        // Анимация перехода для ссылок в футере
-        function animatePageTransition(url, useAnimation = true) {
-            if (useAnimation) {
-                const transitionOut = gsap.timeline({
-                    onComplete: () => {
-                        window.location.href = url;
-                    }
-                });
-                transitionOut.to("body", { opacity: 0, duration: 0.5 });
-            } else {
-                window.location.href = url; // Без анимации
-            }
+        function displayResults(interval, percentage) {
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+
+            // Sample data to demonstrate results
+            const sampleData = [
+                { name: 'COMBOUSDT', change: '-5.02%', percentage: '13.78%', count: 1, time: 'Сегодня 12:03', direction: 'down' },
+                { name: 'COMBOUSDT', change: '+5.02%', percentage: '13.78%', count: 1, time: 'Сегодня 12:03', direction: 'up' },
+                // Add more sample data as needed
+            ];
+
+            
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result';
+                resultItem.innerHTML = `
+                    <div class="impulse">
+                    <div class="impulse-top">
+                        <p>Название</p>
+                        <p>суточный %</p>
+                        <p>ТОП</p>
+                        <p>Дата</p>
+                    </div>
+                    <div class="impulse-content">
+                        <div>
+                            <h3>COMBOUSDT</h3>
+                            <h5 class="percentage negative">-5.02%</h5>
+
+                        </div>
+                        <p>13.78%</p>
+                        <p>1</p>
+                        <p>Сегодня 12:03</p>
+                    </div>
+                    <div class="impulse-content">
+                        <div>
+                            <h3>COMBOUSDT</h3>
+                            <h5 class="percentage negative">-5.02%</h5>
+
+                        </div>
+                        <p>13.78%</p>
+                        <p>1</p>
+                        <p>Сегодня 12:03</p>
+                    </div>
+                    <div class="impulse-content">
+                        <div>
+                            <h3>COMBOUSDT</h3>
+                            <h5 class="percentage positive">+5.02%</h5>
+
+                        </div>
+                        <p>13.78%</p>
+                        <p>1</p>
+                        <p>Сегодня 12:03</p>
+                    </div>
+                    <div class="impulse-content">
+                        <div>
+                            <h3>COMBOUSDT</h3>
+                            <h5 class="percentage positive">+-5.02%</h5>
+
+                        </div>
+                        <p>13.78%</p>
+                        <p>1</p>
+                        <p>Сегодня 12:03</p>
+                    </div>
+                    <div class="impulse-content">
+                        <div>
+                            <h3>COMBOUSDT</h3>
+                            <h5 class="percentage negative">-5.02%</h5>
+                        </div>
+                        <p>13.78%</p>
+                        <p>1</p>
+                        <p>Сегодня 12:03</p>
+                    </div>
+                    
+                </div>`;
+                resultsContainer.appendChild(resultItem);
+
+            
         }
-
-        function animatePageEnter() {
-            gsap.from("body", { opacity: 0, duration: 0.5 });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            animatePageEnter();
-
-            // Обработка кликов по ссылкам в футере
-            document.querySelectorAll('.footer-link').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const targetUrl = this.getAttribute('href');
-                    animatePageTransition(targetUrl);
-                });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const percentages = document.getElementsByClassName(".percentage");
+    
+            percentages.forEach(function(percentage) {
+                const value = parseFloat(percentage.textContent);
+                const upIcon = percentage.querySelector(".up-icon");
+                const downIcon = percentage.querySelector(".down-icon");
+    
+                if (value > 0) {
+                    percentage.classList.add("positive");
+                    upIcon.style.display = "inline-block"; // Show the up icon
+                } else if (value < 0) {
+                    percentage.classList.add("negative");
+                    downIcon.style.display = "inline-block"; // Show the down icon
+                }
             });
         });
     </script>
