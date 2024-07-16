@@ -316,3 +316,22 @@ footer{
 .impulse-content h5{
     width: 50px;
 }
+.update-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+.update-info p{
+    color:  #B8B8B8;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.update-info_div{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
