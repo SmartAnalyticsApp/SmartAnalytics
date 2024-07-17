@@ -3,316 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать!</title>
-    <link rel="stylesheet" href="css/active.css" type="text/css" media="all" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fanding.css">
+    <title>Document</title>
     <style>
-        body {
-            font-family: 'Nunito Sans', sans-serif;
+        .btns button.active {
+            background-color: var(--Main-Violet, #7064F3);
+            color: var(--Text-primary-white, #FFF);
         }
-        .btns button{
-            font-size: 15px;
-            font-weight: 100;
-            color: #999;
+        .error-message {
+            color: var(--Main-red, #CA3140);
+            font-family: Inter;
+            font-size: 10px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin-top: 12px;
         }
-        .interval-btn.active {
-            background-color: #0DA2C6;
-            color: white;
-            
+        .success-message {
+            color: green;
+            font-family: Inter;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: normal;
+            margin-top: 12px;
+        }
+        
+        .impulse {
+            margin-top: 10px;
+        }
+        .impulse-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .percentage {
+            margin-right: 10px;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+        .history-container {
+            margin-top: 20px;
+        }
+        .div-history{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .clear-history-btn {
+            float: right;
+            padding: 0px; 
+            background-color: rgb(0, 0, 0, 0);
+            border: 0px; 
+            color: #ddd;
+            font-size: 12px;
+            text-align: right;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.interval-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    selectInterval(this.dataset.interval);
-                });
-            });
-
-            document.querySelector('.cancel').addEventListener('click', function() {
-                document.getElementById('popup').classList.remove('active');
-            });
-
-            document.querySelector('.popup-cancel').addEventListener('click', function() {
-                document.getElementById('popup').classList.remove('active');
-            });
-
-            document.querySelector('.popup-off').addEventListener('click', function() {
-                document.getElementById('popup').classList.remove('active');
-                toggleTracking();
-            });
-        });
-
-        function selectInterval(interval) {
-            document.getElementById('selectedInterval').value = interval;
-            document.querySelectorAll('.interval-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[data-interval="${interval}"]`).classList.add('active');
-        }
-
-        function validateForm(event) {
-            const tickerInput = document.getElementById('tickerInput').value;
-            const errorMessage = document.getElementById('errorMessage');
-            const selectedInterval = document.getElementById('selectedInterval').value;
-
-            if (!tickerInput) {
-                errorMessage.textContent = 'Поле пустое. Введите торговую пару';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-            } else if (!selectedInterval) {
-                errorMessage.textContent = 'Выберите временной интервал';
-                errorMessage.style.display = 'block';
-                event.preventDefault();
-            } else {
-                errorMessage.style.display = 'none';
-                showTickerInfo(tickerInput, selectedInterval);
-                event.preventDefault();
-            }
-        }
-
-        function showTickerInfo(ticker, interval) {
-            const tickerInfo = document.getElementById('tickerInfo');
-            tickerInfo.innerHTML = `
-                <div class="combo">
-                    <div class="combo-1">
-                        <p>COMBOUSDT</p>
-                        <p><span class="positive">13.78%</span></p>
-                        <p style="margin-left: 50px; color: #5A8A9F; font-size: 13px; width: 100%">сегодня, 12:03</p>
-                    </div>
-                    <div class="combo-2">
-                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
-                        <p>Актив ТОП 6 по суточной процентности</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="combo">
-                    <div class="combo-1">
-                        <p>COMBOUSDT</p>
-                        <p><span class="positive">13.78%</span></p>
-                        <p style="margin-left: 50px; color: #5A8A9F; font-size: 13px; width: 100%">сегодня, 12:03</p>
-                    </div>
-                    <div class="combo-2">
-                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
-                        <p>Актив ТОП 6 по суточной процентности</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="combo">
-                    <div class="combo-1">
-                        <p>COMBOUSDT</p>
-                        <p><span class="positive">13.78%</span></p>
-                        <p style="margin-left: 50px; color: #5A8A9F; font-size: 13px; width: 100%">сегодня, 12:03</p>
-                    </div>
-                    <div class="combo-2">
-                        <p class="p-div">Суточная процентность: <span>13.78%</span></p>
-                        <p>Актив ТОП 6 по суточной процентности</p>
-                    </div>
-                </div>
-            `;
-            tickerInfo.style.display = 'block';
-            updateLastUpdateTime();
-        }
-
-        function updateLastUpdateTime() {
-            const now = new Date();
-            const formattedTime = now.toLocaleString('ru-RU', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            document.getElementById('lastUpdate').textContent = formattedTime;
-        }
-    </script>
 </head>
 <body>
     <header>
-        <a href="main.html" id="header-link">
-            <img src="images/tsini.png">
-        </a>
-        <h3 class="header-title">Отслеживание выбранного актива</h3>
+        <div><img src="images/Star.png" alt=""></div>
+        <div>
+            <h3 style="text-align: start;">Ослежива-ние актива</h3>
+        </div>
+        <div><a href="main.html" class="goback" id="href">
+            <img style="width: 30px; height: 30px;" src="images/Close.png">
+        </a></div>
     </header>
     
-        
-    <main>
-        <div class="info-part">
-            <div class="info">
-                <div class="info-1">
-                    <h3>ETHUSDT</h3>
-                    <div>
-                        <h5 style="margin-top: 10px;">сегодня, 12:03</h5>
-                    </div>
-                </div>
-                <div class="info-1">
-                    <p>Текущая цена:</p>
-                    <div>
-                        <h4>3835.13 $</h4>
-                        <h5>(-0.35% за 5 мин)</h5>
-                    </div>
-                </div>
-                <div class="info-2">
-                    <p>Текущий объем торгов:</p>
-                    <div>
-                        <h4>6,414,150.75 $</h4>
-                        <h5>(+03.82% за 5 мин)</h5>
-                    </div>
-                </div>
-                <div class="info-3">
-                    <p>Ставка финансирования:</p>
-                    <div>
-                        <h4>0.0211%</h4>
-                        <h5>(0.0217% 5 мин назад)</h5>
-                    </div>
-                </div>
-                <div class="info-4">
-                    <p>Актив в по суточной активности</p>
-                    <div>
-                        <h4 style="margin-top: 15px;">ТОП 95</h4>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="info">
-                <div class="info-1">
-                    <h3>ETHUSDT</h3>
-                    <div>
-                        <h5 style="margin-top: 10px;">сегодня, 12:03</h5>
-                    </div>
-                </div>
-                <div class="info-1">
-                    <p>Текущая цена:</p>
-                    <div>
-                        <h4>3835.13 $</h4>
-                        <h5>(-0.35% за 5 мин)</h5>
-                    </div>
-                </div>
-                <div class="info-2">
-                    <p>Текущий объем торгов:</p>
-                    <div>
-                        <h4>6,414,150.75 $</h4>
-                        <h5>(+03.82% за 5 мин)</h5>
-                    </div>
-                </div>
-                <div class="info-3">
-                    <p>Ставка финансирования:</p>
-                    <div>
-                        <h4>0.0211%</h4>
-                        <h5>(0.0217% 5 мин назад)</h5>
-                    </div>
-                </div>
-                <div class="info-4">
-                    <p>Актив в по суточной активности</p>
-                    <div>
-                        <h4 style="margin-top: 15px;">ТОП 95</h4>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="info">
-                <div class="info-1">
-                    <h3>ETHUSDT</h3>
-                    <div>
-                        <h5 style="margin-top: 10px;">сегодня, 12:03</h5>
-                    </div>
-                </div>
-                <div class="info-1">
-                    <p>Текущая цена:</p>
-                    <div>
-                        <h4>3835.13 $</h4>
-                        <h5>(-0.35% за 5 мин)</h5>
-                    </div>
-                </div>
-                <div class="info-2">
-                    <p>Текущий объем торгов:</p>
-                    <div>
-                        <h4>6,414,150.75 $</h4>
-                        <h5>(+03.82% за 5 мин)</h5>
-                    </div>
-                </div>
-                <div class="info-3">
-                    <p>Ставка финансирования:</p>
-                    <div>
-                        <h4>0.0211%</h4>
-                        <h5>(0.0217% 5 мин назад)</h5>
-                    </div>
-                </div>
-                <div class="info-4">
-                    <p>Актив в по суточной активности</p>
-                    <div>
-                        <h4 style="margin-top: 15px;">ТОП 95</h4>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
 
-        <div class="main-form">
-            <a href="addtiker.html" id="submitButton" class="main-btn">Добавить тикер<img style="position: absolute; margin-left: 10px; margin-top: -2px;" src="images/plusicon.png" alt="Add"></a>
-        </div>
-    </main>
     <footer>
-        <a href="setting.html" class="footer-link" id="setting-link">
-            <img src="images/setting_icon.png">
-        </a>
-        <a href="main.html" class="footer-link" id="home-link">
-            <img class="active-btn" src="images/home.png">
-        </a>
-        <a href="profile.html" class="footer-link" id="profile-link">
-            <img src="images/profile_icon.png">
-        </a>
+        <div class="navbar">
+            <div class="navbar-div">
+                <a href="main.html">
+                    <img src="images/HouseSimple.png">
+                    <h3 class="active">Home</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="tikerinfo.html">
+                    <img src="images/ChartPieSlice.png">
+                    <h3>Analytics</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/Wallet.png">
+                    <h3>Wallet</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/User.png">
+                    <h3>Profile</h3>
+                </a>
+            </div>
+        </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script>
-        // Анимация перехода при клике на ссылку в заголовке
-        const headerLink = document.getElementById('header-link');
-
-        headerLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const nextPage = this.getAttribute('href');
-
-            gsap.to('body', {
-                x: '200%', // Сдвиг тела влево за пределы видимости
-                opacity: 0, // Затухание текущей страницы
-                duration: 0.5,
-                onComplete: function() {
-                    window.location.href = nextPage; // Переход на следующую страницу
-                }
-            });
-        });
-
-        // Анимация перехода для ссылок в футере
-        function animatePageTransition(url, useAnimation = true) {
-            if (useAnimation) {
-                const transitionOut = gsap.timeline({
-                    onComplete: () => {
-                        window.location.href = url;
-                    }
-                });
-                transitionOut.to("body", { opacity: 0, duration: 0.5 });
-            } else {
-                window.location.href = url; // Без анимации
-            }
-        }
-
-        function animatePageEnter() {
-            gsap.from("body", { opacity: 0, duration: 0.5 });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            animatePageEnter();
-
-            // Обработка кликов по ссылкам в футере
-            document.querySelectorAll('.footer-link').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const targetUrl = this.getAttribute('href');
-                    animatePageTransition(targetUrl);
-                });
-            });
-        });
-    </script>
-
+    
+   
 </body>
 </html>
