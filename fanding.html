@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fanding.css">
+    <title>Document</title>
+    <style>
+        .btns button.active {
+            background-color: var(--Main-Violet, #7064F3);
+            color: var(--Text-primary-white, #FFF);
+        }
+        .error-message {
+            color: var(--Main-red, #CA3140);
+            font-family: Inter;
+            font-size: 10px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin-top: 12px;
+        }
+        .success-message {
+            color: green;
+            font-family: Inter;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: normal;
+            margin-top: 12px;
+        }
+        
+        .impulse {
+            margin-top: 10px;
+        }
+        .impulse-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .percentage {
+            margin-right: 10px;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+        .history-container {
+            margin-top: 20px;
+        }
+        .div-history{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .clear-history-btn {
+            float: right;
+            padding: 0px; 
+            background-color: rgb(0, 0, 0, 0);
+            border: 0px; 
+            color: #ddd;
+            font-size: 12px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div><img src="images/Star.png" alt=""></div>
+        <div>
+            <h3 style="text-align: start;">Рост объемов</h3>
+        </div>
+        <div><a href="main.html" class="goback" id="href">
+            <img style="width: 30px; height: 30px;" src="images/Close.png">
+        </a></div>
+    </header>
+    <main>
+        <p class="title">За какое время вы хотите получить информацию</p>
+        <div class="btns">
+            <button type="button" onclick="selectTimeInterval(this, '5 мин')">5 мин</button>
+            <button type="button" onclick="selectTimeInterval(this, '30 мин')">30 мин</button>
+            <button type="button" onclick="selectTimeInterval(this, '60 мин')">60 мин</button>
+            <button type="button" onclick="selectTimeInterval(this, '4 часа')">4 часа</button>
+        </div>
+        <div id="error-msg" class="error-message"></div>
+        
+        <form id="timeForm" onsubmit="return validateForm()">
+            <input type="hidden" name="time_interval" id="timeIntervalInput" required>
+            <button type="submit">Обновить информацию</button>
+        </form>
+        <div id="resultsContainer"></div>
+        <div class="history-container">
+            <div class="div-history" id="divHistory" style="display: none;">
+                <h3 class="ttle">История результатов</h3>
+                <button class="clear-history-btn" onclick="clearHistory()">Очистить историю</button>
+            </div>
+            <div id="historyResults"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="navbar">
+            <div class="navbar-div">
+                <a href="main.html">
+                    <img src="images/HouseSimple.png">
+                    <h3 class="active">Home</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="tikerinfo.html">
+                    <img src="images/ChartPieSlice.png">
+                    <h3>Analytics</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/Wallet.png">
+                    <h3>Wallet</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/User.png">
+                    <h3>Profile</h3>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            displayHistory();
+        });
+
+        function selectTimeInterval(button, value) {
+            document.querySelectorAll('.btns button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            document.getElementById('timeIntervalInput').value = value;
+        }
+
+        function validateForm() {
+            var timeInterval = document.getElementById('timeIntervalInput').value;
+            var errorMsg = document.getElementById('error-msg');
+            var resultsContainer = document.getElementById('resultsContainer');
+
+            if (!timeInterval) {
+                errorMsg.innerText = 'Пожалуйста, выберите вариант';
+                resultsContainer.innerHTML = ''; // Очищаем контейнер результатов при ошибке валидации
+                return false;
+            } else {
+                errorMsg.innerText = '';
+                resultsContainer.innerHTML = ''; // Очищаем контейнер результатов перед добавлением новых данных
+                displayResults(timeInterval); // Показываем результаты после успешной валидации
+                return false; // Возвращаем false, чтобы форма не отправлялась
+            }
+        }
+
+        function displayResults(timeInterval) {
+            const resultsContainer = document.getElementById('resultsContainer');
+
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result';
+            resultItem.innerHTML = `
+                <h3 class="title">Результат запроса</h3>
+                <div class="update-info">
+                    <div>
+                        <p>Последнее обновление:</p>
+                    </div>
+                    <div class="update-info_div">
+                        <img src="images/Clock.png">
+                        <p>${new Date().toLocaleTimeString()}</p>
+                        <img src="images/CalendarDots.png">
+                        <p>${new Date().toLocaleDateString()}</p>
+                    </div>
+                </div>
+                <div class="result-file">
+                    <div class="files">
+                        <img src="images/File.png">
+                    </div>
+                    <div>
+                        <h3>price_growth_data.csv</h3>
+                        <p>11.6 KB</p>
+                    </div>
+                    <div>
+                        <a href="files/price_growth_data.csv" download="price_growth_data.csv">
+                            <img src="images/Download.png">
+                        </a>
+                    </div>
+                </div>`;
+            
+            resultsContainer.appendChild(resultItem); // Добавляем результаты в контейнер
+
+            // Save the result to local storage
+            const resultData = {
+                timeInterval: timeInterval,
+                timestamp: new Date().toLocaleString(),
+                content: resultItem.innerHTML
+            };
+            saveResultToLocalStorage(resultData);
+            displayHistory();
+        }
+
+        function saveResultToLocalStorage(resultData) {
+            let results = JSON.parse(localStorage.getItem('results')) || [];
+            results.push(resultData);
+            localStorage.setItem('results', JSON.stringify(results));
+        }
+
+        function displayHistory() {
+            const historyResults = document.getElementById('historyResults');
+            const divHistory = document.getElementById('divHistory');
+            historyResults.innerHTML = '';
+
+            let results = JSON.parse(localStorage.getItem('results')) || [];
+            if (results.length > 0) {
+                divHistory.style.display = 'grid';
+                results.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result';
+                    const timestamp = new Date(result.timestamp);
+                    resultItem.innerHTML = `
+                        
+                        ${result.content.replace('<h3 class="title">Результат запроса</h3>', '')}
+                    `;
+                    historyResults.appendChild(resultItem);
+                });
+            } else {
+                divHistory.style.display = 'none';
+            }
+        }
+
+        function clearHistory() {
+            localStorage.removeItem('results');
+            displayHistory();
+        }
+    </script>
+</body>
+</html>
