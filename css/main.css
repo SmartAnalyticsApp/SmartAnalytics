@@ -219,16 +219,39 @@ footer{
 .navbar{
     display: grid;
     position: fixed;
-    left: 6.5%;
-    width: 87%;
+    justify-content: center;
+    width: 91%;
     bottom: 10px;
     grid-template-columns: repeat(4,1fr);
     justify-items: center;
     border-radius: 16px;
     text-align: center;
     padding: 11px 0px;
-    background: rgb(#999, #999, #999, 0.9);
-    backdrop-filter: blur(71px);
+    border-radius: 16px;
+    background-color: #17191D; 
+}
+
+.navbar h3{
+    color: var(--Text-third-grey, #797979);
+    text-align: center;
+
+    /* Caption 2 Inter regular 12px */
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.navbar .active{
+    color: var(--Text-primary-white, var(--white-text, #FFF));
+    text-align: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 .update-info{
     display: flex;
