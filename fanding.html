@@ -70,35 +70,13 @@
     <header>
         <div><img src="images/Star.png" alt=""></div>
         <div>
-            <h3 style="text-align: start;">Рост объемов</h3>
+            <h3 style="text-align: start;">Фандинг</h3>
         </div>
         <div><a href="main.html" class="goback" id="href">
             <img style="width: 30px; height: 30px;" src="images/Close.png">
         </a></div>
     </header>
-    <main>
-        <p class="title">За какое время вы хотите получить информацию</p>
-        <div class="btns">
-            <button type="button" onclick="selectTimeInterval(this, '5 мин')">5 мин</button>
-            <button type="button" onclick="selectTimeInterval(this, '30 мин')">30 мин</button>
-            <button type="button" onclick="selectTimeInterval(this, '60 мин')">60 мин</button>
-            <button type="button" onclick="selectTimeInterval(this, '4 часа')">4 часа</button>
-        </div>
-        <div id="error-msg" class="error-message"></div>
-        
-        <form id="timeForm" onsubmit="return validateForm()">
-            <input type="hidden" name="time_interval" id="timeIntervalInput" required>
-            <button type="submit">Обновить информацию</button>
-        </form>
-        <div id="resultsContainer"></div>
-        <div class="history-container">
-            <div class="div-history" id="divHistory" style="display: none;">
-                <h3 class="ttle">История результатов</h3>
-                <button class="clear-history-btn" onclick="clearHistory()">Очистить историю</button>
-            </div>
-            <div id="historyResults"></div>
-        </div>
-    </main>
+    
 
     <footer>
         <div class="navbar">
@@ -129,112 +107,6 @@
         </div>
     </footer>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            displayHistory();
-        });
-
-        function selectTimeInterval(button, value) {
-            document.querySelectorAll('.btns button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            document.getElementById('timeIntervalInput').value = value;
-        }
-
-        function validateForm() {
-            var timeInterval = document.getElementById('timeIntervalInput').value;
-            var errorMsg = document.getElementById('error-msg');
-            var resultsContainer = document.getElementById('resultsContainer');
-
-            if (!timeInterval) {
-                errorMsg.innerText = 'Пожалуйста, выберите вариант';
-                resultsContainer.innerHTML = ''; // Очищаем контейнер результатов при ошибке валидации
-                return false;
-            } else {
-                errorMsg.innerText = '';
-                resultsContainer.innerHTML = ''; // Очищаем контейнер результатов перед добавлением новых данных
-                displayResults(timeInterval); // Показываем результаты после успешной валидации
-                return false; // Возвращаем false, чтобы форма не отправлялась
-            }
-        }
-
-        function displayResults(timeInterval) {
-            const resultsContainer = document.getElementById('resultsContainer');
-
-            const resultItem = document.createElement('div');
-            resultItem.className = 'result';
-            resultItem.innerHTML = `
-                <h3 class="title">Результат запроса</h3>
-                <div class="update-info">
-                    <div>
-                        <p>Последнее обновление:</p>
-                    </div>
-                    <div class="update-info_div">
-                        <img src="images/Clock.png">
-                        <p>${new Date().toLocaleTimeString()}</p>
-                        <img src="images/CalendarDots.png">
-                        <p>${new Date().toLocaleDateString()}</p>
-                    </div>
-                </div>
-                <div class="result-file">
-                    <div class="files">
-                        <img src="images/File.png">
-                    </div>
-                    <div>
-                        <h3>price_growth_data.csv</h3>
-                        <p>11.6 KB</p>
-                    </div>
-                    <div>
-                        <a href="files/price_growth_data.csv" download="price_growth_data.csv">
-                            <img src="images/Download.png">
-                        </a>
-                    </div>
-                </div>`;
-            
-            resultsContainer.appendChild(resultItem); // Добавляем результаты в контейнер
-
-            // Save the result to local storage
-            const resultData = {
-                timeInterval: timeInterval,
-                timestamp: new Date().toLocaleString(),
-                content: resultItem.innerHTML
-            };
-            saveResultToLocalStorage(resultData);
-            displayHistory();
-        }
-
-        function saveResultToLocalStorage(resultData) {
-            let results = JSON.parse(localStorage.getItem('results')) || [];
-            results.push(resultData);
-            localStorage.setItem('results', JSON.stringify(results));
-        }
-
-        function displayHistory() {
-            const historyResults = document.getElementById('historyResults');
-            const divHistory = document.getElementById('divHistory');
-            historyResults.innerHTML = '';
-
-            let results = JSON.parse(localStorage.getItem('results')) || [];
-            if (results.length > 0) {
-                divHistory.style.display = 'grid';
-                results.forEach(result => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'result';
-                    const timestamp = new Date(result.timestamp);
-                    resultItem.innerHTML = `
-                        
-                        ${result.content.replace('<h3 class="title">Результат запроса</h3>', '')}
-                    `;
-                    historyResults.appendChild(resultItem);
-                });
-            } else {
-                divHistory.style.display = 'none';
-            }
-        }
-
-        function clearHistory() {
-            localStorage.removeItem('results');
-            displayHistory();
-        }
-    </script>
+   
 </body>
 </html>
