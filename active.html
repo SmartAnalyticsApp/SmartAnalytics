@@ -4,65 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/fanding.css">
+    <link rel="stylesheet" href="css/active.css">
     <title>Document</title>
     <style>
-        .btns button.active {
-            background-color: var(--Main-Violet, #7064F3);
-            color: var(--Text-primary-white, #FFF);
-        }
-        .error-message {
-            color: var(--Main-red, #CA3140);
-            font-family: Inter;
-            font-size: 10px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            margin-top: 12px;
-        }
-        .success-message {
-            color: green;
-            font-family: Inter;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: normal;
-            margin-top: 12px;
-        }
-        
-        .impulse {
-            margin-top: 10px;
-        }
-        .impulse-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 5px;
-        }
-        .percentage {
-            margin-right: 10px;
-        }
-        .positive {
-            color: green;
-        }
-        .negative {
-            color: red;
-        }
-        .history-container {
-            margin-top: 20px;
-        }
-        .div-history{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-        
-        .clear-history-btn {
-            float: right;
-            padding: 0px; 
-            background-color: rgb(0, 0, 0, 0);
-            border: 0px; 
-            color: #ddd;
-            font-size: 12px;
-            text-align: right;
+        .btn.active, .time-btn.active {
+            background-color: #7064F3; /* Измените цвет на желаемый активный цвет */
+            color: white;
         }
     </style>
 </head>
@@ -76,7 +23,61 @@
             <img style="width: 30px; height: 30px;" src="images/Close.png">
         </a></div>
     </header>
-    
+    <main class="active">
+        <a href="addtiker.html">
+            <img src="images/plus.png" alt="">
+        </a>
+        <div class="active-div">
+            <form>
+                <h3>BTCUSDT</h3>
+                <button style="background-image: url(images/bg3.png); background-size: 100% 100%;">Остановить отслеживние</button>
+            </form>
+        </div>
+        <div class="info-content">
+            <div class="update-info">
+                <div>
+                    <p>Последнее обновление:</p>
+                </div>
+                <div class="update-info_div">
+                    <img src="images/Clock.png">
+                    <p>12:03</p>
+                    <img src="images/CalendarDots.png">
+                    <p>9.01.2024</p>
+                </div>
+            </div>
+            <div class="content">
+                <div class="update-info">
+                    <div>
+                        <p style="font-size: 14px;color: white;font-weight: 600; ">Тикер: TON</p>
+                    </div>
+                    <div class="update-info_div">
+                        <img src="images/Clock.png">
+                        <p>12:03</p>
+                        <img src="images/CalendarDots.png">
+                        <p>9.01.2024</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <p>Текущая цена:</p>
+                    <h4>7.2809$</h4>
+                </div>
+                <div class="info">
+                    <p>Корреляция с ВТС: </p>
+                    <h4>00.0%</h4>
+                    
+                </div>
+                <div class="info">
+                    <p>Стандартный показатель объёма:</p>
+                    <h4>99,745,047.27$</h4>
+                </div>
+                <div class="info">
+                    <p>Объём больше стандартного </p>
+                    <h4>в 2.22 раз(а)</h4>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <div class="navbar">
@@ -106,7 +107,38 @@
             </div>
         </div>
     </footer>
-    
-   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchButtons = document.querySelectorAll('.search-btns .btn');
+            const timeButtons = document.querySelectorAll('.time-btns .time-btn');
+            const searchInput = document.getElementById('searchInput');
+            const intervalInput = document.getElementById('intervalInput');
+            const form = document.getElementById('trackForm');
+
+            searchButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    searchButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    searchInput.value = this.textContent;
+                });
+            });
+
+            timeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    timeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    intervalInput.value = this.textContent;
+                });
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log("Форма отправлена с тикером:", searchInput.value, "и интервалом:", intervalInput.value);
+              
+                form.submit();
+            });
+        });
+    </script>
 </body>
 </html>
