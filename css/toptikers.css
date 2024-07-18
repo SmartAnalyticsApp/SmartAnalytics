@@ -36,7 +36,7 @@ main{
     display: grid;
     position: fixed;
     justify-content: center;
-    width: 89%;
+    width: 90%;
     bottom: 10px;
     grid-template-columns: repeat(4,1fr);
     justify-items: center;
