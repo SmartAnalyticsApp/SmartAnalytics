@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/active.css">
+    <title>Document</title>
+    <style>
+        .btn.active, .time-btn.active {
+            background-color: #7064F3; /* Измените цвет на желаемый активный цвет */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div><img src="images/Star.png" alt=""></div>
+        <div>
+            <h3 style="text-align: start;">Ослеживание актива</h3>
+        </div>
+        <div><a href="main.html" class="goback" id="href">
+            <img style="width: 30px; height: 30px;" src="images/Close.png">
+        </a></div>
+    </header>
+    <main>
+        <form id="trackForm">
+            <div class="search">
+                <h3>Введите тикер</h3>
+                <div class="input" style="background-image: url(images/bg3.png); background-size: cover;">
+                    <input type="text" id="searchInput" name="ticker" placeholder="Search here">
+                </div>
+            </div>
+            <div class="search-btns">
+                <button type="button" class="btn">BNB</button>
+                <button type="button" class="btn">EDU</button>
+                <button type="button" class="btn">PEOPLE</button>
+                <button type="button" class="btn">ETHFI</button>
+            </div>
+            <div>
+                <p>Как часто вы хотите получать уведомления?</p>
+                <div class="time-btns">
+                    <button type="button" class="time-btn">5 мин</button>
+                    <button type="button" class="time-btn">15 мин</button>
+                    <button type="button" class="time-btn">30 мин</button>
+                    <button type="button" class="time-btn">60 мин</button>
+                </div>
+            </div>
+            <input type="hidden" id="intervalInput" name="interval">
+            <button class="submit" type="submit">
+                <img src="images/plus.png" alt="">
+            </button>
+        </form>
+    </main>
+
+    <footer>
+        <div class="navbar">
+            <div class="navbar-div">
+                <a href="main.html">
+                    <img src="images/HouseSimple.png">
+                    <h3 class="active">Home</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="tikerinfo.html">
+                    <img src="images/ChartPieSlice.png">
+                    <h3>Analytics</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/Wallet.png">
+                    <h3>Wallet</h3>
+                </a>
+            </div>
+            <div class="navbar-div">
+                <a href="profile.html">
+                    <img src="images/User.png">
+                    <h3>Profile</h3>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchButtons = document.querySelectorAll('.search-btns .btn');
+            const timeButtons = document.querySelectorAll('.time-btns .time-btn');
+            const searchInput = document.getElementById('searchInput');
+            const intervalInput = document.getElementById('intervalInput');
+            const form = document.getElementById('trackForm');
+
+            searchButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    searchButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    searchInput.value = this.textContent;
+                });
+            });
+
+            timeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    timeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    intervalInput.value = this.textContent;
+                });
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log("Форма отправлена с тикером:", searchInput.value, "и интервалом:", intervalInput.value);
+              
+                form.submit();
+            });
+        });
+    </script>
+</body>
+</html>
